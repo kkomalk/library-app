@@ -1,0 +1,131 @@
+body {
+  margin: 5px;
+  align-content: center;
+  padding: 0;
+  font-family: sans-serif;
+  background: url(../images/aa_1.jpg);
+  background-size: cover;
+  font-family: cursive;
+  color: aliceblue;
+  font-size: 30px;
+}
+
+.box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  padding: 30px 70px;
+  background: rgba(0, 0, 0, .7);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .13);
+  border-radius: 35px;
+}
+
+.box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #ffffff;
+  text-align: center;
+  font-size: 30px;
+  font-style: italic;
+  font-family: serif;
+}
+
+.box .inputBox {
+  position: relative;
+}
+
+.box .inputBox input {
+  width: 100%;
+  padding: 10px 10px;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.box .inputBox label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.box .inputBox input:focus~label,
+.box .inputBox input:valid~label {
+  top: -18px;
+  left: 0;
+  color: #03a9f4;
+  font-size: 12px;
+}
+
+.box .inputBox text {
+  width: 5px;
+  top: 0;
+  bottom: 10px;
+  margin-bottom: 10px;
+  padding: 5px 0;
+  font-size: 14px;
+  color: aliceblue;
+}
+
+.box .inputBox a {
+  width: 100%;
+  bottom: 10px;
+  margin-bottom: 20px;
+  padding: 10px 5px;
+  font-size: 14px;
+  color: darkorange;
+}
+
+.box .inputBox a:hover {
+  font-size: 16px;
+}
+
+.box .inputBox signin {
+  margin-top: 10px;
+  border: none;
+  color: #fff;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.box .inputBox signup {
+  margin-top: 10px;
+  border: none;
+  color: #fff;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  color: rgb(99, 72, 72);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: rgb(61, 39, 39);
+  background-color: #d3d3a4;
+}

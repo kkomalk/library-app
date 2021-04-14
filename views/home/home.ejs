@@ -7,6 +7,24 @@
     <title>HomePage</title>
 </head>
 <body>
-    Well Hello There!!
+    <div class="info" >Well Hello There!!</div>
+    <button class="btn" onclick="send()">Click me</button>
+    <div><%=data%></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script>
+        $(document).ready(function(){
+            $(".btn").click(function(){
+            $.ajax({url:window.location.href + "displayinfo",method: 'post',success: function(result){
+                $(".info").text(JSON.stringify(result[0]));
+                console.log(result[0]);
+            }});
+            });
+        });
+        </script> -->
+    <script>
+        function send(){
+            window.location.replace(window.location.href + 'auth/login');
+        }
+    </script>
 </body>
 </html>

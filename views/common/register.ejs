@@ -15,24 +15,25 @@
 
     <div class="box">
         <h2>Login</h2>
-        <form>
+        <form method="POST">
             <div class="inputBox">
-                <input type="text" name="" required="">
+                <input type="text" name="email" required="true">
                 <label>E-Mail ID</label>
             </div>
             <div class="inputBox">
-                <input type="password" name="" required="">
+                <input type="password" name="password" required="true">
                 <label>Password</label>
             </div>
             <div class="inputBox">
                 <text>New User</text>
-                <a href="signup.html" class="signup">Sign Up here</a>
+                <a href="<%=path%>auth/signup" class="signup">Sign Up here</a>
             </div>
             <center>
                 <signin>
-                    <a href="#" class="signin"><button>Sign In</button></a>
+                    <button type="submit">Sign In</button>
                 </signin>
             </center>
+            <img src="../images/google.png" />
         </form>
     </div>
 </body>

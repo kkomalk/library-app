@@ -19,7 +19,7 @@ passport.use(
     new GoogleStrategy({
         clientID: keys.clientID,
         clientSecret: keys.clientSecret,
-        callbackURL: '/auth/google/redirect'
+        callbackURL: '/auth/google/redirect',
     }, (accessToken, refreshToken, profile,email, done) => {
         // done(null,profile);
         let sql = 'select * from account where email = ?';

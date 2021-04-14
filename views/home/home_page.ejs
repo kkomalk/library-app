@@ -27,7 +27,11 @@
 
         <!-- Stylesheet -->
         <link href="../style.css" rel="stylesheet" type="text/css" />
-
+        <script>
+            function books(){
+                window.location.replace(window.location.href + 'books');
+            }
+        </script>
     </head>
 
     <body>
@@ -62,7 +66,7 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="topbar-links">
-                                                <a href="#"><i class="fa fa-lock"></i>Login / Register</a>
+                                                <a href="<%=path%>auth/login"><i class="fa fa-lock"></i>Login / Register</a>
                                                 <span>|</span>
                                                 <div class="header-cart dropdown">
                                                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -115,10 +119,10 @@
                                 <div class="navbar-collapse hidden-sm hidden-xs">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown active">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Home</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>">Home</a>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Books</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled"  href="<%=path%>books">Books</a>
                                         </li>
                                         <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>

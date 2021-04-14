@@ -7,13 +7,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    let sql = 'select * account where userid = ?';
-    connection.query(sql,id,(err,result)=>{
-        console.log(result);
-        done(null,1);
+    let sql = 'select * from account where userid = '+id;
+    connection.query(sql,(err,result)=>{
+        // console.log(id,result);
+        done(null,result[0]);
     })
 });
-
 
 
 passport.use(
@@ -22,8 +21,6 @@ passport.use(
         clientSecret: keys.clientSecret,
         callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile,email, done) => {
-        console.log('authorized');
-        console.log(email.emails[0].value , 'here');
         // done(null,profile);
         let sql = 'select * from account where email = ?';
         connection.query(sql,email.emails[0].value,(err,result)=>{

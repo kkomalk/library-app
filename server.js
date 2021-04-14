@@ -9,6 +9,7 @@ const ejf = require("ejs");
 const homerouter = require('./routes/home');
 const mysql = require('mysql');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 var keys = require('./keys.js');
 require("dotenv").config();
 
@@ -24,6 +25,10 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');

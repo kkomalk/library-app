@@ -1,0 +1,15 @@
+-- 
+-- procedure definition
+delimiter //
+create procedure  (
+
+)
+begin
+
+end //
+delimiter ;
+
+-- call procedure
+call 
+
+-- drop procedure  ;

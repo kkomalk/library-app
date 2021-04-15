@@ -6,8 +6,7 @@
     <!-- to make the website responsive -->
 
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../css/login-register-style.css">
-
+    <link rel="stylesheet" href="/css/login-register-style.css">
 </head>
 
 <body>
@@ -16,7 +15,7 @@
     </center>
     <div class="box">
         <h2>Sign Up</h2>
-        <form>
+        <form method="POST">
             <div class="inputBox">
                 <input type="text" value="<%=name%>" name="name" required="true">
                 <label>Name</label>
@@ -34,7 +33,7 @@
                 <label>Password</label>
             </div>
             <div class="inputBox">
-                <input type="password" name="password" required="true">
+                <input type="password" name="repassword" required="true">
                 <label>Renter Password</label>
             </div>
             <select name="type">
@@ -46,11 +45,8 @@
                 <text>Already a member</text>
                 <a href="<%=path%>auth/login" class="signup">Sign In here</a>
             </div>
-            <center>
-                <signup>
-                    <a href="#" class="signup"><button>Sign Up</button></a>
-                </signup>
-            </center>
+            <button type="submit">Sign Up</button>
+            <h4><%=error%></h4>
         </form>
     </div>
 </body>

@@ -13,6 +13,8 @@ const cquery = async  (sql,req,res)=>{
     )
 }
 
+let books = [];
+
 
 router.get('/home',async (req,res)=>{
     let userid=req.user.accountID;
@@ -29,15 +31,19 @@ router.get('/temp',(req,res)=>{
 
 router.post('/getbooksdata',async (req,res)=>{
     let sub=req.body.sub;
-    let temp = await cquery(`select * from temp;`);
+    if(books.length == 0){
+        console.log('called');
+        books = await cquery('select * from temp;');
+    }
+    // let temp = await cquery(`select * from temp;`);
     if(sub.length == 0){
         res.send({});
     }else{
         let result = [];
-        for(let i=0;i<temp.length;i++){
-            let str = ""+temp[i].name;
+        for(let i=0;i<books.length;i++){
+            let str = ""+books[i].name;
             if(str.indexOf(sub) > -1){
-                result.push(temp[i]);
+                result.push(books[i]);
             }
         }
         res.send(result);

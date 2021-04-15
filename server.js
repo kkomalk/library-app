@@ -91,9 +91,15 @@ function handleDisconnect() {
 
 handleDisconnect();
 
-
-
-
+const cquery = async  (sql,req,res)=>{
+    return new Promise((resolve,reject)=>{
+        connection.query(sql,(err,result)=>{
+            if(err) throw err;
+            resolve(result);
+        })
+    }
+    )
+}
 app.use("/", homerouter);
 app.use('/auth', authRouter);
 app.use('/profile', profileRouter);

@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="topbar-links">
-                                            <a href="#"><i class="fa fa-lock"></i>Log Out</a>
+                                            <a href="<%=path%>auth/logout"><i class="fa fa-lock"></i>Log Out</a>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                     <a href="#">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#">Books</a>
+                                    <a href="<%=path%>user/temp">Books</a>
                                 </li>
                                 <li>
                                     <a href="#">Pay Fines</a>
@@ -176,19 +176,19 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td> ----- </td>
+                                <td> <%=name%> </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>UserID</td>
-                                <td> ----- </td>
+                                <td> <%=userid%> </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>Address</td>
-                                <td> ----- </td>
+                                <td> <%=address%> </td>
                             </tr>
                         </tbody>
                     </table>

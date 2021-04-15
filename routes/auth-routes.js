@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const passport = require('passport');
 const path = '../views/common/';
+const passport = require('passport');
 const href = 'http://localhost:5000/';
 
 const cquery = async  (sql,req,res)=>{
@@ -14,8 +14,13 @@ const cquery = async  (sql,req,res)=>{
 }
 
 router.get('/login', (req, res) => {
+    console.log(req.user);
     if (req.user) {
-        res.send('you are already logged in');
+        if(req.user.accountType == 'librarian'){
+            res.redirect('/librarian/home');
+        }else{
+            res.redirect('/user/home');
+        }
     } else {
         // console.log(req.flash('error')[0],'here');
         let error = req.flash('error')[0];
@@ -26,8 +31,11 @@ router.get('/login', (req, res) => {
 router.post('/login',passport.authenticate('local',{failureRedirect: '/auth/login',failureFlash:true,passReqToCallback:true}),async (req,res)=>{
     let id = req.user.accountID;
     let temp = await cquery(`select accountType from account where accountID = ${id};`);
-    console.log(temp);
-    res.redirect('/profile');
+    if(temp[0].accountType == 'librarian'){
+        res.redirect('/librarian/home');
+    }else{
+        res.redirect('/user/home');
+    }
 })
 
 router.get('/logout', (req, res) => {

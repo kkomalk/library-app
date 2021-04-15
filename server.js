@@ -1,14 +1,19 @@
 const express = require("express");
-const authRoutes = require('./routes/auth-routes');
-const profileRoutes = require('./routes/profile-routes');
+
+const authRouter = require('./routes/auth-routes');
+const profileRouter = require('./routes/profile-routes');
+const librarianRouter=require('./routes/librarian');
+const userRouter=require('./routes/user');
+const homerouter = require('./routes/home');
+
 const LocalStrategy = require('passport-local').Strategy;
 const customStrategy = require('./config/custom-strategy');
 const passportSetup = require('./config/passport-setup');
 const keys2 = require('./config/keys');
 const passport = require('passport');
+
 const cors = require("cors");
-const ejf = require("ejs");
-const homerouter = require('./routes/home');
+const ejs = require("ejs");
 const mysql = require('mysql');
 const cookieSession = require('cookie-session');
 const flash = require('connect-flash');
@@ -90,8 +95,10 @@ handleDisconnect();
 
 
 app.use("/", homerouter);
-app.use('/auth', authRoutes);
-app.use('/profile', profileRoutes);
+app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
+app.use('/librarian', librarianRouter);
+app.use('/user', userRouter);
 app.listen(port, () => {
     console.log("Server is running at port : ", port);
 });

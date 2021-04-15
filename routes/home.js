@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const path = '../views/home/';
 const mysql = require('mysql');
+const href = 'http://localhost:5000/';
 
 router.get('/',(req,res)=>{
-    connection.query('select * from account;',(err,result) => {
-        if(err) throw err;
-        // res.send(JSON.stringify(result));
-        console.log(result);
-        res.render(path+'home.ejs', {data : JSON.stringify(result)});
-    })
+    res.render(path+'home_page.ejs',{path : href});
+})
+
+router.get('/books',(req,res)=>{
+    res.render(path+'books.ejs',{path : href});
 })
 
 router.post('/displayinfo',(req,res)=>{

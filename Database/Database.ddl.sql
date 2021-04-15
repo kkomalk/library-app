@@ -20,10 +20,11 @@ Entities
 
 -- Entities
 create table account(
-accountID int,
+accountID int auto-increment unique not null,
 password varchar(200),
 accountType varchar(20),
-primary key(accountID)
+email varchar(70),
+primary key(email)
 );
 -- drop table account;
 
@@ -54,12 +55,13 @@ title varchar(100),
 yearOfPublication int,
 totalCopies int,
 noOfCopiesOnShelf int,
+authors varchar(200),
 primary key(ISBN)
 );
 -- drop table book;
 
 create table review(
-reviewID int,
+reviewID int auto-increment,
 reviewText varchar(500),
 userID int,
 ISBN varchar(15),
@@ -68,13 +70,6 @@ foreign key(userID) references user(userID) on delete cascade,
 foreign key(ISBN) references book(ISBN) on delete cascade
 );
 -- drop table review;
-
-create table author(
-authorID int,
-name varchar(50),
-primary key(authorID)
-);
--- drop table author;
 
 create table shelf(
 shelfID int,
@@ -96,6 +91,7 @@ foreign key(shelfID) references shelf(shelfID)
 -- drop table bookCopies
 
 create table holdRequest(
+requestID int auto-increment,
 ISBN varchar(15),
 userID int,
 holdTime datetime,
@@ -106,7 +102,7 @@ foreign key(userID) references user(userID) on delete cascade
 -- drop table holdRequest
 
 create table rating(
-ratingID int,
+ratingID int auto-increment,
 ISBN varchar(15),
 userID int,
 rating int,
@@ -120,7 +116,7 @@ create table friendRequest(
 requesterID int,
 requestedID int,
 primary key(requesterID, requestedID),
-foreign key(reuesterID) references user(userID) on delete cascade,
+foreign key(requesterID) references user(userID) on delete cascade,
 foreign key(requestedID) references user(userID) on delete cascade
 );
 -- drop table friendRequest
@@ -150,7 +146,6 @@ userID int,
 action varchar(20),
 primary key(ISBN, copyID, userID),
 foreign key(ISBN) references bookCopies(ISBN),
-foreign key(copyID) references bookCopies(copyID),
 foreign key(userID) references user(userID)
 );
 -- drop table bookCopiesUser
@@ -159,19 +154,11 @@ create table readingList(
 ISBN varchar(15),
 userID int,
 status varchar(20),
+favourite varchar(3) default 'NO',
 primary key(ISBN, userID),
 foreign key(ISBN) references book(ISBN) on delete cascade,
 foreign key(userID) references user(userID) on delete cascade
 );
 -- drop table readingList
-
-create table authorBook(
-ISBN varchar(15),
-authorID int,
-primary key(ISBN, authorID),
-foreign key(ISBN) references book(ISBN) on delete cascade,
-foreign key(authorID) references author(authorID) on delete cascade
-);
--- drop table authorBook
 
 

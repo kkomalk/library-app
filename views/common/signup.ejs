@@ -6,7 +6,8 @@
     <!-- to make the website responsive -->
 
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../css/login-register-style.css">
+
+    <link rel="stylesheet" href="/css/login-register-style.css">
 
 </head>
 
@@ -16,32 +17,40 @@
     </center>
     <div class="box">
         <h2>Sign Up</h2>
-        <form>
+
+        <form method="POST">
             <div class="inputBox">
-                <input type="text" name="" required="">
+                <input type="text" value="<%=name%>" name="name" required="true">
                 <label>Name</label>
             </div>
             <div class="inputBox">
-                <input type="text" name="" required="">
+                <input type="email" value="<%=email%>" name="email" required="true">
                 <label>E-mail ID</label>
             </div>
             <div class="inputBox">
-                <input type="password" name="" required="">
+                <input type="text" name="address" required="true">
+                <label>Address</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required="true">
                 <label>Password</label>
             </div>
             <div class="inputBox">
-                <input type="password" name="" required="">
+                <input type="password" name="repassword" required="true">
                 <label>Renter Password</label>
             </div>
+            <select name="type">
+                <option value="student">Student</option>
+                <option value="Professor">Professor</option>
+                <option value="librarian">Librarian</option>
+            </select>
             <div class="inputBox">
                 <text>Already a member</text>
-                <a href="login.html" class="signup">Sign In here</a>
+                <a href="<%=path%>auth/login" class="signup">Sign In here</a>
             </div>
-            <center>
-                <signup>
-                    <a href="#" class="signup"><button>Sign Up</button></a>
-                </signup>
-            </center>
+            <button type="submit">Sign Up</button>
+            <h4><%=error%></h4>
+
         </form>
     </div>
 </body>

@@ -7,7 +7,7 @@ create procedure listOfReadBooks(
 begin
 create table temp
 select readingList.ISBN from readingList
-where readingList.userID = userID and readingList.status = 'unread';
+where readingList.userID = userID and readingList.status = 'read';
 select temp.ISBN, book.title, book.yearOfPublication, book.authors
 from temp inner join book
 on temp.ISBN = book.ISBN;

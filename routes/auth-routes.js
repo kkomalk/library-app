@@ -62,7 +62,7 @@ router.post('/signup',async (req,res)=>{
             req.flash('error','email is already registered');
             res.redirect('/auth/signup');
         }else{
-            let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}');`);
+            let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}',@did);`);
             req.flash('error','You are signed up now. Please login.');
             res.redirect('/auth/login');
         }

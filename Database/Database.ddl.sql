@@ -61,7 +61,7 @@ primary key(ISBN)
 -- drop table book;
 
 create table review(
-reviewID int auto increment,
+reviewID int auto-increment,
 reviewText varchar(500),
 userID int,
 ISBN varchar(15),
@@ -91,7 +91,7 @@ foreign key(shelfID) references shelf(shelfID)
 -- drop table bookCopies
 
 create table holdRequest(
-requestID int auto increment,
+requestID int auto-increment,
 ISBN varchar(15),
 userID int,
 holdTime datetime,
@@ -102,7 +102,7 @@ foreign key(userID) references user(userID) on delete cascade
 -- drop table holdRequest
 
 create table rating(
-ratingID int auto increment,
+ratingID int auto-increment,
 ISBN varchar(15),
 userID int,
 rating int,

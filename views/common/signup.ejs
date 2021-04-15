@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- to make the website responsive -->
+
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/login-register-style.css">
+
+</head>
+
+<body>
+    <center>
+        <h1>My Library</h1>
+    </center>
+    <div class="box">
+        <h2>Sign Up</h2>
+        <form>
+            <div class="inputBox">
+                <input type="text" name="name" required="true">
+                <label>Name</label>
+            </div>
+            <div class="inputBox">
+                <input type="email" name="email" required="true">
+                <label>E-mail ID</label>
+            </div>
+            <div class="inputBox">
+                <input type="text" name="address" required="true">
+                <label>Address</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required="true">
+                <label>Password</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required="true">
+                <label>Renter Password</label>
+            </div>
+            <div class="inputBox">
+                <text>Already a member</text>
+                <a href="<%=path%>auth/login" class="signup">Sign In here</a>
+            </div>
+            <center>
+                <signup>
+                    <a href="#" class="signup"><button>Sign Up</button></a>
+                </signup>
+            </center>
+        </form>
+    </div>
+</body>
+
+</html>

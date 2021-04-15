@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Sign In</title>
+    <link rel="stylesheet" href="../css/login-register-style.css">
+</head>
+
+<body>
+    <center>
+        <h1>My Library</h1>
+    </center>
+
+    <div class="box">
+        <h2>Login</h2>
+        <form method="POST">
+            <div class="inputBox">
+                <input type="text" name="email" required="true">
+                <label>E-Mail ID</label>
+            </div>
+            <div class="inputBox">
+                <input type="password" name="password" required="true">
+                <label>Password</label>
+            </div>
+            <div class="inputBox">
+                <text>New User</text>
+                <a href="<%=path%>auth/signup" class="signup">Sign Up here</a>
+            </div>
+            <center>
+                <signin>
+                    <button type="submit">Sign In</button>
+                </signin>
+            </center>
+            <img src="../images/google.png" />
+        </form>
+    </div>
+</body>
+
+</html>

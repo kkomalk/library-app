@@ -1,6 +1,8 @@
 const express = require("express");
 const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
+const LocalStrategy = require('passport-local').Strategy;
+const customStrategy = require('./config/custom-strategy');
 const passportSetup = require('./config/passport-setup');
 const keys2 = require('./config/keys');
 const passport = require('passport');
@@ -9,6 +11,7 @@ const ejf = require("ejs");
 const homerouter = require('./routes/home');
 const mysql = require('mysql');
 const cookieSession = require('cookie-session');
+const flash = require('connect-flash');
 var keys = require('./keys.js');
 require("dotenv").config();
 
@@ -23,7 +26,11 @@ app.use(cookieSession({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
+app.use(express.urlencoded({ extended: true }))
+
+app.use(express.json())
 
 app.use(function (req, res, next) {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
@@ -78,6 +85,8 @@ function handleDisconnect() {
 }
 
 handleDisconnect();
+
+
 
 
 app.use("/", homerouter);

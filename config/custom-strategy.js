@@ -4,11 +4,11 @@ const CustomStrategy = passportCustom.Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 passport.serializeUser((user, done) => {
-    done(null, user.userid);
+    done(null, user.accountID);
 });
 
 passport.deserializeUser((id, done) => {
-    let sql = 'select * from account where userid = '+id;
+    let sql = 'select * from account where accountID = '+id;
     connection.query(sql,(err,result)=>{
         done(null,result[0]);
     })

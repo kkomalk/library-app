@@ -20,10 +20,11 @@ Entities
 
 -- Entities
 create table account(
-accountID int,
+accountID int auto increment unique not null,
 password varchar(200),
 accountType varchar(20),
-primary key(accountID)
+email varchar(70),
+primary key(email)
 );
 -- drop table account;
 
@@ -54,12 +55,13 @@ title varchar(100),
 yearOfPublication int,
 totalCopies int,
 noOfCopiesOnShelf int,
+authors varchar(200),
 primary key(ISBN)
 );
 -- drop table book;
 
 create table review(
-reviewID int,
+reviewID int auto increment,
 reviewText varchar(500),
 userID int,
 ISBN varchar(15),
@@ -68,13 +70,6 @@ foreign key(userID) references user(userID) on delete cascade,
 foreign key(ISBN) references book(ISBN) on delete cascade
 );
 -- drop table review;
-
-create table author(
-authorID int,
-name varchar(50),
-primary key(authorID)
-);
--- drop table author;
 
 create table shelf(
 shelfID int,
@@ -96,6 +91,7 @@ foreign key(shelfID) references shelf(shelfID)
 -- drop table bookCopies
 
 create table holdRequest(
+requestID int auto increment,
 ISBN varchar(15),
 userID int,
 holdTime datetime,
@@ -106,7 +102,7 @@ foreign key(userID) references user(userID) on delete cascade
 -- drop table holdRequest
 
 create table rating(
-ratingID int,
+ratingID int auto increment,
 ISBN varchar(15),
 userID int,
 rating int,
@@ -159,6 +155,7 @@ create table readingList(
 ISBN varchar(15),
 userID int,
 status varchar(20),
+favourite varchar(3) default 'NO',
 primary key(ISBN, userID),
 foreign key(ISBN) references book(ISBN) on delete cascade,
 foreign key(userID) references user(userID) on delete cascade

@@ -8,8 +8,7 @@ create procedure signUpGoogle(
     in address varchar(500)
 )
 begin
-call generateUserID(@userID);
-insert into account values(@userID, '', type);
+insert into account values(NULL, type, email);
 insert into user values(@userID, name, email, address, 0);
 end //
 delimiter ;

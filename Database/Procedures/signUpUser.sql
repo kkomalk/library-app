@@ -9,8 +9,7 @@ create procedure signUpUser(
     in type varchar(20)
 )
 begin
-call generateUserID(@userID);
-insert into account values(@userID, password, type);
+insert into account values(password, type, email);
 insert into user values(@userID, name, email, address, 0);
 end //
 delimiter ;

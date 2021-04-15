@@ -16,6 +16,7 @@ declare minCopyID int;
 declare userType varchar(20);
 declare holdLimit int;
 declare loanLimit int;
+declare noOfCopiesOnShelf int;
 
 select bookCopiesUser.action into action from bookCopiesUser
 where bookCopiesUser.userID = userID and bookCopiesUser.ISBN = ISBN;
@@ -51,6 +52,9 @@ else
         where bookCopies.ISBN = ISBN and bookCopies.copyID = minCopyID;
         insert into bookCopiesUser values(ISBN, minCopyID, userID, 'hold');
         delete from holdRequest where holdRequest.userID = userID and holdRequest.ISBN = ISBN;
+        select count(bookCopies.bookStatus) into noOfCopiesOnShelf from bookCopies
+        where bookCopies.bookStatus = 'shelf' and bookCopies.ISBN = ISBN;
+        update book set book.noOfCopiesOnShelf = noOfCopiesOnShelf where book.ISBN = ISBN; 
         set status = 1;
         set copyID = minCopyID;
         set dueDate = current_date() + holdLimit;

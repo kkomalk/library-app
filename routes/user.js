@@ -15,6 +15,9 @@ const cquery = async  (sql,req,res)=>{
 
 let books = [];
 
+router.get('/books',async(req,res)=>{
+    res.render(path+'books.ejs',{path : href});
+})
 
 router.get('/home',async (req,res)=>{
     let userid=req.user.accountID;
@@ -27,6 +30,36 @@ router.get('/home',async (req,res)=>{
 
 router.get('/temp',(req,res)=>{
     res.render(path+'temp',{path : href});
+})
+
+router.post('/getbooksdata',async (req,res)=>{
+    let c = req.body.criteria;
+    let sub=req.body.sub;
+    if(books.length == 0){
+        console.log('called');
+        books = await cquery('select * from book;');
+    }
+
+    if(sub.length == 0){
+        res.send({});
+    }else{
+        let result = [];
+        for(let i=0;i<books.length;i++){
+            let str="";
+            if(c== "Search by Name"){
+                str = ""+books[i].title;
+            }else{
+                str = ""+books[i].authors;
+            }
+            books[i].rating = 4;
+            console.log(books);
+            if(str.indexOf(sub) > -1){
+                result.push(books[i]);
+            }
+        }
+        res.send(result);
+    }
+
 })
 
 module.exports = router;

@@ -21,7 +21,7 @@ router.get('/',(req,res)=>{
 })
 
 router.get('/books',(req,res)=>{
-    res.render(path+'books.ejs',{path : href});
+    res.render(path+'books_without_login.ejs',{path : href});
 })
 
 router.post('/displayinfo',(req,res)=>{
@@ -51,6 +51,8 @@ router.post('/getbooksdata',async (req,res)=>{
             }else{
                 str = ""+books[i].authors;
             }
+            books[i].rating=4;
+            console.log(books);
             if(str.indexOf(sub) > -1){
                 result.push(books[i]);
             }

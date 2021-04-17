@@ -9,18 +9,18 @@ create procedure authenticate(
 )
 begin
 declare pwd varchar(200);
-select account.password into pwd 
-from account
+set pwd = '';
+select account.password into pwd from account
 where account.email = email;
-if(pwd = NULL) then
-    set success =0;
+if(pwd = '') then
+    set success = 0;
     set type = 'dne';
 elseif(password != pwd) then
     set success = 0;
     set type = 'invalid';
 else
     set success = 1;
-    select account.accountType into type where account.email = email;
+    select account.accountType into type from account where account.email = email;
 end if;
 end //
 delimiter ;

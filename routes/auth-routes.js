@@ -23,13 +23,15 @@ router.get('/login', (req, res) => {
         }
     } else {
         // console.log(req.flash('error')[0],'here');
-        let error = req.flash('error')[0];
-        res.render(path + 'login',{path: href,error});
+        let error = req.flash('error');
+        let message = req.flash('message');
+        res.render(path + 'login',{path: href,error,message});
     }
 });
 
 router.post('/login',passport.authenticate('local',{failureRedirect: '/auth/login',failureFlash:true,passReqToCallback:true}),async (req,res)=>{
     let id = req.user.accountID;
+    console.log(req.user);
     let temp = await cquery(`select accountType from account where accountID = ${id};`);
     if(temp[0].accountType == 'librarian'){
         res.redirect('/librarian/home');
@@ -51,6 +53,10 @@ router.get('/signup',(req,res)=>{
     let name=req.query.name;
     let email = req.query.email;
     let error=req.flash('error');
+    // console.log(error);
+    // if(error.length){
+    //     error=error[0];
+    // }
     res.render(path+'signup',{name,email,path : href,error});
 })
 
@@ -61,6 +67,7 @@ router.post('/signup',async (req,res)=>{
     let type=req.body.type;
     let pass=req.body.password;
     let repass=req.body.repassword;
+    console.log(req.body);
     if(pass!=repass){
         req.flash('error','passwords do not match');
         res.redirect('/auth/signup/');
@@ -71,7 +78,7 @@ router.post('/signup',async (req,res)=>{
             res.redirect('/auth/signup');
         }else{
             let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}',@did);`);
-            req.flash('error','You are signed up now. Please login.');
+            req.flash('message','You are signed up now. Please login.');
             res.redirect('/auth/login');
         }
     }
@@ -86,7 +93,7 @@ router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
         res.redirect('/auth/signup?'+'name='+req.name+"+"+req.fname+'&email='+req.email);
         // req.logout();
     }else{
-        res.redirect('/profile');
+        res.redirect('/user/home');
     }
 })
 

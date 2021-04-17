@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="topbar-links">
-                                            <a href="#"><i class="fa fa-lock"></i>Login / Register</a>
+                                            <a href="<%=path%>auth/login"><i class="fa fa-lock"></i>Login / Register</a>
                                             <span>|</span>
                                             <div class="header-cart dropdown">
                                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -805,7 +805,7 @@
             $(".searchbutton").click(function () {
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:5000/user/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
+                    url: "http://localhost:5000/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
                         console.log(result);
                         $(".searcbooks").find("tr").remove();
                         let s="";

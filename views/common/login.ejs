@@ -31,12 +31,17 @@
             </div>
             <center style="margin-top: 10px;">
                 <signin>
-                    <button type="submit">Sign In</button>
+                    <button type="submit" class="btn btn-success">Sign In</button>
                 </signin>
             </center>
-            <%if(typeof error != 'undefined'){%>
+            <%if(typeof error[0] != 'undefined'){%>
                 <div style="margin-top: 5px;" class="alert alert-danger" role="alert">
                     <%=error%>
+                </div>
+            <%}%>
+            <%if(typeof message[0] != 'undefined'){%>
+                <div style="margin-top: 5px;" class="alert alert-success" role="alert">
+                    <%=message%>
                 </div>
             <%}%>
             <center>

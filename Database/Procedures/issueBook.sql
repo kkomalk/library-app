@@ -39,34 +39,41 @@ end if;
 select bookCopiesUser.action into bookAction from bookCopiesUser
 where bookCopiesUser.userID = userID and bookCopiesUser.ISBN = ISBN and bookCopiesUser.copyID = copyID;
 if(bookAction = 'loan&hold') then
-    set success = 0;
-    set dueDate = NULL;
+	call returnBook(userID, ISBN, copyID);
+    update book set book.noOfCopiesOnShelf = book.noOfCopiesOnShelf - 1
+    where book.ISBN = ISBN;
+    update bookCopies set bookCopies.bookStatus = 'loan', bookCopies.dueDate = date_add(current_date(), interval loanLimit day)
+    where bookCopies.ISBN = ISBN and bookCopies.copyID = copyID;
+    insert into bookCopiesUser values(ISBN, copyID, userID, 'loan');
+    set success = 1;
+    set dueDate = date_add(current_date(), interval loanLimit day);
 elseif(bookAction = 'hold') then
-    update bookCopies set bookCopies.bookStatus = 'loan', bookCopies.dueDate = current_date() + loanLimit;
+    update bookCopies set bookCopies.bookStatus = 'loan', bookCopies.dueDate = date_add(current_date(), interval loanLimit day)
+    where bookCopies.ISBN = ISBN and bookCopies.copyID = copyID;
     update bookCopiesUser set bookCopiesUser.action = 'loan' where bookCopiesUser.userID = userID and
     bookCopiesUser.ISBN = ISBN and bookCopiesUser.copyID = copyID;
     set success = 1;
-    set dueDate = current_date() + loanLimit;
+    set dueDate = date_add(current_date(), interval loanLimit day);
 elseif(bookAction = 'loan') then
     set success = 0;
     set dueDate = NULL;
 else 
     update book set book.noOfCopiesOnShelf = book.noOfCopiesOnShelf - 1
     where book.ISBN = ISBN;
-    update bookCopies set bookCopies.bookStatus = 'loan', set bookCopies.dueDate = current_date() + loanLimit
+    update bookCopies set bookCopies.bookStatus = 'loan', bookCopies.dueDate = date_add(current_date(), interval loanLimit day)
     where bookCopies.ISBN = ISBN and bookCopies.copyID = copyID;
     insert into bookCopiesUser values(ISBN, copyID, userID, 'loan');
     set success = 1;
-    set dueDate = current_date() + loanLimit;
-endif; 
+    set dueDate = date_add(current_date(), interval loanLimit day);
+end if; 
 end //
 delimiter ;
 
 -- call procedure
-call issueBook(100, '123', 2, @success, @dueDate);
+call issueBook(4, '123', 1, @success, @dueDate);
 select @success;
 select @dueDate;
--- success = 0 : Can't be issued
+-- success = 0 : Can't be issued due to limits
 -- success = 1 : Book issued succesfully
 
 -- drop procedure issueBook;

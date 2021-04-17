@@ -4,18 +4,18 @@ delimiter //
 create procedure markAsFavourite(
     in userID int,
     in ISBN varchar(15),
-    in read int
+    in readBook int
 )
 begin
-if(read = 1) then
-    insert into readingList values(userID, ISBN, 'read', 'YES');
+if(readBook = 1) then
+    insert into readingList values(ISBN, userID, 'read', 'YES');
 else
-    insert into readingList values(userID, ISBN, 'unread', 'YES');
+    insert into readingList values(ISBN, userID, 'unread', 'YES');
 end if;
 end //
 delimiter ;
 
 -- call procedure
-call markAsFavourite(100, '123', 1);
+call markAsFavourite(4, '123', 1);
 
 -- drop procedure markAsFavourite;

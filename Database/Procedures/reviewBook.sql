@@ -7,11 +7,11 @@ create procedure reviewBook(
     in reviewText varchar(500)
 )
 begin
-insert into review values(reviewText, userID, ISBN);
+insert into review(reviewText, userID, ISBN) values(reviewText, userID, ISBN);
 end //
 delimiter ;
 
 -- call procedure
-call reviewBook(100, '123', 'lorem10');
+call reviewBook(4, '123', 'lorem10');
 
 -- drop procedure reviewBook;

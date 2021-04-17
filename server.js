@@ -100,11 +100,20 @@ const cquery = async  (sql,req,res)=>{
     }
     )
 }
+
+const auth = (req,res,next) => {
+    if(req.user){
+        next();
+    }else{
+        res.redirect('/auth/login');
+    }
+}
+
 app.use("/", homerouter);
 app.use('/auth', authRouter);
-app.use('/profile', profileRouter);
-app.use('/librarian', librarianRouter);
-app.use('/user', userRouter);
+app.use('/profile',auth, profileRouter);
+app.use('/librarian',auth, librarianRouter);
+app.use('/user',auth, userRouter);
 app.listen(port, () => {
     console.log("Server is running at port : ", port);
 });

@@ -30,18 +30,19 @@ router.get('/temp',(req,res)=>{
 })
 
 router.post('/getbooksdata',async (req,res)=>{
+    console.log(req.body.criteria);
     let sub=req.body.sub;
     if(books.length == 0){
         console.log('called');
-        books = await cquery('select * from temp;');
+        books = await cquery('select * from book;');
     }
-    // let temp = await cquery(`select * from temp;`);
+
     if(sub.length == 0){
         res.send({});
     }else{
         let result = [];
         for(let i=0;i<books.length;i++){
-            let str = ""+books[i].name;
+            let str = ""+books[i].title;
             if(str.indexOf(sub) > -1){
                 result.push(books[i]);
             }

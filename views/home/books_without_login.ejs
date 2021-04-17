@@ -9,7 +9,9 @@
         <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
 
         <!-- Title -->
-        <title>Home Page</title>
+
+        <title>Books</title>
+
 
         <!-- Favicon -->
         <link href="../images/favicon.ico" rel="icon" type="image/x-icon" />
@@ -28,7 +30,6 @@
         <!-- Stylesheet -->
         <link href="../style.css" rel="stylesheet" type="text/css" />
 
-
     </head>
 
     <body>
@@ -39,7 +40,7 @@
                 <div class="row">
                     <nav class="navbar navbar-default">
                         <div class="row">
-                            <div class="col-md-3" >
+                            <div class="col-md-3">
                                 <div class="navbar-header">
                                     <div class="navbar-brand">
                                         <h1>
@@ -63,22 +64,22 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="topbar-links">
-
-                                                <a href="<%=path%>auth/login"><i class="fa fa-lock"></i>Login / Register</a>
-
+                                                <a href="#"><i class="fa fa-lock"></i>Login / Register</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="navbar-collapse hidden-sm hidden-xs">
                                     <ul class="nav navbar-nav">
-                                        <li class="dropdown active">
+                                        <li class="dropdown">
 
                                             <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>">Home</a>
+
                                         </li>
-                                        <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled"  href="<%=path%>books">Books</a>
+                                        <li class="dropdown active">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Books</a>
                                         </li>
+
                                         <!-- <li class="dropdown">
 
                                             <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
@@ -140,15 +141,19 @@
         <section class="page-banner services-banner">
             <div class="container">
                 <div class="banner-header">
-                    <h2> Home </h2>
+                    <h2> Books </h2>
                     <span class="underline center"></span>
                     <p class="lead">A room without books is like a body without soul.</p>
+                </div>
+                <div class="breadcrumb">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li>Books</li>
+                    </ul>
                 </div>
             </div>
         </section>
         <!-- End: Page Banner -->
-
-
 
         <!-- Start: Products Section -->
         <div id="content" class="site-content">
@@ -157,18 +162,117 @@
                     <div class="booksmedia-detail-main">
                         <div class="container">
                             <div class="row">
+                                <!-- Start: Search Section -->
                                 <section class="search-filters">
-                                    
+                                    <div class="container">
+                                        <div class="filter-box">
+                                            <h3>What are you looking for at the library?</h3>
+                                            <form class="searchform">
+                                                <div class="col-md-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="keywords"> Search</label>
+                                                        <input class="form-control" placeholder="Search by Title"
+                                                            id="keywords" name="keywords" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="form-group">
+                                                        <select name="category" id="searchcriteria" class="form-control">
+                                                            <option>Search by Name</option>
+                                                            <option> Search by Author </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 col-sm-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control searchbutton" type="submit" value="Search">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </section>
+                                <!-- End: Search Section -->
+                            </div>
+                            <div class="booksmedia-detail-box">
+                                <div class="detailed-box">
+                                    <div class="col-xs-12 col-sm-5 col-md-3">
+                                        <div class="post-thumbnail">
+                                            <div class="book-list-icon blue-icon"></div>
+                                            <img src="../images/books-media/detail-page/detail-page-image.jpg" alt="Book Image">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-7 col-md-6">
+                                        <div class="post-center-content">
+                                            <h2>    Book's title    </h2>
+                                            <p><strong>Author : </strong>     Author's name     </p>
+                                            <p><strong>ISBN : </strong>       ISBN       </p>
+                                            <p><strong>Rating : </strong>    </p>
+                                            <p><strong>Year of Publication :</strong>    2010    </p>
+                                            <p><strong>Category : </strong>  CSE   </p>
+                                            <!-- <p><strong>Topics : </strong>    C and C++     </p> -->
+                                            
+                                            <p style="visibility: hidden;"><strong>Description : </strong>    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, maiores?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, labore.    </p>
+                                            <p style="visibility: hidden;"><strong>Description : </strong>    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, maiores?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, labore.    </p>
+                                            <p style="visibility: hidden;"><strong>Description : </strong>    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat, maiores?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, labore.    </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-3 ">
+                                        <div class="post-right-content">
+                                            <h4>   Rate this Book  </h4>
+                                            <input style="border-radius: 10px; " class="form-control" placeholder="Enter rating" id="rating" name="rating" type="text"><br>
+                                            <a href="#" class="btn btn-dark-gray">  Post  </a> 
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+
+
+                                <div class="table-tabs" id="responsiveTabs">
+                                    <div class="tab-content">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th> &nbsp; </th>
+                                                        <th> Reviews </th>
+                                                        <th> Name </th>
+                                                        <th> UserID </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>  1.  </td>
+                                                        <td>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, ipsum!  </td>
+                                                        <td>   Name   </td>                                                                    
+                                                        <td>   Userid  </td>                                                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>  2.  </td>
+                                                        <td>  lorem100Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, ipsum!  </td>
+                                                        <td>   Name   </td>                                                                    
+                                                        <td>   Userid  </td>                                                                    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>  3.  </td>
+                                                        <td>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, ipsum!  </td>
+                                                        <td>   Name   </td>                                                                    
+                                                        <td>   Userid  </td>                                                                    
+                                                    </tr>
+                                                    
+
+
+                                                </tbody>
+                                            </table>
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </main>
             </div>
         </div>
-
-
-
         <!-- End: Products Section -->
         <div class="booksmedia-fullwidth">
             <div class="container">
@@ -190,34 +294,17 @@
                                             <p><strong>Year of Publication : </strong>       </p>
                                             <p><strong>Category : </strong>                  </p>
                                         </header>
-
+                                        
                                     </figcaption>
                                 </figure>                                                
                             </li>
+                            
                             <li>
                                 <div class="book-list-icon yellow-icon"></div>
                                 <figure>
                                     <img src="../images/books-media/layout-3/books-media-layout3-02.jpg" alt="Book">
                                     <figcaption>
-                                        
-                                        <header>
-                                            <h4><a href="#">    Book's title                </a></h4>
-                                            <p><strong>Author :</strong>                     </p>
-                                            <p><strong>ISBN :</strong>                       </p>
-                                            <p><strong>Rating : </strong>                    </p>
-                                            <p><strong>Year of Publication : </strong>       </p>
-                                            <p><strong>Category : </strong>                  </p>
-                                        </header>
-                                        
-                                    </figcaption>
-                                </figure>                                                          
-                            </li>
-                            <li>
-                                <div class="book-list-icon yellow-icon"></div>
-                                <figure>
-                                    <img src="../images/books-media/layout-3/books-media-layout3-03.jpg" alt="Book">
-                                    <figcaption>
-                                        
+
                                         <header>
                                             <h4><a href="#">    Book's title                </a></h4>
                                             <p><strong>Author :</strong>                     </p>
@@ -230,12 +317,32 @@
                                     </figcaption>
                                 </figure>                                                
                             </li>
+                            
                             <li>
-                                <div class="book-list-icon yellow-icon"></div>
+                                <div class="book-list-icon green-icon"></div>
+                                <figure>
+                                    <img src="../images/books-media/layout-3/books-media-layout3-03.jpg" alt="Book">
+                                    <figcaption>
+
+                                        <header>
+                                            <h4><a href="#">    Book's title                </a></h4>
+                                            <p><strong>Author :</strong>                     </p>
+                                            <p><strong>ISBN :</strong>                       </p>
+                                            <p><strong>Rating : </strong>                    </p>
+                                            <p><strong>Year of Publication : </strong>       </p>
+                                            <p><strong>Category : </strong>                  </p>
+                                        </header>
+
+                                    </figcaption>
+                                </figure>                                                
+                            </li>
+                            
+                            <li>
+                                <div class="book-list-icon blue-icon"></div>
                                 <figure>
                                     <img src="../images/books-media/layout-3/books-media-layout3-04.jpg" alt="Book">
                                     <figcaption>
-                                        
+
                                         <header>
                                             <h4><a href="#">    Book's title                </a></h4>
                                             <p><strong>Author :</strong>                     </p>
@@ -246,14 +353,16 @@
                                         </header>
                                         
                                     </figcaption>
-                                </figure>                                                         
+                                </figure>                                                
                             </li>
+                            
+                            
                             <li>
                                 <div class="book-list-icon green-icon"></div>
                                 <figure>
                                     <img src="../images/books-media/layout-3/books-media-layout3-05.jpg" alt="Book">
                                     <figcaption>
-                                        
+
                                         <header>
                                             <h4><a href="#">    Book's title                </a></h4>
                                             <p><strong>Author :</strong>                     </p>
@@ -266,53 +375,9 @@
                                     </figcaption>
                                 </figure>                                                
                             </li>
-                            <li>
-                                <div class="book-list-icon yellow-icon"></div>
-                                <figure>
-                                    <img src="../images/books-media/layout-3/books-media-layout3-06.jpg" alt="Book">
-                                    <figcaption>
-                                        
-                                        <header>
-                                            <h4><a href="#">    Book's title                </a></h4>
-                                            <p><strong>Author :</strong>                     </p>
-                                            <p><strong>ISBN :</strong>                       </p>
-                                            <p><strong>Rating : </strong>                    </p>
-                                            <p><strong>Year of Publication : </strong>       </p>
-                                            <p><strong>Category : </strong>                  </p>
-                                        </header>
-
-                                    </figcaption>
-                                </figure>
-                            </li>
-
                         </ul>
             </div>
         </div>
-
-
-        <section class="welcome-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="welcome-wrap">
-                            <div class="welcome-text">
-                                <h2 class="section-title">Welcome to the Library</h2>
-                                <span class="underline left"></span>
-                                <p>The Library has a collection of 36790+ books at present. These include books on all relevant subjects for teaching, reference and research in addition to fiction, literature and general interest books to take care of the leisure and recreational reading needs of users. The Library has also developed special collections such as Gandhian Studies, Hindi books, Children’s books, etc. <br>
-                                    Online Information Resources are vital for academic and research institutes in today’s knowledge economy. The library provides its users access to more than 2540+ e-journals. In addition to this, the Library provides access to bibliographic databases such as SciFinder Scholar,  and MathSciNet, among others. The Reading Hall provides a peaceful environment conducive to study.</p>
-                                <a class="btn btn-primary" href="#">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- <div class="welcome-image"> -->
-                            <img src="../images/wellcome-image.jpg" class="algin-right" alt="" />
-                        <!-- </div> -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
 
         <!-- Start: Social Network -->
         <section class="social-network section-padding">
@@ -362,7 +427,6 @@
         </section>
         <!-- End: Social Network -->
 
-
         <!-- Start: Footer -->
         <footer class="site-footer">
             <div class="container">
@@ -398,10 +462,12 @@
                                 <span class="underline left"></span>
                                 <div class="menu-quick-links-container">
                                     <ul id="menu-quick-links" class="menu">
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Books</a></li>
+
+                                        <li><a href="<%=path%>">Home</a></li>
+                                        <li><a href="<%=path%>books">Books</a></li>
                                         <li><a href="#">About Us</a></li>
                                         <li><a href="#">Contact Us</a></li>
+
                                     </ul>
                                 </div>
                             </div>
@@ -467,6 +533,5 @@
         <script type="text/javascript" src="../js/main.js"></script>
 
     </body>
-
 
 </html>

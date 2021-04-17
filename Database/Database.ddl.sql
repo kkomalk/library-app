@@ -1,7 +1,7 @@
 create database iitilrc;
 use iitilrc;
 -- drop database iitilrc;
-set sql_safe_update = 0;
+set sql_safe_updates = 0;
 
 /*
 Entities
@@ -20,7 +20,7 @@ Entities
 
 -- Entities
 create table account(
-accountID int auto-increment unique not null,
+accountID int auto_increment unique not null,
 password varchar(200),
 accountType varchar(20),
 email varchar(70),
@@ -56,12 +56,14 @@ yearOfPublication int,
 totalCopies int,
 noOfCopiesOnShelf int,
 authors varchar(200),
+category varchar(20),
+image varchar(1000),
 primary key(ISBN)
 );
 -- drop table book;
 
 create table review(
-reviewID int auto-increment,
+reviewID int auto_increment,
 reviewText varchar(500),
 userID int,
 ISBN varchar(15),
@@ -91,7 +93,7 @@ foreign key(shelfID) references shelf(shelfID)
 -- drop table bookCopies
 
 create table holdRequest(
-requestID int auto-increment,
+requestID int auto_increment unique not null,
 ISBN varchar(15),
 userID int,
 holdTime datetime,
@@ -102,7 +104,7 @@ foreign key(userID) references user(userID) on delete cascade
 -- drop table holdRequest
 
 create table rating(
-ratingID int auto-increment,
+ratingID int auto_increment,
 ISBN varchar(15),
 userID int,
 rating int,

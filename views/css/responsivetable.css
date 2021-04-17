@@ -35,10 +35,10 @@ table.bt tbody td::before {
     font-weight: bold;
     width: 6.5em;
 }
-table.cart tbody td:first-child::before,
+/* table.cart tbody td:first-child::before,
 table.cart tbody td:last-child::before {
     content: attr(data-th) " ";
-}
+} */
 
 table.bt tfoot th.bt-hide,
 table.bt tfoot td.bt-hide,

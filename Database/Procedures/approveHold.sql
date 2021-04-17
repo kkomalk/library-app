@@ -33,14 +33,14 @@ if(action = 'loan') then
     select bookCopiesUser.copyID into minCopyID from bookCopiesUser
     where bookCopiesUser.userID = userID and bookCopiesUser.ISBN = ISBN;
     update bookCopies set bookCopies.bookStatus = 'loan&hold', 
-    bookCopies.dueDate = current_date() + loanLimit
+    bookCopies.dueDate = date_add(current_date(), interval loanLimit day)
     where bookCopies.ISBN = ISBN and bookCopies.copyID = minCopyID;
     update bookCopiesUser set bookCopiesUser.action = 'loan&hold'
     where bookCopiesUser.userID = userID and bookCopiesUser.ISBN = ISBN and bookCopiesUser.copyID = minCopyID;
     delete from holdRequest where holdRequest.userID = userID and holdRequest.ISBN = ISBN;
     set status = 1;
     set copyID = minCopyID;
-    set dueDate = current_date() + loanLimit;
+    set dueDate = date_add(current_date(), interval loanLimit day);
 else
     select count(bookCopies.copyID) into bookCount from bookCopies
     where bookCopies.ISBN = ISBN and bookCopies.bookStatus = 'shelf';
@@ -48,7 +48,7 @@ else
     if(bookCount > 0) then
         select min(bookCopies.copyID) into minCopyID from bookCopies
         where bookCopies.ISBN = ISBN and bookCopies.bookStatus = 'shelf';
-        update bookCopies set bookCopies.bookStatus = 'hold', bookCopies.dueDate = current_date() + holdLimit 
+        update bookCopies set bookCopies.bookStatus = 'hold', bookCopies.dueDate = date_add(current_date(), interval loanLimit day)
         where bookCopies.ISBN = ISBN and bookCopies.copyID = minCopyID;
         insert into bookCopiesUser values(ISBN, minCopyID, userID, 'hold');
         delete from holdRequest where holdRequest.userID = userID and holdRequest.ISBN = ISBN;
@@ -57,7 +57,7 @@ else
         update book set book.noOfCopiesOnShelf = noOfCopiesOnShelf where book.ISBN = ISBN; 
         set status = 1;
         set copyID = minCopyID;
-        set dueDate = current_date() + holdLimit;
+        set dueDate = date_add(current_date(), interval loanLimit day);
     else
         set status = 0;
         set copyID = NULL;

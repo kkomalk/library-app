@@ -39,7 +39,8 @@ router.post('/getbooksdata',async (req,res)=>{
         console.log('called');
         books = await cquery('select * from book;');
     }
-
+    let temp = await cquery(`call detailsOfBook(${req.user.accountID},1)`);
+    console.log(temp);
     if(sub.length == 0){
         res.send({});
     }else{
@@ -52,7 +53,6 @@ router.post('/getbooksdata',async (req,res)=>{
                 str = ""+books[i].authors;
             }
             books[i].rating=4;
-            console.log(books);
             if(str.indexOf(sub) > -1){
                 result.push(books[i]);
             }

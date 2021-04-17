@@ -32,6 +32,7 @@ router.get('/temp',(req,res)=>{
     res.render(path+'temp',{path : href});
 })
 
+
 router.post('/getbooksdata',async (req,res)=>{
     let c = req.body.criteria;
     let sub=req.body.sub;
@@ -39,22 +40,26 @@ router.post('/getbooksdata',async (req,res)=>{
         console.log('called');
         books = await cquery('select * from book;');
     }
-
     if(sub.length == 0){
         res.send({});
     }else{
         let result = [];
         for(let i=0;i<books.length;i++){
+            let temp1 = await cquery(`call detailsOfBook(${req.user.accountID},${books[i].ISBN})`);
             let str="";
             if(c== "Search by Name"){
                 str = ""+books[i].title;
             }else{
                 str = ""+books[i].authors;
             }
-            books[i].rating = 4;
-            console.log(books);
+            console.log(temp1[1]);
             if(str.indexOf(sub) > -1){
-                result.push(books[i]);
+                temp1[1][0].avgRat = temp1[0][0]["avg(rating.rating)"];
+                temp1[1][0].ISBN = books[i].ISBN;
+                let temp2 = await cquery(`call reviewsOfBook(${books[i].ISBN});`);
+                temp1[1][0].reviews = temp2[0];
+                // console.log(temp1[1]);
+                result.push(temp1[1][0]);
             }
         }
         res.send(result);

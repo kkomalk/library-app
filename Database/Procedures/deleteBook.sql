@@ -15,17 +15,18 @@ select count(userID) into loanCount from bookCopiesUser
 where bookCopiesUser.ISBN = ISBN and bookCopiesUser.action != 'hold';
 select count(userID) into activeHoldCount from holdRequest
 where holdRequest.ISBN = ISBN;
-if(loanCount > 0) then
+if(loanCount != NULL) then
     set inv = 2;
     leave a;
-elseif(approvedholdCount > 0) then
+elseif(approvedholdCount != NULL) then
     set inv = 1;
     leave a;
-elseif(activeHoldCount > 0) then
+elseif(activeHoldCount != NULL) then
     set inv = 0;
     delete from bookCopies where bookCopies.ISBN = ISBN;
     delete from book where book.ISBN = ISBN; -- Other info is deleted due to on delete cascade
 else 
+	delete from bookCopies where bookCopies.ISBN = ISBN;
     delete from book where book.ISBN = ISBN; -- Other info is deleted due to on delete cascade
 end if;
 end //

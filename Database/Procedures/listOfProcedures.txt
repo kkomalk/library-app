@@ -1,8 +1,8 @@
-1   generateUserID(@userID)
-2   signUpUser(email, password, name, address, type, @did)
-3   authenticateUser(userID, password, @success, @type)
-4   detailsOfUser(userID, @name, @email, @address, @unpaidFines)
-5   listOfFriendsOfUser(userID)
+1.  generateUserID(@userID)
+2.  signUpUser(email, password, name, address, type, @did)
+3.  authenticateUser(userID, password, @success, @type)
+4.  detailsOfUser(userID, @name, @email, @address, @unpaidFines)
+5.  listOfFriendsOfUser(userID)
 6   listOfBooksOnLoan(userID)
 7   listOfFavouriteBooks(userID)
 8   listOfReadBooks(userID)
@@ -11,17 +11,39 @@
 11  rateBookWithUser(userID, ISBN, rating)
 12  rateBookWithoutUser(ISBN, rating)
 13  reviewBook(userID, ISBN, reviewText)
-14  requestHold(userID, ISBN, @success)
-15  approveHold(userID, ISBN, @copyID, @dueDate)
-16  sendFriendRequest(requesterID, requestedID)
+14. requestHold(userID, ISBN, @success)
+15. approveHold(userID, ISBN, @copyID, @dueDate)
+16. sendFriendRequest(requesterID, requestedID)
 17  deleteFromFavourites(userID, ISBN)
-18  unfriend(userID, friendID)
-19  addBook(ISBN, title, yearOfPub, noOfCopies, authors, shelfID, @did, @inv)
-20  deleteBook(ISBN, @inv)
-21  updateBook(ISBN, title, yearOfPub, authors, noOfCopies, @inv)
+18. unfriend(userID, friendID)
+19. addBook(ISBN, title, yearOfPub, noOfCopies, authors, shelfID, @did, @inv)
+20. deleteBook(ISBN, @inv)
+21. updateBook(ISBN, title, yearOfPub, authors, noOfCopies, @inv)
 22  issueBook(userID, ISBN, copyID, @success, @dueDate)
 23  returnBook(userID, ISBN, copyID)
 24  updateFine(userID)
-25  signUpGoogle(email, name, type, address, @did)
+25. signUpGoogle(email, name, type, address, @did)
 26  markAsFavourite(userID, ISBN, read)
 27  removeFromFavourite(userID, ISBN)
+28. approveFriendRequest(userID, requesterID)
+29  shelfCapacity()
+
+
+
+
+
+{
+   ...bookdetails
+   fav or not
+   rating by me
+   hold status
+   reviews{
+	name : text
+	}
+   avg rating
+}
+
+nothing -> hold
+hold -> On hold
+loan -> hold
+loan & hold -> On hold

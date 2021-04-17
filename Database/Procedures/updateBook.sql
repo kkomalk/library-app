@@ -6,6 +6,8 @@ create procedure updateBook(
     in title varchar(100),
     in yearOfPublication int,
     in authors varchar(200),
+    in category varchar(20),
+    in image varchar(1000),
     in noOfCopies int,
     in shelfID int,
     out inv int
@@ -31,6 +33,7 @@ if(noOfCopies >= presentNo) then
     end if; 
     update book set book.title = title, book.yearOfPublication = yearOfPublication,
     book.authors = authors, book.totalCopies = noOfCopies,
+    book.category = category, book.image = image,
     book.noOfCopiesOnShelf = book.noOfCopiesOnShelf + updateShelf
     where book.ISBN = ISBN;
     set x = presentNo + 1;
@@ -38,7 +41,7 @@ if(noOfCopies >= presentNo) then
         if(x > updateShelf + presentNo) then
             leave a;
         end if;
-        insert into bookCopies values(ISBN, x, 'shelf', NULL, shelfID)
+        insert into bookCopies values(ISBN, x, 'shelf', NULL, shelfID);
         set x = x + 1;
     end loop;
 else
@@ -47,6 +50,7 @@ else
     if(presentShelf >= presentNo - noOfCopies) then
         update book set book.title = title, book.yearOfPublication = yearOfPublication,
         book.authors = authors, book.totalCopies = noOfCopies,
+        book.category = category, book.image = image,
         book.noOfCopiesOnShelf = book.noOfCopiesOnShelf - presentNo + noOfCopies
         where book.ISBN = ISBN;
         select max(bookCopies.copyID) into maxCopyID from bookCopies
@@ -71,7 +75,7 @@ end //
 delimiter ;
 
 -- call procedure
-call updateBook('123', 'Algorithms', 2012, 'Cormen', 20, @inv);
+call updateBook('123', 'Algorithms', 2012, 'Cormen', 'CSE', 'www.facebook.com', 70, 12, @inv);
 select @inv;   -- If noOfCOpies is faulty(1) or shelf capacity is less(2)
 
 -- drop procedure updateBook;

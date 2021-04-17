@@ -19,8 +19,8 @@ declare userType varchar(20);
 -- Check if user is trying for loan and hold
 select bookCopiesUser.copyID into cid from bookCopiesUser
 where bookCopiesUser.userID = userID and bookCopiesUser.ISBN = ISBN;
-if(cid == NULL) then
-    -- User doesn't have book on loan
+if(cid = NULL) then
+    -- User doesn't have book on loan/hold/loan&hold
     insert into holdRequest values(ISBN, userID, current_timestamp);
     set status = 1;
 else 
@@ -37,7 +37,7 @@ else
     bookCopiesUser.userID in
     (select temp1.userID from temp1);
     select count(temp2.userID) into size2 from temp2;
-    if(size1 == size2) then
+    if(size1 = size2) then
         -- All users are trying for loan and hold
         -- Fetch user type, unpaid fines and total books put under hold by the user
         select user.unpaidFines into unpaidFine from user where user.userID = userID;
@@ -46,10 +46,10 @@ else
         where bookCopiesUser.userID = userID;
         select count(holdRequest.ISBN) into holdLimit2 from holdRequest
         where holdRequest.userID = userID;
-        if(userType = 'student' and (holdLimit1 + holdLimit2) >2 ) then
+        if(userType = 'student' and (holdLimit1 + holdLimit2) > 4) then
             -- hold limit (approved and active) is 3 for students
             set status = 3;
-        elseif(userType = 'professor' and (holdLimit1 + holdLimit2) > 4) then
+        elseif(userType = 'professor' and (holdLimit1 + holdLimit2) > 6) then
             -- hold limit (approved and active) is 5 for professors
             set status = 3;
         elseif(unpaidFine > 1000) then
@@ -57,7 +57,7 @@ else
             set status = 4;
         else
             -- All conditions satisfied to request hold
-            insert into holdRequest values(ISBN, userID, current_timestamp());
+            insert into holdRequest(ISBN, userID, holdTime) values(ISBN, userID, current_timestamp());
             set status = 1;
         end if;
     else
@@ -71,7 +71,7 @@ end //
 delimiter ;
 
 -- call procedure
-call requestHold(100, '123', @status);
+call requestHold(4, '123', @status);
 select @status;
 -- status = 1 : Hold request placed
 -- status = 2 : Hold already placed by someone else
@@ -79,3 +79,5 @@ select @status;
 -- status = 4 : Unpaid Fines limit crossed
 
 -- drop procedure requestHold;
+
+select * from holdrequest;

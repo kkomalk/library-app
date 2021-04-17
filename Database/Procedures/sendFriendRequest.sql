@@ -1,5 +1,6 @@
 -- Send friend request
 -- procedure definition
+-- Referential Integrity Failure to be handled by Front-End
 delimiter //
 create procedure sendFriendRequest(
     in requesterID int,
@@ -11,6 +12,6 @@ end //
 delimiter ;
 
 -- call procedure
-call sendFriendRequest(100, 120);
+call sendFriendRequest(4, 5);
 
 -- drop procedure sendFriendRequest;

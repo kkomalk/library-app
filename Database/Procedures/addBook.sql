@@ -7,6 +7,8 @@ create procedure addBook(
     in yearOfPublication int,
     in noOfCopies int,
     in authors varchar(200),
+    in category varchar(20),
+    in image varchar(1000),
     in shelfID int,
     out did int,
     out inv int
@@ -26,10 +28,10 @@ if((shelfCapacity - shelfBooks) < noOfCopies) then
     set inv=1;
     leave b;
 end if;
-insert into book values(ISBN, title, yearOfPublication, noOfCopies, noOfCopies, authors);
+insert into book values(ISBN, title, yearOfPublication, noOfCopies, noOfCopies, authors, category, image);
 set x = 1;
 a:loop
-    if(x >= noOfCopies) then
+    if(x > noOfCopies) then
         leave a;
     end if;
     insert into bookCopies values(ISBN, x, 'shelf', NULL, shelfID);
@@ -39,8 +41,9 @@ end //
 delimiter ;
 
 -- call procedure
-call addBook('123', 'ALgorithms', 2010, 5, 'Cormen', 12, @did, @inv);
+call addBook('123', 'ALgorithms', 2010, 5, 'Cormen', 'CSE', 'www.google.com', 12, @did, @inv);
 select @did;
 select @inv;
 
 -- drop procedure addBook;
+

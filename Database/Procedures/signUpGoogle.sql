@@ -9,12 +9,12 @@ create procedure signUpGoogle(
     out did int
 )
 begin
+declare userID int;
 declare exit handler for 1062
 begin
 set did = 1;
 end;
-declare userID int;
-insert into account values(NULL, type, email);
+insert into account(password, accountType, email) values(NULL, type, email);
 select account.accountID into userID from account where account.email = email;
 insert into user values(userID, name, email, address, 0);
 end //

@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const passport = require('passport');
 const path = '../views/common/';
+const passport = require('passport');
 const href = 'http://localhost:5000/';
 
 const cquery = async  (sql,req,res)=>{
@@ -14,8 +14,13 @@ const cquery = async  (sql,req,res)=>{
 }
 
 router.get('/login', (req, res) => {
+    console.log(req.user);
     if (req.user) {
-        res.send('you are already logged in');
+        if(req.user.accountType == 'librarian'){
+            res.redirect('/librarian/home');
+        }else{
+            res.redirect('/user/home');
+        }
     } else {
         // console.log(req.flash('error')[0],'here');
         let error = req.flash('error')[0];
@@ -23,8 +28,14 @@ router.get('/login', (req, res) => {
     }
 });
 
-router.post('/login',passport.authenticate('local',{failureRedirect: '/auth/login',failureFlash:true,passReqToCallback:true}),(req,res)=>{
-    res.redirect('/profile');
+router.post('/login',passport.authenticate('local',{failureRedirect: '/auth/login',failureFlash:true,passReqToCallback:true}),async (req,res)=>{
+    let id = req.user.accountID;
+    let temp = await cquery(`select accountType from account where accountID = ${id};`);
+    if(temp[0].accountType == 'librarian'){
+        res.redirect('/librarian/home');
+    }else{
+        res.redirect('/user/home');
+    }
 })
 
 router.get('/logout', (req, res) => {
@@ -39,9 +50,8 @@ router.get('/google', passport.authenticate('google', {
 router.get('/signup',(req,res)=>{
     let name=req.query.name;
     let email = req.query.email;
-    let error=req.query.error;
-    console.log(error);
-    res.render(path+'signup',{name,email,path : href,error : req.flash('error')});
+    let error=req.flash('error');
+    res.render(path+'signup',{name,email,path : href,error});
 })
 
 router.post('/signup',async (req,res)=>{
@@ -52,18 +62,17 @@ router.post('/signup',async (req,res)=>{
     let pass=req.body.password;
     let repass=req.body.repassword;
     if(pass!=repass){
-        console.log(1);
         req.flash('error','passwords do not match');
-        res.redirect('/auth/signup/?error=passwords+do+not+match');
-    }else{
-        console.log(2);
+        res.redirect('/auth/signup/');
+    }else{ 
         let flag = await cquery(`select * from account where email = '${email}';`,req,res);
-        if(flag==1){
+        if(flag.length){
             req.flash('error','email is already registered');
             res.redirect('/auth/signup');
         }else{
-            console.log(3);
-            res.send('you are signed up now!!!');
+            let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}',@did);`);
+            req.flash('error','You are signed up now. Please login.');
+            res.redirect('/auth/login');
         }
     }
 })

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <input class="sub" type="text">
+    </form>
+    <button class="button" type="submit">submit</button>
+    <table class="table">
+        <tr>
+            <th>name</th>
+        </tr>
+
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".button").click(function () {
+                $.ajax({type:"POST",
+                    url: "http://localhost:5000/user/getbooksdata", data: {sub : $(".sub").val()}, success: function (result) {
+                        console.log(result);
+                        $(".table").find("tr:gt(0)").remove();
+                        for(let i=0;i<result.length;i++){
+                            $(".table").append(`<tr>
+                                                    <td>${result[i].name}</td>
+                                                </tr>`)
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

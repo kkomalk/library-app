@@ -3,15 +3,15 @@ const GoogleStrategy = require('passport-google-oauth20');
 const keys = require('./keys');
 
 passport.serializeUser((user, done) => {
-    done(null, user.userid);
+    done(null, user.accountID);
 });
 
 passport.deserializeUser((id, done) => {
     if(id==-1){
-        done(null,{userid:-1});
+        done(null,{accountID:-1});
     }else{
 
-        let sql = 'select * from account where userid = '+id;
+        let sql = 'select * from account where accountID = '+id;
         connection.query(sql,(err,result)=>{
             // console.log(id,result);
             done(null,result[0]);
@@ -40,7 +40,7 @@ passport.use(
             }else{
                 req.added=false;
                 // console.log(req.added);
-                done(null,{userid : -1});
+                done(null,{accountID : -1});
             }
 
         })

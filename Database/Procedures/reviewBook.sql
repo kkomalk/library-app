@@ -7,7 +7,14 @@ create procedure reviewBook(
     in reviewText varchar(500)
 )
 begin
+declare review varchar(500);
+set review = '';
+select review.reviewText into review from review where review.userID = userID and review.ISBN = ISBN;
+if(review = '') then 
 insert into review(reviewText, userID, ISBN) values(reviewText, userID, ISBN);
+else
+update review set review.reviewText = reviewText where review.userID = userID and review.ISBN = ISBN;
+end if;
 end //
 delimiter ;
 

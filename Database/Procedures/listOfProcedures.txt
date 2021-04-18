@@ -3,47 +3,28 @@
 3.  authenticateUser(userID, password, @success, @type)
 4.  detailsOfUser(userID, @name, @email, @address, @unpaidFines)
 5.  listOfFriendsOfUser(userID)
-6   listOfBooksOnLoan(userID)
-7   listOfFavouriteBooks(userID)
-8   listOfReadBooks(userID)
-9   listOfActiveHoldRequests(userID)
-10  listOfApprovedHoldRequests(userID)
-11  rateBookWithUser(userID, ISBN, rating)
-12  rateBookWithoutUser(ISBN, rating)
-13  reviewBook(userID, ISBN, reviewText)
+6.  listOfBooksOnLoan(userID)
+7.  listOfFavouriteBooks(userID)
+8.  listOfReadBooks(userID)
+9.  listOfActiveHoldRequests(userID)
+10. listOfApprovedHoldRequests(userID)
+11. rateBookWithUser(userID, ISBN, rating)
+12. rateBookWithoutUser(ISBN, rating)
+13. reviewBook(userID, ISBN, reviewText)
 14. requestHold(userID, ISBN, @success)
 15. approveHold(userID, ISBN, @copyID, @dueDate)
 16. sendFriendRequest(requesterID, requestedID)
-17  deleteFromFavourites(userID, ISBN)
-18. unfriend(userID, friendID)
-19. addBook(ISBN, title, yearOfPub, noOfCopies, authors, shelfID, @did, @inv)
-20. deleteBook(ISBN, @inv)
-21. updateBook(ISBN, title, yearOfPub, authors, noOfCopies, @inv)
-22  issueBook(userID, ISBN, copyID, @success, @dueDate)
-23  returnBook(userID, ISBN, copyID)
-24  updateFine(userID)
-25. signUpGoogle(email, name, type, address, @did)
-26  markAsFavourite(userID, ISBN, read)
-27  removeFromFavourite(userID, ISBN)
-28. approveFriendRequest(userID, requesterID)
-29  shelfCapacity()
-
-
-
-
-
-{
-   ...bookdetails
-   fav or not
-   rating by me
-   hold status
-   reviews{
-	name : text
-	}
-   avg rating
-}
-
-nothing -> hold
-hold -> On hold
-loan -> hold
-loan & hold -> On hold
+17. unfriend(userID, friendID)
+18. addBook(ISBN, title, yearOfPub, noOfCopies, authors, shelfID, @did, @inv)
+19. deleteBook(ISBN, @inv)
+20. updateBook(ISBN, title, yearOfPub, authors, noOfCopies, @inv)
+21. issueBook(userID, ISBN, copyID, @success, @dueDate)
+22. returnBook(userID, ISBN, copyID)
+23. updateFine(userID)
+24. signUpGoogle(email, name, type, address, @did)
+25. markAsFavourite(userID, ISBN, read)
+26. removeFromFavourite(userID, ISBN)
+27. approveFriendRequest(userID, requesterID)
+28. shelfCapacity()
+29. detailsOfBook(userID, ISBN)
+30. reviewsOfBook(ISBN)

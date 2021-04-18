@@ -6,7 +6,7 @@ create procedure rateBookWithoutUser(
     in rating int
 )
 begin
-insert into rating values(ISBN, NULL, rating);
+insert into rating(ISBN, userID, rating) values(ISBN, NULL, rating);
 end //
 delimiter ;
 

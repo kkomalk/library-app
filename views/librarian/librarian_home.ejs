@@ -184,7 +184,7 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td> ----- </td>
+                                <td> <%=name%> </td>
                             </tr>
                         </tbody>
                         <tbody>
@@ -241,7 +241,7 @@
                                                                             <div class="contact-form bg-light margin-right">
                                                                                 <span class="underline left"></span>
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="" method="post">
+                                                                                    <form id="addbook" name="contact" action="<%=path%>librarian/addbook" method="POST">
                                                                                         <div class="row">
 
                                                                                             <div class="col-md-6 col-sm-6">
@@ -258,25 +258,25 @@
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year-of-publication" id="year-of-publication" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year" id="year-of-publication" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="no-of-copies" id="no-of-copies" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="copies" id="no-of-copies" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies on Shelf" name="no-of-copies-shelf" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies on Shelf" name="copiesshelf" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Author" name="author" id="author" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Author" name="authors" id="author" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
@@ -289,7 +289,7 @@
 
                                                                                             <div class="col-sm-12">
                                                                                                 <div class="form-group form-submit">
-                                                                                                    <input class="btn btn-default" id="add_book" type="button" name="add" value="ADD" />
+                                                                                                    <button type="submit">Add Book</button>
                                                                                                 </div>
                                                                                             </div>
 
@@ -1049,7 +1049,11 @@
 
     <!-- Custom Scripts -->
     <script type="text/javascript" src="../js/main.js"></script>
-
+<script>
+    $(`#addbook`).submit(e => {
+        e.preventDefault();
+    })
+</script>
 </body>
 
 

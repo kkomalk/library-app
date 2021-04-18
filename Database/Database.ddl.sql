@@ -1,5 +1,6 @@
 -- create database mydb;
 use heroku_cef71ea1a512a1b;
+-- use iitilrc;
 set sql_safe_updates = 0;
 
 /*
@@ -47,6 +48,8 @@ primary key(librarianID),
 foreign key(librarianID) references account(accountID) on delete cascade
 );
 -- drop table librarian;
+-- insert into account(password, accountType, email) values('abc', 'librarian', 'a@b.com');
+-- insert into librarian values(14, 'PC', 'xyz', 'a@b.com');
 
 create table book(
 ISBN varchar(15),

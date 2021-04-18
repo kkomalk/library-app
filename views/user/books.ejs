@@ -7,15 +7,15 @@
     <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
-
+    
     <!-- Title -->
 
     <title>Books</title>
-
-
+    
+    
     <!-- Favicon -->
     <link href="../images/favicon.ico" rel="icon" type="image/x-icon" />
-
+    
     <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i"
@@ -33,46 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../css/responsivetable.css" />
 
     <!-- Stylesheet -->
-    <style>
-        .rating {
-            float: left;
-            width: 300px;
-        }
 
-        .rating span {
-            float: right;
-            position: relative;
-        }
-
-        .rating span input {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            opacity: 0;
-        }
-
-        .rating span label {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            text-align: center;
-            color: #FFF;
-            background: #ccc;
-            font-size: 30px;
-            margin-right: 2px;
-            line-height: 30px;
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-        }
-
-        .rating span:hover~span label,
-        .rating span:hover label,
-        .rating span.checked label,
-        .rating span.checked~span label {
-            background: #F90;
-            color: #FFF;
-        }
-    </style>
     <link href="../style.css" rel="stylesheet" type="text/css" />
     <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
 </head>
@@ -239,7 +200,7 @@
         </div>
     </header>
     <!-- End: Header Section -->
-
+    <!-- Button trigger modal -->
     <!-- Start: Page Banner -->
     <section class="page-banner services-banner">
         <div class="container">
@@ -508,22 +469,22 @@
                                 p++;
                             }
                             let userrating = result[i].rating;
-                            if(userrating == null){
+                            if (userrating == null) {
                                 userrating = 1;
                             }
-                            console.log(result[i].ISBN,userrating);
-                            p=1;
+                            console.log(result[i].ISBN, userrating);
+                            p = 1;
                             let opt = "";
-                            while(p<=5){
-                                if(p==userrating){
+                            while (p <= 5) {
+                                if (p == userrating) {
                                     opt += `<option selected value='${p}'>${p}</option>`;
-                                }else{
+                                } else {
                                     opt += `<option value='${p}'>${p}</option>`;
                                 }
                                 p++;
                             }
                             let holdbut = "";
-                            if(result[i].holdStatus == 0){
+                            if (result[i].holdStatus == 0) {
                                 holdbut = "disabled";
                             }
                             s += (`<tr><th><div class="booksmedia-detail-box">
@@ -571,7 +532,7 @@
                                                 <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
                                                 <p><strong>Holds :</strong> 3 </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
-                                                <button class="${result[i].ISBN} placehold" >Place a Hold</button>
+                                                <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
                                                 <a href="#" class="btn btn-dark-gray"> Add to reading list </a>
                                                 <a href="#" class="btn btn-dark-gray"> Find Similar Titles </a>
                                             </div>
@@ -615,32 +576,32 @@
                     }
                 })
             })
-            $(document).on('click','.placehold',(e)=>{
+            $(document).on('click', '.placehold', (e) => {
                 let isbn = $(e.target).attr('class').split(' ')[0];
                 $.ajax({
-                    type : 'post',
-                    url : path + "/user/requesthold",
-                    data : {
+                    type: 'post',
+                    url: path + "/user/requesthold",
+                    data: {
                         isbn
                     },
-                    success : ()=>{
+                    success: () => {
                         console.log(requested);
                     }
                 })
             })
-            $(document).on('change','.userrating',(e)=>{
+            $(document).on('change', '.userrating', (e) => {
                 let isbn = e.target.attributes['3'].nodeValue.split(' ')[0];
                 let userrate = e.target.value;
-                console.log(isbn,userrate);
+                console.log(isbn, userrate);
                 $.ajax({
                     type: 'POST',
-                    url : path + "/user/rate",
-                    data : {
+                    url: path + "/user/rate",
+                    data: {
                         isbn,
-                        rating : userrate
+                        rating: userrate
                     },
                     success: (result) => {
-                        
+
                     }
                 })
             })

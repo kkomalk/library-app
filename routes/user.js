@@ -91,7 +91,7 @@ router.post('/unmarkfav',async(req,res)=>{
 
 router.post('/rate',async(req,res)=>{
     let isbn =req.body.isbn;
-    let rating = req.body.isbn;
+    let rating = req.body.rating;
     console.log(isbn,rating);
     await cquery(`call rateBookWithUser(${req.user.accountID},${isbn},${rating})`);
 })

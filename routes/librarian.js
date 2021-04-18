@@ -25,4 +25,14 @@ router.post('/addbook', async (req, res) => {
     res.send({});
 })
 
+router.post('/deletebook', async (req, res) => {
+    console.log(req.body);
+    res.send({});
+})
+
+router.post('/updatebook', async (req, res) => {
+    console.log(req.body);
+    res.send({});
+})
+
 module.exports=router;

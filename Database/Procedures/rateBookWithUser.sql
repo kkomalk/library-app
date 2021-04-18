@@ -7,7 +7,13 @@ create procedure rateBookWithUser(
     in rating int
 )
 begin
+declare ID int;
+select rating.userID into ID from rating where rating.userID = userID and rating.ISBN = ISBN;
+if(ID = NULL) then
 insert into rating(ISBN, userID, rating) values(ISBN, userID, rating);
+else
+update rating set rating.rating = rating where rating.userID = userID and rating.ISBN = ISBN;
+end if;
 end //
 delimiter ;
 

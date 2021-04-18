@@ -9,11 +9,13 @@ create procedure detailsOfUser(
     out unpaidFines int
 )
 begin
-select
-user.name into name,
-user.email into email,
-user.address into address,
-user.unpaidFines into unpaidFines
+select user.name into name
+from user where user.userID = userID;
+select user.email into email
+from user where user.userID = userID;
+select user.address into address
+from user where user.userID = userID;
+select user.unpaidFines into unpaidFines
 from user where user.userID = userID;
 end //
 delimiter ;

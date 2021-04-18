@@ -7,11 +7,11 @@ create procedure rateBookWithUser(
     in rating int
 )
 begin
-insert into rating values(ISBN, userID, rating);
+insert into rating(ISBN, userID, rating) values(ISBN, userID, rating);
 end //
 delimiter ;
 
 -- call procedure
-call rateBookWithUser(100, '123', 4);
+call rateBookWithUser(4, '123', 5);
 
 -- drop procedure rateBookWithUser;

@@ -22,7 +22,7 @@ end //
 delimiter ;
 
 -- call procedure
-call signUpUser('abc@gmail.com', 'xyz', 'ram', 'alz', 'student', @did);
+call signUpUser('abd@gmail.com', 'xyz', 'ram', 'alz', 'student', @did);
 select @did;
 
 -- drop procedure signUpUser;

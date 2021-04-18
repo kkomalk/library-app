@@ -17,6 +17,6 @@ end //
 delimiter ;
 
 -- call procedure
-call returnBook(100, '123', 2);
+call returnBook(4, '123', 1);
 
 -- drop procedure returnBook;

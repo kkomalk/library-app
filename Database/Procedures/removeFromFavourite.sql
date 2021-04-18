@@ -1,4 +1,4 @@
--- 
+-- Remove book from favourites
 -- procedure definition
 delimiter //
 create procedure removeFromFavourite(
@@ -6,12 +6,12 @@ create procedure removeFromFavourite(
     in ISBN varchar(15)
 )
 begin
-update readingList set readinList.favourite = 'NO' 
+update readingList set readingList.favourite = 'NO' 
 where readingList.userID = userID and readingList.ISBN = ISBN;
 end //
 delimiter ;
 
 -- call procedure
-call removeFromFavourite(100, '123');
+call removeFromFavourite(4, '123');
 
 -- drop procedure removeFromFavourite;

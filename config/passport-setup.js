@@ -13,8 +13,11 @@ passport.deserializeUser((id, done) => {
 
         let sql = 'select * from account where accountID = '+id;
         connection.query(sql,(err,result)=>{
-            // console.log(id,result);
-            done(null,result[0]);
+            if(result.length){
+                done(null,result[0]);
+            }else{
+                done(null,null);
+            }
         })
     }
 });

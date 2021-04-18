@@ -52,7 +52,7 @@ router.post('/getbooksdata',async (req,res)=>{
             }else{
                 str = ""+books[i].authors;
             }
-            console.log(temp1[1]);
+            // console.log(temp1[1]);
             if(str.indexOf(sub) > -1){
                 temp1[1][0].avgRat = temp1[0][0]["avg(rating.rating)"];
                 temp1[1][0].ISBN = books[i].ISBN;
@@ -92,7 +92,16 @@ router.post('/unmarkfav',async(req,res)=>{
 router.post('/rate',async(req,res)=>{
     let isbn =req.body.isbn;
     let rating = req.body.isbn;
+    console.log(isbn,rating);
     await cquery(`call rateBookWithUser(${req.user.accountID},${isbn},${rating})`);
+})
+
+router.post('/requesthold',async(req,res)=>{
+    let isbn = req.body.isbn;
+    console.log(isbn);
+    await cquery(`call requestHold(${req.user.accountID},${isbn},@status);`);
+    let status = await cquery(`select @status;`);
+    console.log(status);
 })
 
 module.exports = router;

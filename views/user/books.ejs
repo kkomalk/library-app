@@ -175,7 +175,7 @@
                                     <li class="dropdown">
 
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled"
-                                            href="<%=path%>">Home</a>
+                                            href="<%=path%>user/home">Home</a>
 
                                     </li>
                                     <li class="dropdown active">
@@ -522,6 +522,10 @@
                                 }
                                 p++;
                             }
+                            let holdbut = "";
+                            if(result[i].holdStatus == 0){
+                                holdbut = "disabled";
+                            }
                             s += (`<tr><th><div class="booksmedia-detail-box">
                                     <div class="detailed-box">
                                         <div class="col-xs-12 col-sm-5 col-md-3">
@@ -567,7 +571,7 @@
                                                 <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
                                                 <p><strong>Holds :</strong> 3 </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
-                                                <a href="#" class="btn btn-dark-gray"> Place a Hold </a>
+                                                <button class="${result[i].ISBN} placehold" >Place a Hold</button>
                                                 <a href="#" class="btn btn-dark-gray"> Add to reading list </a>
                                                 <a href="#" class="btn btn-dark-gray"> Find Similar Titles </a>
                                             </div>
@@ -608,6 +612,19 @@
                         $(this).removeClass('fav');
                         $(this).addClass('notfav');
                         $(this).html("Mark as favourite: <i class='far fa-heart'></i>");
+                    }
+                })
+            })
+            $(document).on('click','.placehold',(e)=>{
+                let isbn = $(e.target).attr('class').split(' ')[0];
+                $.ajax({
+                    type : 'post',
+                    url : path + "/user/requesthold",
+                    data : {
+                        isbn
+                    },
+                    success : ()=>{
+                        console.log(requested);
                     }
                 })
             })

@@ -44,16 +44,16 @@ router.post('/getbooksdata',async (req,res)=>{
     }else{
         let result = [];
         for(let i=0;i<books.length;i++){
-            let temp1 = await cquery(`call detailsOfBook(${req.user.accountID},${books[i].ISBN})`);
+            let temp1 = await cquery(`call detailsOfBookWithoutUser(${books[i].ISBN})`);
             console.log(temp1);
             let str="";
             if(c== "Search by Name"){
-                str = ""+books[i].title;
+                str = ""+books[i].title.toUpperCase();
             }else{
-                str = ""+books[i].authors;
+                str = ""+books[i].authors.toUpperCase();
             }
             // console.log(temp1[1]);
-            if(str.indexOf(sub) > -1){
+            if(str.indexOf(sub.toUpperCase()) > -1){
                 // temp1[0][0].avgRat = temp1[0][0]["avg(rating.rating)"];
                 temp1[0][0].ISBN = books[i].ISBN;
                 let temp2 = await cquery(`call reviewsOfBook(${books[i].ISBN});`);
@@ -66,5 +66,13 @@ router.post('/getbooksdata',async (req,res)=>{
     }
 
 })
+
+router.post('/rate',async(req,res)=>{
+    let isbn =req.body.isbn;
+    let rating = req.body.rating;
+    console.log(isbn,rating);
+    await cquery(`call rateBookWithoutUser(${isbn},${rating})`);
+})
+
 
 module.exports = router;

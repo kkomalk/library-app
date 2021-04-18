@@ -18,8 +18,10 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
-        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
+        <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
+        integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+    <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Mobile Menu -->
         <link href="../css/mmenu.css" rel="stylesheet" type="text/css" />
         <link href="../css/mmenu.positioning.css" rel="stylesheet" type="text/css" />
@@ -29,7 +31,7 @@
 
         <!-- Stylesheet -->
         <link href="../style.css" rel="stylesheet" type="text/css" />
-
+        <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -426,13 +428,10 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-3 ">
                                             <div class="post-right-content">
-                                                <h4> Status ---- Available now </h4>
                                                 <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
                                                 <p><strong>Holds :</strong> 3 </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
-                                                <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
-                                                <a href="#" class="btn btn-dark-gray"> Add to reading list </a>
-                                                <a href="#" class="btn btn-dark-gray"> Find Similar Titles </a>
+                                                
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>

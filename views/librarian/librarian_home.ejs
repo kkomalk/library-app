@@ -268,7 +268,7 @@
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies on Shelf" name="copiesshelf" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter shelf-ID" name="shelfid" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
@@ -292,6 +292,11 @@
                                                                                             </div>
 
                                                                                         </div>
+                                                                                        <% if(message != 'undefined'){%>
+                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                                <%= message %>
+                                                                                            </div>
+                                                                                        <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -899,11 +904,7 @@
 
     <!-- Custom Scripts -->
     <script type="text/javascript" src="../js/main.js"></script>
-<script>
-    $(`#addbook`).submit(e => {
-        e.preventDefault();
-    })
-</script>
+
 </body>
 
 

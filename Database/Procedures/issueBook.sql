@@ -73,7 +73,7 @@ delimiter ;
 call issueBook(4, '123', 1, @success, @dueDate);
 select @success;
 select @dueDate;
--- success = 0 : Can't be issued due to limits
+-- success = 0 : Can't be issued due to limits or book unavailablity
 -- success = 1 : Book issued succesfully
 
 -- drop procedure issueBook;

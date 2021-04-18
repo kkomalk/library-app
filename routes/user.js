@@ -6,8 +6,8 @@ const href = 'http://localhost:5000/';
 const cquery = async  (sql,req,res)=>{
     return new Promise((resolve,reject)=>{
         connection.query(sql,(err,result)=>{
-            if(err) throw err;
-            resolve(result);
+            if(err) console.log(err);
+            else resolve(result);
         })
     }
     )
@@ -65,6 +65,34 @@ router.post('/getbooksdata',async (req,res)=>{
         res.send(result);
     }
 
+})
+
+router.post('/markfav', async(req,res)=>{
+    let isbn = req.body.isbn;
+    let read = req.body.read;
+    if(read == 'yes'){
+        read=1;
+    }else{
+        read=0;
+    }
+    await cquery(`call markAsFavourite(${req.user.accountID},${isbn},${read});`);
+    res.send({
+        message: 'successs'
+    })
+})
+
+router.post('/unmarkfav',async(req,res)=>{
+    let isbn=req.body.isbn;
+    await cquery(`call removeFromFavourite(${req.user.accountID},${isbn});`);
+    res.send({
+        message: 'success'
+    })
+})
+
+router.post('/rate',async(req,res)=>{
+    let isbn =req.body.isbn;
+    let rating = req.body.isbn;
+    
 })
 
 module.exports = router;

@@ -57,6 +57,9 @@ router.post('/getbooksdata',async (req,res)=>{
                 // temp1[0][0].avgRat = temp1[0][0]["avg(rating.rating)"];
                 temp1[0][0].ISBN = books[i].ISBN;
                 let temp2 = await cquery(`call reviewsOfBook(${books[i].ISBN});`);
+                let temp3 = await cquery(`select count(bookCopiesUser.userID) as count from bookCopiesUser where bookCopiesUser.ISBN = ${books[i].ISBN} and bookCopiesUser.action = 'hold';`);
+                
+                temp1[0][0].numholds = temp3[0].count;
                 temp1[0][0].reviews = temp2[0];
                 // console.log(temp1[1]);
                 result.push(temp1[0][0]);

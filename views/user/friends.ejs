@@ -160,7 +160,7 @@
                                     <div class="container">
                                         <div class="filter-box">
                                             <h3>Whom are you looking for?</h3>
-                                            <form action="#" method="get">
+                                            <form action="#" id="searchform">
                                                 <div class="col-md-4 col-sm-6">
                                                     <div class="form-group">
                                                         <label class="sr-only" id="searchfriend" for="keywords">  Search by Name   </label>
@@ -442,10 +442,22 @@
 <script type="text/javascript" src="../js/main.js"></script>
 
 <script>
+    let path = window.location.origin;
     $(document).ready(()=>{
-        $('#searchfriend').click((e)=>{
+        $('#searchform').submit((e)=>{
             e.preventDefault();
             console.log('clicked');
+            let sub = $('#keywords').val();
+            $.ajax({
+                type: 'POST',
+                url : path + "/user/findfriends",
+                data : {
+                    sub 
+                },
+                success: (result)=>{
+                    console.log(result);
+                }
+            })
         })
     })
 </script>

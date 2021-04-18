@@ -14,7 +14,7 @@ const cquery = async  (sql,req,res)=>{
 }
 
 let books = [];
-
+let users = [];
 router.get('/books',async(req,res)=>{
     res.render(path+'books.ejs',{path : href});
 })
@@ -59,6 +59,8 @@ router.post('/getbooksdata',async (req,res)=>{
                 // temp1[0][0].avgRat = temp1[0][0]["avg(rating.rating)"];
                 temp1[0][0].ISBN = books[i].ISBN;
                 let temp2 = await cquery(`call reviewsOfBook(${books[i].ISBN});`);
+                let temp3 = await cquery(`select count(bookCopiesUser.userID) as count from bookCopiesUser where bookCopiesUser.ISBN = ${books[i].ISBN} and bookCopiesUser.action = 'hold';`);
+                temp1[0][0].numholds = temp3[0].count;
                 temp1[0][0].reviews = temp2[0];
                 // console.log(temp1[1]);
                 result.push(temp1[0][0]);
@@ -110,6 +112,21 @@ router.post('/requesthold',async(req,res)=>{
 
 router.get('/friends',(req,res)=>{
     res.render(path + 'friends.ejs', {path : href});
+})
+
+router.post('/findfriends',async (req,res)=>{
+    let sub = req.body.sub; 
+    if(users.length == 0){
+        users = await cquery(`select * from user where userId <> ${req.user.accountID};`);
+    }
+    let result=[];
+    users.forEach(user => {
+        if(user.name.toUpperCase().indexOf(sub.toUpperCase()) > -1){
+            result.push(user);
+        }
+    })
+    console.log(result);
+    res.send(result);
 })
 
 module.exports = router;

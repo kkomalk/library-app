@@ -142,6 +142,9 @@
                                     <li class="dropdown active">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Books</a>
                                     </li>
+                                    <li class="dropdown ">
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/friends">Find Friends</a>
+                                    </li>
 
                                     <!-- <li class="dropdown">
 
@@ -455,7 +458,7 @@
                                 favbut = "Mark as favourite: <i class='far fa-heart'></i>";
                                 favclas = "notfav";
                             }
-                            avg = result[i].avgRat;
+                            avg = result[i].avgRating;
                             console.log(avg);
                             if (result[i].avgRat == null) {
                                 avgRat = 0;

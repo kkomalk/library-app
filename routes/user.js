@@ -46,6 +46,7 @@ router.post('/getbooksdata',async (req,res)=>{
         let result = [];
         for(let i=0;i<books.length;i++){
             let temp1 = await cquery(`call detailsOfBook(${req.user.accountID},${books[i].ISBN})`);
+            console.log(temp1);
             let str="";
             if(c== "Search by Name"){
                 str = ""+books[i].title;
@@ -54,12 +55,12 @@ router.post('/getbooksdata',async (req,res)=>{
             }
             // console.log(temp1[1]);
             if(str.indexOf(sub) > -1){
-                temp1[1][0].avgRat = temp1[0][0]["avg(rating.rating)"];
-                temp1[1][0].ISBN = books[i].ISBN;
+                // temp1[0][0].avgRat = temp1[0][0]["avg(rating.rating)"];
+                temp1[0][0].ISBN = books[i].ISBN;
                 let temp2 = await cquery(`call reviewsOfBook(${books[i].ISBN});`);
-                temp1[1][0].reviews = temp2[0];
+                temp1[0][0].reviews = temp2[0];
                 // console.log(temp1[1]);
-                result.push(temp1[1][0]);
+                result.push(temp1[0][0]);
             }
         }
         res.send(result);
@@ -102,6 +103,10 @@ router.post('/requesthold',async(req,res)=>{
     await cquery(`call requestHold(${req.user.accountID},${isbn},@status);`);
     let status = await cquery(`select @status;`);
     console.log(status);
+})
+
+router.get('/friends',(req,res)=>{
+    res.render(path + 'friends.ejs', {path : href});
 })
 
 module.exports = router;

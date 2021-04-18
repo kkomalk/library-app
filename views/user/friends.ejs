@@ -128,8 +128,6 @@
             </div>
         </header>
 
-
-       
         <!-- End: Header Section -->
 
         <!-- Start: Page Banner -->
@@ -165,11 +163,10 @@
                                             <form action="#" method="get">
                                                 <div class="col-md-4 col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="sr-only" for="keywords">  Search by Name   </label>
-                                                        <input class="form-control" placeholder="Search by Name " id="keywords" name="keywords" type="text">
+                                                        <label class="sr-only" id="searchfriend" for="keywords">  Search by Name   </label>
+                                                        <input class="form-control"  placeholder="Search by Name " id="keywords" name="keywords" type="text">
                                                     </div>
                                                 </div>
-                                             
                                                 <div class="col-md-2 col-sm-6">
                                                     <div class="form-group">
                                                         <input class="form-control" type="submit" value="Search">
@@ -443,4 +440,14 @@
 
 <!-- Custom Scripts -->
 <script type="text/javascript" src="../js/main.js"></script>
+
+<script>
+    $(document).ready(()=>{
+        $('#searchfriend').click((e)=>{
+            e.preventDefault();
+            console.log('clicked');
+        })
+    })
+</script>
+
 </body>

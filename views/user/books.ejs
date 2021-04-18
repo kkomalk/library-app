@@ -429,12 +429,12 @@
     <script type="text/javascript" src="../js/main.js"></script>
 
     <script>
-        
+
         $(document).ready(function () {
             $(".searchform").submit(function (e) {
                 e.preventDefault();
             })
-            
+
             $(".searchbutton").click(function () {
                 $.ajax({
                     type: "POST",
@@ -444,15 +444,15 @@
                         let s = "";
                         for (let i = 0; i < result.length; i++) {
                             let rating = "<p><strong>Avg. Rating: </strong>";
-                            let favbut = "", p = 1, avg, fav, hold,favclas;
+                            let favbut = "", p = 1, avg, fav, hold, favclas;
                             if (result[i].fav == 1) {
                                 fav = 1;
                                 favbut = "Favourite <i class='fas fa-heart' style='color: red;'></i>";
-                                favclas="fav"
+                                favclas = "fav"
                             } else {
                                 fav = 0;
                                 favbut = "Mark as favourite: <i class='far fa-heart'></i>";
-                                favclas="notfav";
+                                favclas = "notfav";
                             }
                             avg = result[i].avgRat;
                             console.log(avg);
@@ -492,11 +492,8 @@
                                                             <p data-toggle="blog-tags"
                                                                 data-placement="top" title=""
                                                                 data-original-title="Add to favorite">
-                                                                <div class='favpar'>
-                                                                    <div class='${favclas}'>
+                                                                    <div style="cursor:pointer;" class='${favclas}'>
                                                                         ${favbut}
-                                                                        </div>
-                                                                        
                                                                         </div>
                                                             </p>
                                                         </li>
@@ -525,22 +522,27 @@
                     }
                 });
             });
-            $(document).on('click','.notfav',function(e){
+            $(document).on('click', '.notfav', function (e) {
                 console.log('clicked');
                 $(this).removeClass('notfav');
                 $(this).addClass('fav');
-                $(this).html("Mark as favourite: <i class='far fa-heart'></i>");
                 let read = window.prompt('Have you read the book? (yes,no)');
                 console.log(read);
+                $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
             })
-            
-            $(document).on('click','.searchbooks',()=>{
-                console.log('clicked');
-            })
-            $('.fav').click(e => {
+
+            $(document).on('click', '.fav', function (e) {
+                // console.log('clicked');
+                // $(this).removeClass('notfav');
+                // $(this).addClass('fav');
+                // let read = window.prompt('Have you read the book? (yes,no)');
+                // console.log(read);
+                // $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
                 $(this).removeClass('fav');
                 $(this).addClass('notfav');
                 $(this).html("Mark as favourite: <i class='far fa-heart'></i>");
+            })
+            $('.fav').click(e => {
             })
         });
     </script>

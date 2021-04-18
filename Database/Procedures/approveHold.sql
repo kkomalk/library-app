@@ -48,7 +48,7 @@ else
     if(bookCount > 0) then
         select min(bookCopies.copyID) into minCopyID from bookCopies
         where bookCopies.ISBN = ISBN and bookCopies.bookStatus = 'shelf';
-        update bookCopies set bookCopies.bookStatus = 'hold', bookCopies.dueDate = date_add(current_date(), interval loanLimit day)
+        update bookCopies set bookCopies.bookStatus = 'hold', bookCopies.dueDate = date_add(current_date(), interval holdLimit day)
         where bookCopies.ISBN = ISBN and bookCopies.copyID = minCopyID;
         insert into bookCopiesUser values(ISBN, minCopyID, userID, 'hold');
         delete from holdRequest where holdRequest.userID = userID and holdRequest.ISBN = ISBN;
@@ -57,7 +57,7 @@ else
         update book set book.noOfCopiesOnShelf = noOfCopiesOnShelf where book.ISBN = ISBN; 
         set status = 1;
         set copyID = minCopyID;
-        set dueDate = date_add(current_date(), interval loanLimit day);
+        set dueDate = date_add(current_date(), interval holdLimit day);
     else
         set status = 0;
         set copyID = NULL;

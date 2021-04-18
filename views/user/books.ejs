@@ -7,15 +7,15 @@
     <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
-
+    
     <!-- Title -->
 
     <title>Books</title>
-
-
+    
+    
     <!-- Favicon -->
     <link href="../images/favicon.ico" rel="icon" type="image/x-icon" />
-
+    
     <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i"
@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../css/responsivetable.css" />
 
     <!-- Stylesheet -->
+
     <link href="../style.css" rel="stylesheet" type="text/css" />
     <script src="https://kit.fontawesome.com/ad214375d6.js" crossorigin="anonymous"></script>
 </head>
@@ -135,11 +136,14 @@
                                     <li class="dropdown">
 
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled"
-                                            href="<%=path%>">Home</a>
+                                            href="<%=path%>user/home">Home</a>
 
                                     </li>
                                     <li class="dropdown active">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Books</a>
+                                    </li>
+                                    <li class="dropdown ">
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/friends">Find Friends</a>
                                     </li>
 
                                     <!-- <li class="dropdown">
@@ -199,7 +203,7 @@
         </div>
     </header>
     <!-- End: Header Section -->
-
+    <!-- Button trigger modal -->
     <!-- Start: Page Banner -->
     <section class="page-banner services-banner">
         <div class="container">
@@ -429,32 +433,32 @@
     <script type="text/javascript" src="../js/main.js"></script>
 
     <script>
-        
+        let path = window.location.origin;
         $(document).ready(function () {
             $(".searchform").submit(function (e) {
                 e.preventDefault();
             })
-            
+
             $(".searchbutton").click(function () {
                 $.ajax({
                     type: "POST",
-                    url: "http://localhost:5000/user/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
+                    url: path + "/user/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
                         console.log(result);
                         $(".searcbooks").find("tr").remove();
                         let s = "";
                         for (let i = 0; i < result.length; i++) {
                             let rating = "<p><strong>Avg. Rating: </strong>";
-                            let favbut = "", p = 1, avg, fav, hold,favclas;
+                            let favbut = "", p = 1, avg, fav, hold, favclas;
                             if (result[i].fav == 1) {
                                 fav = 1;
                                 favbut = "Favourite <i class='fas fa-heart' style='color: red;'></i>";
-                                favclas="fav"
+                                favclas = "fav"
                             } else {
                                 fav = 0;
                                 favbut = "Mark as favourite: <i class='far fa-heart'></i>";
-                                favclas="notfav";
+                                favclas = "notfav";
                             }
-                            avg = result[i].avgRat;
+                            avg = result[i].avgRating;
                             console.log(avg);
                             if (result[i].avgRat == null) {
                                 avgRat = 0;
@@ -467,24 +471,47 @@
                                 rating += "<span><i class='far fa-star'></i></span>";
                                 p++;
                             }
+                            let userrating = result[i].rating;
+                            if (userrating == null) {
+                                userrating = 1;
+                            }
+                            console.log(result[i].ISBN, userrating);
+                            p = 1;
+                            let opt = "";
+                            while (p <= 5) {
+                                if (p == userrating) {
+                                    opt += `<option selected value='${p}'>${p}</option>`;
+                                } else {
+                                    opt += `<option value='${p}'>${p}</option>`;
+                                }
+                                p++;
+                            }
+                            let holdbut = "";
+                            if (result[i].holdStatus == 0) {
+                                holdbut = "disabled";
+                            }
                             s += (`<tr><th><div class="booksmedia-detail-box">
                                     <div class="detailed-box">
                                         <div class="col-xs-12 col-sm-5 col-md-3">
                                             <div class="post-thumbnail">
-                                                <div class="book-list-icon blue-icon"></div>
+                                                
                                                 <img src="${result[i].image}"
                                                     alt="Book Image">
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-7 col-md-6">
-                                            <div class="post-center-content">
+                                        <div  class="col-xs-12 col-sm-7 col-md-6">
+                                            <div style="width : 100%;" class="post-center-content">
                                                 <h2> ${result[i].title} </h2>
                                                 <p><strong>Author : </strong> ${result[i].authors} </p>
                                                 <p><strong>ISBN : </strong> ${result[i].ISBN} </p>
                                                 ${rating}
                                                 <p><strong>Year of Publication :</strong> ${result[i].yearOfPublication} </p>
                                                 <p><strong>Category : </strong>${result[i].category} </p>
-
+                                                <div class="form-group">
+                                                    <p><strong>Your rating: <select style="width: 50px; display: inline; height: 50px;" value=${result[i].rating}' name="userrating" class="${result[i].ISBN} userrating form-control">
+                                                            ${opt}
+                                                        </select>
+                                                </div>
                                                 <div class="actions">
                                                     <ul>
                                                         
@@ -492,11 +519,8 @@
                                                             <p data-toggle="blog-tags"
                                                                 data-placement="top" title=""
                                                                 data-original-title="Add to favorite">
-                                                                <div class='favpar'>
-                                                                    <div class='${favclas}'>
+                                                                    <div style="cursor:pointer;" class='${result[i].ISBN} ${favclas}'>
                                                                         ${favbut}
-                                                                        </div>
-                                                                        
                                                                         </div>
                                                             </p>
                                                         </li>
@@ -507,13 +531,10 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-3 ">
                                             <div class="post-right-content">
-                                                <h4> Status ---- Available now </h4>
                                                 <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
                                                 <p><strong>Holds :</strong> 3 </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
-                                                <a href="#" class="btn btn-dark-gray"> Place a Hold </a>
-                                                <a href="#" class="btn btn-dark-gray"> Add to reading list </a>
-                                                <a href="#" class="btn btn-dark-gray"> Find Similar Titles </a>
+                                                <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -525,22 +546,79 @@
                     }
                 });
             });
-            $(document).on('click','.notfav',function(e){
+            $(document).on('click', '.notfav', function (e) {
                 console.log('clicked');
-                $(this).removeClass('notfav');
-                $(this).addClass('fav');
-                $(this).html("Mark as favourite: <i class='far fa-heart'></i>");
-                let read = window.prompt('Have you read the book? (yes,no)');
+                let read = "null";
+                while (read != "yes" && read != "no") {
+                    read = window.prompt('Have you read the book? (yes/no) (case-sensitive)');
+                }
                 console.log(read);
+                let isbn = $(this).attr('class').split(' ')[0];
+                $.ajax({
+                    type: 'POST', url: path + '/user/markfav', data: { isbn, read }, success: (result) => {
+                        $(this).removeClass('notfav');
+                        $(this).addClass('fav');
+                        $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
+                    }
+                })
             })
-            
-            $(document).on('click','.searchbooks',()=>{
-                console.log('clicked');
+
+            $(document).on('click', '.fav', function (e) {
+                let isbn = $(this).attr('class').split(' ')[0];
+                $.ajax({
+                    method: 'POST',
+                    url: path + "/user/unmarkfav",
+                    data: { isbn },
+                    success: (result) => {
+                        $(this).removeClass('fav');
+                        $(this).addClass('notfav');
+                        $(this).html("Mark as favourite: <i class='far fa-heart'></i>");
+                    }
+                })
             })
-            $('.fav').click(e => {
-                $(this).removeClass('fav');
-                $(this).addClass('notfav');
-                $(this).html("Mark as favourite: <i class='far fa-heart'></i>");
+            $(document).on('click', '.placehold', (e) => {
+                let isbn = $(e.target).attr('class').split(' ')[0];
+                if(confirm('Are you sure you want to place hold on this book?')){
+                    $.ajax({
+                        type: 'post',
+                        url: path + "/user/requesthold",
+                        data: {
+                            isbn
+                        },
+                        success: (result) => {
+                            console.log(result);
+                            let status = result['@status'];
+                            let message="";
+                            if(status == 1){
+                                message += 'Your hold request was placed.';
+                                $(e.target).attr('disabled','true');
+                            }else if(status == 2){
+                                message += 'Hold Request is already placed by someone else.';
+                            }else if(status == 3){
+                                message += 'You have reached your hold limit.';
+                            }else{
+                                message += 'Please pay your unpaid fines before placing hold.'
+                            }
+                            alert(message);
+                        }
+                    })
+                }
+                })
+            $(document).on('change', '.userrating', (e) => {
+                let isbn = e.target.attributes['3'].nodeValue.split(' ')[0];
+                let userrate = e.target.value;
+                console.log(isbn, userrate);
+                $.ajax({
+                    type: 'POST',
+                    url: path + "/user/rate",
+                    data: {
+                        isbn,
+                        rating: userrate
+                    },
+                    success: (result) => {
+                        
+                    }
+                })
             })
         });
     </script>

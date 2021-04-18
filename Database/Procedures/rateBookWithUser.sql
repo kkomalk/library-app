@@ -8,8 +8,9 @@ create procedure rateBookWithUser(
 )
 begin
 declare ID int;
+set ID = -1;
 select rating.userID into ID from rating where rating.userID = userID and rating.ISBN = ISBN;
-if(ID = NULL) then
+if(ID = -1) then
 insert into rating(ISBN, userID, rating) values(ISBN, userID, rating);
 else
 update rating set rating.rating = rating where rating.userID = userID and rating.ISBN = ISBN;
@@ -18,6 +19,6 @@ end //
 delimiter ;
 
 -- call procedure
-call rateBookWithUser(4, '123', 5);
+call rateBookWithUser(24, '123', 4);
 
 -- drop procedure rateBookWithUser;

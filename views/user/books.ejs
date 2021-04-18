@@ -494,7 +494,7 @@
                                     <div class="detailed-box">
                                         <div class="col-xs-12 col-sm-5 col-md-3">
                                             <div class="post-thumbnail">
-                                                <div class="book-list-icon blue-icon"></div>
+                                                
                                                 <img src="${result[i].image}"
                                                     alt="Book Image">
                                             </div>
@@ -531,13 +531,10 @@
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-3 ">
                                             <div class="post-right-content">
-                                                <h4> Status ---- Available now </h4>
                                                 <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
                                                 <p><strong>Holds :</strong> 3 </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
                                                 <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
-                                                <a href="#" class="btn btn-dark-gray"> Add to reading list </a>
-                                                <a href="#" class="btn btn-dark-gray"> Find Similar Titles </a>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
@@ -581,17 +578,32 @@
             })
             $(document).on('click', '.placehold', (e) => {
                 let isbn = $(e.target).attr('class').split(' ')[0];
-                $.ajax({
-                    type: 'post',
-                    url: path + "/user/requesthold",
-                    data: {
-                        isbn
-                    },
-                    success: () => {
-                        console.log(requested);
-                    }
+                if(confirm('Are you sure you want to place hold on this book?')){
+                    $.ajax({
+                        type: 'post',
+                        url: path + "/user/requesthold",
+                        data: {
+                            isbn
+                        },
+                        success: (result) => {
+                            console.log(result);
+                            let status = result['@status'];
+                            let message="";
+                            if(status == 1){
+                                message += 'Your hold request was placed.';
+                                $(e.target).attr('disabled','true');
+                            }else if(status == 2){
+                                message += 'Hold Request is already placed by someone else.';
+                            }else if(status == 3){
+                                message += 'You have reached your hold limit.';
+                            }else{
+                                message += 'Please pay your unpaid fines before placing hold.'
+                            }
+                            alert(message);
+                        }
+                    })
+                }
                 })
-            })
             $(document).on('change', '.userrating', (e) => {
                 let isbn = e.target.attributes['3'].nodeValue.split(' ')[0];
                 let userrate = e.target.value;
@@ -604,7 +616,7 @@
                         rating: userrate
                     },
                     success: (result) => {
-
+                        
                     }
                 })
             })

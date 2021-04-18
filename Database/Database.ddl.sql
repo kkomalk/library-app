@@ -1,6 +1,5 @@
-create database iitilrc;
-use iitilrc;
--- drop database iitilrc;
+-- create database mydb;
+use heroku_cef71ea1a512a1b;
 set sql_safe_updates = 0;
 
 /*

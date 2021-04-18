@@ -50,22 +50,22 @@ app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
 
-var db_config = {
-    multipleStatements: true,
-    host: 'localhost',
-    user: 'vaibhav',
-    password: 'password',
-    database: 'mydb',
-    port: 3306
-};
 // var db_config = {
 //     multipleStatements: true,
-//     host: keys.db_host,
-//     user: keys.db_user,
-//     password: keys.db_password,
-//     database: keys.db_name,
+//     host: 'localhost',
+//     user: 'vaibhav',
+//     password: 'password',
+//     database: 'mydb',
 //     port: 3306
 // };
+var db_config = {
+    multipleStatements: true,
+    host: keys.db_host,
+    user: keys.db_user,
+    password: keys.db_password,
+    database: keys.db_name,
+    port: 3306
+};
 
 function handleDisconnect() {
     console.log('1. connecting to db:');

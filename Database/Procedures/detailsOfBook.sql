@@ -18,8 +18,10 @@ declare holdStatus1 int;
 declare avgRating1 float;
 declare x1 varchar(3);
 declare y1 varchar(20);
+declare y2 int;
 set y1 = 'NUll';
 set x1 = 'YE';
+set y2 = -10;
 select book.title into title1 from book where book.ISBN = ISBN;
 select book.yearOfPublication into yearOfPublication1 from book where book.ISBN = ISBN;
 select book.totalCopies into totalCopies1 from book where book.ISBN = ISBN;
@@ -35,10 +37,16 @@ else
 end if;
 select rating.rating into userRating1 from rating where rating.userID = userID and rating.ISBN = ISBN;
 select bookCopiesUser.action into y1 from bookCopiesUser where bookCopiesUser.userID = userID and bookCopiesUser.ISBN = ISBN;
+select holdRequest.requestID into y2 from holdRequest where holdRequest.userID = userID and holdRequest.ISBN = ISBN;
 if(y1 = 'hold' or y1 = 'loan&hold') then
 	set holdStatus1 = 0;
 else 
 	set holdStatus1 = 1;
+end if;
+if(y2 = -10 and holdStatus1 = 1) then
+	set holdStatus1 = 1;
+else
+	set holdStatus1 = 0;
 end if;
 select avg(rating.rating) into avgRating1 from rating where rating.ISBN = ISBN;
 create table temp4(

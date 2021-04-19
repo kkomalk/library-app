@@ -190,13 +190,13 @@
                         <tbody>
                             <tr>
                                 <td>LibrarianID</td>
-                                <td> ----- </td>
+                                <td> <%=id%> </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>Address</td>
-                                <td> ----- </td>
+                                <td> <%=address%> </td>
                             </tr>
                         </tbody>
                     </table>
@@ -221,11 +221,9 @@
                                                 <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionZ"> Add Books </a></li>
                                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB"> Remove Books </a></li>
                                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC"> Update Book Details </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD"> Add Book Copy </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionE"> Remove Book Copy </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF"> Issue Books </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionG"> Take Returned Books </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH"> Collect Fines </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF"> Issue Book </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionG"> Withdraw Issued Books </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH"> Collect Fine </a></li>
                                             </ul>
 
                                             
@@ -270,7 +268,7 @@
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies on Shelf" name="copiesshelf" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter shelf-ID" name="shelfid" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
@@ -294,6 +292,11 @@
                                                                                             </div>
 
                                                                                         </div>
+                                                                                        <% if(message != 'undefined'){%>
+                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                                <%= message %>
+                                                                                            </div>
+                                                                                        <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -318,7 +321,7 @@
                                                                             <div class="contact-form bg-light margin-right">
                                                                                 <span class="underline left"></span>
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="" method="post">
+                                                                                    <form id="contact" name="contact" action="<%=path%>librarian/deletebook" method="POST">
                                                                                         <div class="row">
 
                                                                                             <div class="col-md-6 col-sm-6">
@@ -329,7 +332,7 @@
 
                                                                                             <div class="col-sm-12">
                                                                                                 <div class="form-group form-submit">
-                                                                                                    <input class="btn btn-default" id="remove_book" type="button" name="remove" value="REMOVE" />
+                                                                                                    <button type="submit">Delete Book</button>
                                                                                                 </div>
                                                                                             </div>
 
@@ -357,48 +360,16 @@
 
                                                                             <div class="contact-form bg-light margin-right">
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="" method="post">
+                                                                                    <form id="contact" name="contact" action="<%=path%>librarian/updatebook" method="post">
                                                                                         <div class="row">
 
-                                                                                            <h4>Previous Details</h4><hr>
+                                                                                            <h4>Details Of Book To Be Updated </h4><hr>
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
                                                                                                     <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Title" name="title" id="title" size="100" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year-of-publication" id="year-of-publication" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="no-of-copies" id="no-of-copies" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies on Shelf" name="no-of-copies-shelf" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Author" name="author" id="author" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Category" name="category" id="category" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                        </div><br>
+                                                                                        </div>
 
                                                                                         <div class="row">
 
@@ -437,7 +408,7 @@
                                                                                             
                                                                                             <div class="col-sm-12">
                                                                                                 <div class="form-group form-submit">
-                                                                                                    <input class="btn btn-default" id="update" type="button" name="update" value="UPDATE" />
+                                                                                                    <button type="submit">Update Details</button>
                                                                                                 </div>
                                                                                             </div>
 
@@ -453,122 +424,6 @@
                                                         </div>
                                                     </main>
                                                 </div>
-
-
-
-                                                <div id="sectionD" class="tab-pane fade in">
-                                                    <main id="main" class="site-main">
-                                                        <div class="contact-main">
-                                                            <div class="contact-us">
-                                                                <div class="row">
-                                                                    <div class="contact-area">
-                                                                        <div class="container">
-
-                                                                            <div class="contact-form bg-light margin-right">
-                                                                                <span class="underline left"></span>
-                                                                                <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="" method="post">
-                                                                                        <div class="row">
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Copy ID" name="copyid" id="copyid" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Status" name="status" id="status" size="50" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Shelf ID" name="shelfid" id="shelfid" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Due Date" name="duedate" id="duedate" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            
-
-                                                                                            <div class="col-sm-12">
-                                                                                                <div class="form-group form-submit">
-                                                                                                    <input class="btn btn-default" id="add_book_copy" type="button" name="add" value="ADD" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </main>
-                                                </div>
-
-
-
-
-                                                <div id="sectionE" class="tab-pane fade in">
-                                                    <main id="main" class="site-main">
-                                                        <div class="contact-main">
-                                                            <div class="contact-us">
-                                                                <div class="row">
-                                                                    <div class="contact-area">
-                                                                        <div class="container">
-
-                                                                            <div class="contact-form bg-light margin-right">
-                                                                                <span class="underline left"></span>
-                                                                                <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="" method="post">
-                                                                                        <div class="row">
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Copy ID" name="copyid" id="copyid" size="100" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-sm-12">
-                                                                                                <div class="form-group form-submit">
-                                                                                                    <input class="btn btn-default" id="remove_book_copy" type="button" name="remove" value="REMOVE" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                        </div>
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </main>
-                                                </div>
-
-
 
 
                                                 <div id="sectionF" class="tab-pane fade in">
@@ -1049,11 +904,7 @@
 
     <!-- Custom Scripts -->
     <script type="text/javascript" src="../js/main.js"></script>
-<script>
-    $(`#addbook`).submit(e => {
-        e.preventDefault();
-    })
-</script>
+
 </body>
 
 

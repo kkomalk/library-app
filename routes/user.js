@@ -22,10 +22,18 @@ router.get('/books',async(req,res)=>{
 router.get('/home',async (req,res)=>{
     let userid=req.user.accountID;
     let temp = await cquery(`select name,address from user where userID=${userid};`);
+    let loanbook = await cquery(`call listOfBooksOnLoan(${userid});`);
+    let booksread = await cquery(`select * from book where ISBN in (select ISBN from readingList where userID = ${userid} and status = 'read');`);
+    let favourite =  await cquery(`call listOfFavouriteBooks(${userid});`);
+    let activeholds = await cquery(`call listOfActiveHoldRequests(${userid});`);
+    let apprholds = await cquery(`call listOfApprovedHoldRequests(${userid});`);
+    let freq = await cquery(`select * from user where userID in (select requesterID from friendRequest where requestedID = ${userid});`);
+    // let freading = await cquery(`call listof(${userid});`);
+    console.log(freq);
     let name = temp[0].name;
     let address = temp[0].address;
     console.log(temp);
-    res.render(path+'user_home.ejs',{path : href,name,address,userid});
+    res.render(path+'user_home.ejs',{path : href,name,address,userid,loanbook,booksread,favourite,activeholds,freq,apprholds});
 });
 
 router.get('/temp',(req,res)=>{
@@ -110,7 +118,7 @@ router.post('/requesthold',async(req,res)=>{
     console.log(status);
 })
 
-router.get('/friends',(req,res)=>{
+router.get('/friends',async (req,res)=>{
     res.render(path + 'friends.ejs', {path : href});
 })
 
@@ -120,13 +128,50 @@ router.post('/findfriends',async (req,res)=>{
         users = await cquery(`select * from user where userId <> ${req.user.accountID};`);
     }
     let result=[];
-    users.forEach(user => {
-        if(user.name.toUpperCase().indexOf(sub.toUpperCase()) > -1){
-            result.push(user);
+    for(let i=0;i<users.length;i++){
+        if(users[i].name.toUpperCase().indexOf(sub.toUpperCase()) > -1){
+            let temp = await cquery(`select * from friendUser where userID = ${req.user.accountID} and friendID = ${users[i].userID};`);
+            let temp2 = await cquery(`select * from friendRequest where requesterID = ${req.user.accountID} and requestedID = ${users[i].userID};`);
+            let temp3 = await cquery(`select * from friendRequest where requestedID = ${req.user.accountID} and requesterID = ${users[i].userID};`);
+            users[i].friend=0;
+            if(temp.length){
+                users[i].friend=1;
+            }else if(temp2.length){
+                users[i].friend=2;
+            }else if(temp3.length){
+                users[i].friend=3;
+            }
+            result.push(users[i]);
+            console.log(users[i]);
         }
-    })
+    }
+    
     console.log(result);
     res.send(result);
 })
 
+router.post('/requestfriend', async (req,res)=>{
+    let friendid = req.body.friendid;
+    await cquery(`call sendFriendRequest(${req.user.accountID},${friendid});`);
+    res.send({
+        msg : 'done'
+    })
+} )
+
+router.post('/unfriend',async (req,res)=>{
+    let friendid = req.body.friendid;
+    await cquery(`call unfriend(${req.user.accountID},${friendid});`);
+    res.send({
+        msg : 'done'
+    })
+})
+
+router.post('/approvefriend', async (req,res)=>{
+    let friendid = req.body.friendid;
+    await cquery(`call approveFriendRequest(${req.user.accountID},${friendid});`);
+    res.send({
+        msg : 'done'
+    })
+
+})
 module.exports = router;

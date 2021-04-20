@@ -33,7 +33,7 @@
 
     <!-- Stylesheet -->
     <link href="../style.css" rel="stylesheet" type="text/css" />
-
+    
 </head>
 
 <body>
@@ -247,6 +247,9 @@
                                                                             <span>
                                                                                 <strong>ISBN: </strong> <%=book.ISBN%>
                                                                             </span>
+                                                                            <span>
+                                                                                <strong>ISBN: </strong> <%=book.dueDate%>
+                                                                            </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%i++;})%>
@@ -352,6 +355,9 @@
                                                                             <span>
                                                                                 <strong>ISBN: </strong> <%=book.ISBN%>
                                                                             </span>
+                                                                            <span>
+                                                                                <strong>Due Date: </strong> <%=book.dueDate%>
+                                                                            </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%n++;})%>
@@ -439,21 +445,16 @@
 
                                                 <div id="sectionG" class="tab-pane fade in">
                                                     
-                                                        <form class="searchform">
+                                                        <form onsubmit="e =>{e.preventDefault()}" class="searchform">
                                                             <div class="col-md-4 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <label class="sr-only" for="keywords"> Search by Name</label>
-                                                                    <input class="form-control" placeholder="Search"
-                                                                        id="keywords" name="keywords" type="text">
+                                                                    <label class="sr-only" for="keywords"> Search by Name or book</label>
+                                                                    <input onkeyup="searchName()" class="form-control" placeholder="Search"
+                                                                        id="search" name="keywords" type="text">
                                                                 </div>
                                                             </div>
                                                             
-                                                            <div class="col-md-2 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <input class="form-control searchbutton" type="submit"
-                                                                        value="Search">
-                                                                </div>
-                                                            </div>
+                                                            
                                                         </form>
                                                         <table class="table table-bordered shop_table cart">
                                                             <thead>
@@ -461,120 +462,42 @@
                                                                     <th class="product-name">&nbsp;</th>
                                                                     <th class="product-name">Friend</th>
                                                                     <th class="product-quantity">Title</th>
-                                                                    <th class="product-quantity">Action</th>
+                                                                    
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr class="cart_item">
-                                                                    <td> 1. </td>
-                                                                    <td data-title="Product" class="product-name">
+                                                                <%let q=1;freadlist.forEach(friendbooks => {%>
+                                                                    <%friendbooks.forEach(book =>{%>
+                                                                        <tr class="cart_item friendbook">
+                                                                            <td> <%=q%>. </td>
+                                                                        <td data-title="Product" class="product-name">
                                                                         <span class="product-detail">
-                                                                            <span><strong>Name :</strong>     Name   </span>
-                                                                            <span><strong>UserID :</strong>     ID    </span>
+                                                                            <span><strong>Name :</strong><span class="friendname">Name</span></span>
+                                                                            <span><strong>UserID :</strong>     <%=book.userID%>    </span>
                                                                             <span><strong>Address :</strong>    Address   </span>
                                                                         </span>
                                                                     </td>
                                                                     <td data-title="Product" class="product-name">
                                                                         <span class="product-thumbnail">
-                                                                            <a href="#"><img
-                                                                                    src="../images/cart/cart-product-3.jpg"
-                                                                                    alt="cart-product-3"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong> Title </strong></a>
-                                                                            <span><strong>Author :</strong> Author
+                                                                            <a href="#"><img style="width: 150px;"
+                                                                                src="<%=book.image%>"
+                                                                                alt="cart-product-3"></a>
                                                                             </span>
-                                                                            <span><strong>ISBN :</strong> ISBN </span>
-                                                                            <span><strong>Rating :</strong> Ratings
+                                                                            <span class="product-detail">
+                                                                                <strong class="bookname"> <%=book.title%> </strong>
+                                                                                <span><strong>Author :</strong> <%=book.authors%>
+                                                                                </span>
+                                                                                <span><strong>ISBN :</strong> <%=book.ISBN%></span>
+                                                                                <!-- <span><strong>Rating :</strong> Ratings
+                                                                                </span> -->
                                                                             </span>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td data-title="action" class="product-action">
-                                                                        <div class="dropdown">
-                                                                            <a href="#" data-toggle="dropdown"
-                                                                                class="dropdown-toggle"> Rate <b
-                                                                                    class="caret"></b></a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="#"> Rate </a></li>
-                                                                                <li><a href="#"> Review </a></li>
-                                                                                <li><a href="#"> Hold </a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="addition-action">
-                                                                            <small>Additional Actions:</small>
-                                                                            <ul>
-                                                                                <li><a href="#"><i
-                                                                                            class="fa fa-shopping-cart"
-                                                                                            aria-hidden="true"></i></a>
-                                                                                </li>
-                                                                                <li><a href="#"><i class="fa fa-heart"
-                                                                                            aria-hidden="true"></i></a>
-                                                                                </li>
-                                                                                <li><a href="#"><i
-                                                                                            class="fa fa-share-alt"
-                                                                                            aria-hidden="true"></i></a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="cart_item">
-                                                                    <td> 2. </td>
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <span><strong>Name :</strong>     Name   </span>
-                                                                            <span><strong>UserID :</strong>     ID    </span>
-                                                                            <span><strong>Address :</strong>    Address   </span>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img
-                                                                                    src="../images/cart/cart-product-2.jpg"
-                                                                                    alt="cart-product-3"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong> Title </strong></a>
-                                                                            <span><strong>Author :</strong> Author
-                                                                            </span>
-                                                                            <span><strong>ISBN :</strong> ISBN </span>
-                                                                            <span><strong>Rating :</strong> Ratings
-                                                                            </span>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td data-title="action" class="product-action">
-                                                                        <div class="dropdown">
-                                                                            <a href="#" data-toggle="dropdown"
-                                                                                class="dropdown-toggle"> Rate <b
-                                                                                    class="caret"></b></a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="#"> Rate </a></li>
-                                                                                <li><a href="#"> Review </a></li>
-                                                                                <li><a href="#"> Hold </a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                        <div class="addition-action">
-                                                                            <small>Additional Actions:</small>
-                                                                            <ul>
-                                                                                <li><a href="#"><i
-                                                                                            class="fa fa-shopping-cart"
-                                                                                            aria-hidden="true"></i></a>
-                                                                                </li>
-                                                                                <li><a href="#"><i class="fa fa-heart"
-                                                                                            aria-hidden="true"></i></a>
-                                                                                </li>
-                                                                                <li><a href="#"><i
-                                                                                            class="fa fa-share-alt"
-                                                                                            aria-hidden="true"></i></a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+                                                                        </td>
+                                                                    </tr>
+                                                                <%q++})})%>
                                                             </tbody>
                                                         </table>
-                                                    
-                                                </div>
+                                                        
+                                                    </div>
 
                                                 <div id="sectionH" class="tab-pane fade in">
                                                     <form method="post" action="">
@@ -861,6 +784,34 @@
 
             })
         })
+        
+    </script>
+    <script>
+        function searchName(){
+				var mess = document.getElementById('search').value;
+				if(mess!=''){
+                    var i=0;
+					while(document.getElementsByClassName('friendbook')[i]){
+                        console.log(document.getElementsByClassName('friendname')[i].innerHTML,document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
+                        if(document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess)!=-1 || document.getElementsByClassName('bookname')[i].innerHTML.indexOf(mess)!=-1){
+							document.getElementsByClassName('friendbook')[i].style.display = '';
+							
+						}
+						else{
+							document.getElementsByClassName('friendbook')[i].style.display = 'none';
+						}
+						i=i+1;
+					}
+				}
+				else{
+					var i=0;
+					while(document.getElementsByClassName('friendname')[i]){
+						document.getElementsByClassName('friendbook')[i].style.display = '';
+						
+						i=i+1;
+					}
+				}
+			}
     </script>
 </body>
 

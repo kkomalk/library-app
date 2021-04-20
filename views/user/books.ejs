@@ -180,6 +180,9 @@
                                 <li>
                                     <a href="#">Books</a>
                                 </li>
+                                <li>
+                                    <a href="#">Find Friends</a>
+                                </li>
 
                                 <!-- <li>
 
@@ -381,6 +384,125 @@
     </footer>
     <!-- End: Footer -->
 
+
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"> Rating and Reviews </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="contact-us">
+                        <div class="row">
+                            <div class="contact-area" style="padding-top: 0px;">
+                                <div class="container">
+
+                                    <div class="contact-form bg-light margin-right"
+                                        style="width: 50%; margin-top: 0px;">
+                                        <span class="underline left"></span><br><br>
+                                        <div class="contact-fields">
+                                            <form id="contact" name="contact" action=""
+                                                method="post">
+                                                <div class="row">
+
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control"
+                                                                type="text"
+                                                                placeholder="Give Rating"
+                                                                name="rating" id="rating"
+                                                                size="30" value=""
+                                                                aria-required="true" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control"
+                                                                placeholder="Give Review"
+                                                                id="review"
+                                                                aria-required=""></textarea>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-submit">
+                                                            <input class="btn btn-default"
+                                                                id="submit-rate-review"
+                                                                type="button" name="post"
+                                                                value="POST" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table class="table table-bordered">
+
+                        <thead style="background-color: black; color: white;">
+                            <tr>
+                                <th> &nbsp; </th>
+                                <th> Reviews </th>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td> 1. </td>
+                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptate, ipsum! </td>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+                            <tr>
+                                <td> 2. </td>
+                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptate, ipsum! </td>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+                            <tr>
+                                <td> 3. </td>
+                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptate, ipsum! </td>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">  Close  </button>
+                    <button type="button" class="btn btn-primary">  Save changes  </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- jQuery Latest Version 1.x -->
     <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
 
@@ -432,6 +554,10 @@
     <!-- Custom Scripts -->
     <script type="text/javascript" src="../js/main.js"></script>
 
+
+
+
+    
     <script>
         let path = window.location.origin;
         $(document).ready(function () {
@@ -535,6 +661,9 @@
                                                 <p><strong>Holds :</strong> ${result[i].numholds} </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
                                                 <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
+                                                <button type="button" class="btn btn-dark-gray" data-toggle="modal" data-target="#exampleModalLong">
+                                                    Ratings and Reviews
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>

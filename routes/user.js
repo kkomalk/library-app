@@ -16,7 +16,8 @@ const cquery = async  (sql,req,res)=>{
 let books = [];
 let users = [];
 router.get('/books',async(req,res)=>{
-    res.render(path+'books.ejs',{path : href});
+    let search = req.query.search;
+    res.render(path+'books.ejs',{path : href,search});
 })
 
 router.get('/home',async (req,res)=>{

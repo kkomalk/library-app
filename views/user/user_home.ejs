@@ -18,7 +18,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i"
         rel="stylesheet" />
-        <link rel="stylesheet"
+    <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
         integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
     <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -33,7 +33,13 @@
 
     <!-- Stylesheet -->
     <link href="../style.css" rel="stylesheet" type="text/css" />
-    
+    <style>
+        @media only screen and (max-width: 600px) {
+            th {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -82,16 +88,19 @@
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Home</a>
                                     </li>
                                     <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/books">Books</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                                            href="<%=path%>user/books">Books</a>
                                     </li>
                                     <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/friends">Find Friends</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                                            href="<%=path%>user/friends">Find Friends</a>
                                     </li>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">About Us</a>
                                     </li>
                                     <li class="dropdown">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Contact Us</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Contact
+                                            Us</a>
                                     </li>
                                 </ul>
                             </div>
@@ -174,19 +183,25 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td> <%=name%> </td>
+                                <td>
+                                    <%=name%>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>UserID</td>
-                                <td> <%=userid%> </td>
+                                <td>
+                                    <%=userid%>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>Address</td>
-                                <td> <%=address%> </td>
+                                <td>
+                                    <%=address%>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -201,24 +216,34 @@
         <div id="primary" class="content-area">
             <main id="main" class="site-main">
                 <div class="cart-main">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="page type-page status-publish hentry">
                                     <div class="entry-content">
                                         <div class="woocommerce table-tabs" id="responsiveTabs">
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionZ">Books on loan    (<%=loanbook[0].length%>)   </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Books already read    (<%=booksread.length%>)    </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">Favorite Books     (<%=favourite[0].length%>)    </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Active hold requests      (<%=activeholds[0].length%>)      </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionE">Approved Holds      (<%=apprholds[0].length%>)      </a></li>
-                                                
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF">Friend requests     (<%=freq.length%>)       </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionG">Friends reading list    (2)      </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH">Pay Fines</a></li>
+                                            <ul class="nav nav-tabs" style="width: -moz-fit-content; width: fit-content; margin: auto;">
+                                                <li class="active"><b class="arrow-up"></b><a data-toggle="tab"
+                                                        href="#sectionZ">Books on loan (<%=loanbook[0].length%>) </a>
+                                                </li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">Books
+                                                        already read (<%=booksread.length%>) </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab"
+                                                        href="#sectionC">Favorite Books (<%=favourite[0].length%>) </a>
+                                                </li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionD">Active
+                                                        hold requests (<%=activeholds[0].length%>) </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab"
+                                                        href="#sectionE">Approved Holds (<%=apprholds[0].length%>) </a>
+                                                </li>
+
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF">Friend
+                                                        requests (<%=freq.length%>) </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab"
+                                                        href="#sectionG">Friends reading list (2) </a></li>
+                                                <!-- <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH">Pay Fines</a></li> -->
                                             </ul>
-                                            
+
                                             <div class="tab-content">
                                                 <div id="sectionZ" class="tab-pane fade in active">
                                                     <form method="post" action="">
@@ -227,29 +252,38 @@
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
                                                                     <th class="product-name">Title</th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%let i=1;loanbook[0].forEach(book =>{%>
+                                                                <%let i=1;loanbook[0].forEach(book=>{%>
 
                                                                     <tr class="cart_item">
-                                                                        <td> <%=i%>. </td>
+                                                                        <td>
+                                                                            <%=i%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img style="width: 150px;" src="<%=book.image%>" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong><%=book.title%> </strong></a>
-                                                                            <span>
-                                                                                <strong>By: </strong> <%=book.authors%>
+                                                                            <span class="product-thumbnail">
+                                                                                <a href="#"><img style="width: 150px;"
+                                                                                        src="<%=book.image%>"
+                                                                                        alt="cart-product-1"></a>
                                                                             </span>
-                                                                            <span>
-                                                                                <strong>ISBN: </strong> <%=book.ISBN%>
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>ISBN: </strong> <%=book.dueDate%>
-                                                                            </span>
+                                                                            <span class="product-detail">
+                                                                                <a href="#"><strong>
+                                                                                        <%=book.title%>
+                                                                                    </strong></a>
+                                                                                <span>
+                                                                                    <strong>By: </strong>
+                                                                                    <%=book.authors%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>ISBN: </strong>
+                                                                                    <%=book.ISBN%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>ISBN: </strong>
+                                                                                    <%=book.dueDate%>
+                                                                                </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%i++;})%>
@@ -265,26 +299,34 @@
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
                                                                     <th class="product-name">Title</th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%let j=1;booksread.forEach(book =>{%>
+                                                                <%let j=1;booksread.forEach(book=>{%>
 
                                                                     <tr class="cart_item">
-                                                                        <td> <%=j%>. </td>
+                                                                        <td>
+                                                                            <%=j%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img style="width: 150px;" src="<%=book.image%>" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong><%=book.title%> </strong></a>
-                                                                            <span>
-                                                                                <strong>By: </strong> <%=book.authors%>
+                                                                            <span class="product-thumbnail">
+                                                                                <a href="#"><img style="width: 150px;"
+                                                                                        src="<%=book.image%>"
+                                                                                        alt="cart-product-1"></a>
                                                                             </span>
-                                                                            <span>
-                                                                                <strong>ISBN: </strong> <%=book.ISBN%>
-                                                                            </span>
+                                                                            <span class="product-detail">
+                                                                                <a href="#"><strong>
+                                                                                        <%=book.title%>
+                                                                                    </strong></a>
+                                                                                <span>
+                                                                                    <strong>By: </strong>
+                                                                                    <%=book.authors%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>ISBN: </strong>
+                                                                                    <%=book.ISBN%>
+                                                                                </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%j++;})%>
@@ -300,26 +342,34 @@
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
                                                                     <th class="product-name">Title</th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%let k=1;favourite[0].forEach(book =>{%>
+                                                                <%let k=1;favourite[0].forEach(book=>{%>
 
                                                                     <tr class="cart_item">
-                                                                        <td> <%=k%>. </td>
+                                                                        <td>
+                                                                            <%=k%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img style="width: 150px;" src="<%=book.image%>" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong><%=book.title%> </strong></a>
-                                                                            <span>
-                                                                                <strong>By: </strong> <%=book.authors%>
+                                                                            <span class="product-thumbnail">
+                                                                                <a href="#"><img style="width: 150px;"
+                                                                                        src="<%=book.image%>"
+                                                                                        alt="cart-product-1"></a>
                                                                             </span>
-                                                                            <span>
-                                                                                <strong>ISBN: </strong> <%=book.ISBN%>
-                                                                            </span>
+                                                                            <span class="product-detail">
+                                                                                <a href="#"><strong>
+                                                                                        <%=book.title%>
+                                                                                    </strong></a>
+                                                                                <span>
+                                                                                    <strong>By: </strong>
+                                                                                    <%=book.authors%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>ISBN: </strong>
+                                                                                    <%=book.ISBN%>
+                                                                                </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%k++;})%>
@@ -335,29 +385,38 @@
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
                                                                     <th class="product-name">Title</th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%let n=1;apprholds[0].forEach(book =>{%>
+                                                                <%let n=1;apprholds[0].forEach(book=>{%>
 
                                                                     <tr class="cart_item">
-                                                                        <td> <%=n%>. </td>
+                                                                        <td>
+                                                                            <%=n%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img style="width: 150px;" src="<%=book.image%>" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong><%=book.title%> </strong></a>
-                                                                            <span>
-                                                                                <strong>By: </strong> <%=book.authors%>
+                                                                            <span class="product-thumbnail">
+                                                                                <a href="#"><img style="width: 150px;"
+                                                                                        src="<%=book.image%>"
+                                                                                        alt="cart-product-1"></a>
                                                                             </span>
-                                                                            <span>
-                                                                                <strong>ISBN: </strong> <%=book.ISBN%>
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>Due Date: </strong> <%=book.dueDate%>
-                                                                            </span>
+                                                                            <span class="product-detail">
+                                                                                <a href="#"><strong>
+                                                                                        <%=book.title%>
+                                                                                    </strong></a>
+                                                                                <span>
+                                                                                    <strong>By: </strong>
+                                                                                    <%=book.authors%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>ISBN: </strong>
+                                                                                    <%=book.ISBN%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>Due Date: </strong>
+                                                                                    <%=book.dueDate%>
+                                                                                </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%n++;})%>
@@ -372,26 +431,34 @@
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
                                                                     <th class="product-name">Title</th>
-                                                                    
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%let l=1;activeholds[0].forEach(book =>{%>
+                                                                <%let l=1;activeholds[0].forEach(book=>{%>
 
                                                                     <tr class="cart_item">
-                                                                        <td> <%=l%>. </td>
+                                                                        <td>
+                                                                            <%=l%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img style="width: 150px;" src="<%=book.image%>" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong><%=book.title%> </strong></a>
-                                                                            <span>
-                                                                                <strong>By: </strong> <%=book.authors%>
+                                                                            <span class="product-thumbnail">
+                                                                                <a href="#"><img style="width: 150px;"
+                                                                                        src="<%=book.image%>"
+                                                                                        alt="cart-product-1"></a>
                                                                             </span>
-                                                                            <span>
-                                                                                <strong>ISBN: </strong> <%=book.ISBN%>
-                                                                            </span>
+                                                                            <span class="product-detail">
+                                                                                <a href="#"><strong>
+                                                                                        <%=book.title%>
+                                                                                    </strong></a>
+                                                                                <span>
+                                                                                    <strong>By: </strong>
+                                                                                    <%=book.authors%>
+                                                                                </span>
+                                                                                <span>
+                                                                                    <strong>ISBN: </strong>
+                                                                                    <%=book.ISBN%>
+                                                                                </span>
                                                                         </td>
                                                                     </tr>
                                                                     <%l++;})%>
@@ -406,37 +473,47 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
-                                                                <th class="product-name">Name</th>
-                                                                <th class="product-quantity">UserID</th>
-                                                                <th class="product-quantity">Address</th>
-                                                                <th class="product-quantity">Action</th>
-                                                                    
+                                                                    <th class="product-name">Name</th>
+                                                                    <th class="product-quantity">UserID</th>
+                                                                    <th class="product-quantity">Address</th>
+                                                                    <th class="product-quantity">Action</th>
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <%let m=1;freq.forEach(user =>{%>
+                                                                <%let m=1;freq.forEach(user=>{%>
 
                                                                     <tr class="cart_item">
-                                                                        <td> <%=m%>. </td>
+                                                                        <td>
+                                                                            <%=m%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
                                                                             <span class="product-thumbnail">
-                                                                                <strong>    <%=user.name%>   </strong>
+                                                                                <strong>
+                                                                                    <%=user.name%>
+                                                                                </strong>
                                                                             </span>
-                                                                    </td>
-                                                                            <td data-title="Product" class="product-name">
+                                                                        </td>
+                                                                        <td data-title="Product" class="product-name">
                                                                             <span class="product-thumbnail">
-                                                                            <strong>    <%=user.userID%>   </strong>
+                                                                                <strong>
+                                                                                    <%=user.userID%>
+                                                                                </strong>
                                                                             </span>
-                                                                            </td>
-                                                                            <td data-title="Product" class="product-name">
+                                                                        </td>
+                                                                        <td data-title="Product" class="product-name">
                                                                             <span class="product-thumbnail">
-                                                                            <strong>    <%=user.address%>  </strong>
+                                                                                <strong>
+                                                                                    <%=user.address%>
+                                                                                </strong>
                                                                             </span>
-                                                                            </td>
-                                                                            <td data-title="action" class="product-action">
-                                                                                <i title='accept request' style="cursor: pointer; font-size: x-large; color: #6f6fe8" class='<%=user.userID%> fas fa-user-plus respond'></i>
-                                                                            </td>
-                                                                            </tr>`
+                                                                        </td>
+                                                                        <td data-title="action" class="product-action">
+                                                                            <i title='accept request'
+                                                                                style="cursor: pointer; font-size: x-large; color: #6f6fe8"
+                                                                                class='<%=user.userID%> fas fa-user-plus respond'></i>
+                                                                        </td>
+                                                                    </tr>`
                                                                     <%m++;})%>
                                                             </tbody>
                                                         </table>
@@ -444,60 +521,77 @@
                                                 </div>
 
                                                 <div id="sectionG" class="tab-pane fade in">
-                                                    
-                                                        <form onsubmit="e =>{e.preventDefault()}" class="searchform">
-                                                            <div class="col-md-4 col-sm-6">
-                                                                <div class="form-group">
-                                                                    <label class="sr-only" for="keywords"> Search by Name or book</label>
-                                                                    <input onkeyup="searchName()" class="form-control" placeholder="Search"
-                                                                        id="search" name="keywords" type="text">
-                                                                </div>
+
+                                                    <form onsubmit="e =>{e.preventDefault()}" class="searchform">
+                                                        <div class="col-md-4 col-sm-6">
+                                                            <div class="form-group">
+                                                                <label class="sr-only" for="keywords"> Search by Name or
+                                                                    book</label>
+                                                                <input onkeyup="searchName()" class="form-control"
+                                                                    placeholder="Search by book or friend's name"
+                                                                    id="search" name="keywords" type="text">
                                                             </div>
-                                                            
-                                                            
-                                                        </form>
-                                                        <table class="table table-bordered shop_table cart">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="product-name">&nbsp;</th>
-                                                                    <th class="product-name">Friend</th>
-                                                                    <th class="product-quantity">Title</th>
-                                                                    
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <%let q=1;freadlist.forEach(friendbooks => {%>
-                                                                    <%friendbooks.forEach(book =>{%>
-                                                                        <tr class="cart_item friendbook">
-                                                                            <td> <%=q%>. </td>
+                                                        </div>
+
+
+                                                    </form>
+                                                    <table class="table table-bordered shop_table cart">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="product-name">&nbsp;</th>
+                                                                <th class="product-name">Friend</th>
+                                                                <th class="product-quantity">Title</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <%let q=1;freadlist.forEach(friendbooks=> {%>
+                                                                <%friendbooks.forEach(book=>{%>
+                                                                    <tr class="cart_item friendbook">
+                                                                        <td>
+                                                                            <%=q%>.
+                                                                        </td>
                                                                         <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <span><strong>Name :</strong><span class="friendname">Name</span></span>
-                                                                            <span><strong>UserID :</strong>     <%=book.userID%>    </span>
-                                                                            <span><strong>Address :</strong>    Address   </span>
-                                                                        </span>
-                                                                    </td>
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img style="width: 150px;"
-                                                                                src="<%=book.image%>"
-                                                                                alt="cart-product-3"></a>
+                                                                            <span class="product-detail">
+                                                                                <span><strong>Name :</strong><span
+                                                                                        class="friendname">
+                                                                                        <%=book.name%>
+                                                                                    </span></span>
+                                                                                <span><strong>UserID :</strong>
+                                                                                    <%=book.userID%>
+                                                                                </span>
+                                                                                <span><strong>Address :</strong> Address
+                                                                                </span>
+                                                                            </span>
+                                                                        </td>
+                                                                        <td data-title="Product" class="product-name">
+                                                                            <span class="product-thumbnail">
+                                                                                <a href="#"><img style="width: 150px;"
+                                                                                        src="<%=book.image%>"
+                                                                                        alt="cart-product-3"></a>
                                                                             </span>
                                                                             <span class="product-detail">
-                                                                                <strong class="bookname"> <%=book.title%> </strong>
-                                                                                <span><strong>Author :</strong> <%=book.authors%>
+                                                                                <a
+                                                                                    href="<%=path%>user/books?search=<%=book.title%>"><strong
+                                                                                        class="bookname">
+                                                                                        <%=book.title%>
+                                                                                    </strong></a>
+                                                                                <span><strong>Author :</strong>
+                                                                                    <%=book.authors%>
                                                                                 </span>
-                                                                                <span><strong>ISBN :</strong> <%=book.ISBN%></span>
+                                                                                <span><strong>ISBN :</strong>
+                                                                                    <%=book.ISBN%>
+                                                                                </span>
                                                                                 <!-- <span><strong>Rating :</strong> Ratings
                                                                                 </span> -->
                                                                             </span>
                                                                         </td>
                                                                     </tr>
-                                                                <%q++})})%>
-                                                            </tbody>
-                                                        </table>
-                                                        
-                                                    </div>
+                                                                    <%q++})})%>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
 
                                                 <div id="sectionH" class="tab-pane fade in">
                                                     <form method="post" action="">
@@ -530,13 +624,15 @@
                                                                     </td>
                                                                     <td data-title="Product" class="product-name">
                                                                         <span class="product-thumbnail">
-                                                                            <strong>    Fine Amount   </strong>
+                                                                            <strong> Fine Amount </strong>
                                                                         </span>
                                                                     </td>
-                                                                    <td data-title="Product" class="product-name" >
+                                                                    <td data-title="Product" class="product-name">
                                                                         <div class="col-sm-12">
                                                                             <div class="form-group form-submit">
-                                                                                <input class="btn btn-default" id="pay_fine" type="button" name="fine" value="Pay Fine" />
+                                                                                <input class="btn btn-default"
+                                                                                    id="pay_fine" type="button"
+                                                                                    name="fine" value="Pay Fine" />
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -561,13 +657,15 @@
                                                                     </td>
                                                                     <td data-title="Product" class="product-name">
                                                                         <span class="product-thumbnail">
-                                                                            <strong>    Fine Amount   </strong>
+                                                                            <strong> Fine Amount </strong>
                                                                         </span>
                                                                     </td>
-                                                                    <td data-title="Product" class="product-name" >
+                                                                    <td data-title="Product" class="product-name">
                                                                         <div class="col-sm-12">
                                                                             <div class="form-group form-submit">
-                                                                                <input class="btn btn-default" id="pay_fine" type="button" name="fine" value="Pay Fine" />
+                                                                                <input class="btn btn-default"
+                                                                                    id="pay_fine" type="button"
+                                                                                    name="fine" value="Pay Fine" />
                                                                             </div>
                                                                         </div>
                                                                     </td>
@@ -578,7 +676,7 @@
                                                     </form>
                                                 </div>
 
-                                                
+
 
                                             </div>
                                         </div>
@@ -762,8 +860,8 @@
     <script type="text/javascript" src="../js/main.js"></script>
     <script>
         let path = window.location.origin;
-        $(document).ready(()=>{
-            $(document).on('click','.respond', e=>{
+        $(document).ready(() => {
+            $(document).on('click', '.respond', e => {
                 let friendid = ($(e.target).attr('class').split(' ')[0]);
                 $.ajax({
                     type: 'POST',
@@ -776,7 +874,7 @@
                         // $(e.target).removeClass('respond');
                         $(e.target).addClass('fa-check');
                         // $(e.target).addClass('unfriend');
-                        $(e.target).css('color','#8ec68e');
+                        $(e.target).css('color', '#8ec68e');
                         $(e.target).attr('title', 'accepted');
                         // console.log('approved');
                     }
@@ -784,34 +882,34 @@
 
             })
         })
-        
+
     </script>
     <script>
-        function searchName(){
-				var mess = document.getElementById('search').value;
-				if(mess!=''){
-                    var i=0;
-					while(document.getElementsByClassName('friendbook')[i]){
-                        console.log(document.getElementsByClassName('friendname')[i].innerHTML,document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
-                        if(document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess)!=-1 || document.getElementsByClassName('bookname')[i].innerHTML.indexOf(mess)!=-1){
-							document.getElementsByClassName('friendbook')[i].style.display = '';
-							
-						}
-						else{
-							document.getElementsByClassName('friendbook')[i].style.display = 'none';
-						}
-						i=i+1;
-					}
-				}
-				else{
-					var i=0;
-					while(document.getElementsByClassName('friendname')[i]){
-						document.getElementsByClassName('friendbook')[i].style.display = '';
-						
-						i=i+1;
-					}
-				}
-			}
+        function searchName() {
+            var mess = document.getElementById('search').value;
+            if (mess != '') {
+                var i = 0;
+                while (document.getElementsByClassName('friendbook')[i]) {
+                    console.log(document.getElementsByClassName('friendname')[i].innerHTML, document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
+                    if (document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess) != -1 || document.getElementsByClassName('bookname')[i].innerHTML.indexOf(mess) != -1) {
+                        document.getElementsByClassName('friendbook')[i].style.display = '';
+
+                    }
+                    else {
+                        document.getElementsByClassName('friendbook')[i].style.display = 'none';
+                    }
+                    i = i + 1;
+                }
+            }
+            else {
+                var i = 0;
+                while (document.getElementsByClassName('friendname')[i]) {
+                    document.getElementsByClassName('friendbook')[i].style.display = '';
+
+                    i = i + 1;
+                }
+            }
+        }
     </script>
 </body>
 

@@ -180,6 +180,9 @@
                                 <li>
                                     <a href="#">Books</a>
                                 </li>
+                                <li>
+                                    <a href="#">Find Friends</a>
+                                </li>
 
                                 <!-- <li>
 
@@ -238,7 +241,7 @@
                                             <div class="col-md-4 col-sm-6">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="keywords"> Search</label>
-                                                    <input value="<%=search%>" class="form-control" placeholder="Search by Title"
+                                                    <input class="form-control" placeholder="Search by Title"
                                                         id="keywords" name="keywords" type="text">
                                                 </div>
                                             </div>
@@ -381,6 +384,128 @@
     </footer>
     <!-- End: Footer -->
 
+
+    
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"> Rating and Reviews </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <div class="contact-us">
+                        <div class="row">
+                            <div class="contact-area" style="padding-top: 0px;">
+                                <div class="container">
+
+                                    <div class="contact-form bg-light margin-right"
+                                        style="width: 50%; margin-top: 0px;">
+                                        <span class="underline left"></span><br><br>
+                                        <div class="contact-fields">
+                                            <form id="contact" name="contact" action=""
+                                                method="post">
+                                                <div class="row">
+
+                                                    <div class="col-md-6 col-sm-6">
+                                                        <div class="form-group">
+                                                            <input class="form-control"
+                                                                type="text"
+                                                                placeholder="Give Rating"
+                                                                name="rating" id="rating"
+                                                                size="30" value=""
+                                                                aria-required="true" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <textarea class="form-control"
+                                                                placeholder="Give Review"
+                                                                id="review"
+                                                                aria-required=""></textarea>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group form-submit">
+                                                            <input class="btn btn-default"
+                                                                id="submit-rate-review"
+                                                                type="button" name="post"
+                                                                value="POST" />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <table class="table table-bordered">
+
+                        <thead style="background-color: black; color: white;">
+                            <tr>
+                                <th> &nbsp; </th>
+                                <th> Reviews </th>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td> 1. </td>
+                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptate, ipsum! </td>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+                            <tr>
+                                <td> 2. </td>
+                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptate, ipsum! </td>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+                            <tr>
+                                <td> 3. </td>
+                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    Voluptate, ipsum! </td>
+                                <!-- <th> Name </th>
+                                <th> UserID </th> -->
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">  Close  </button>
+                    <button type="button" class="btn btn-primary">  Save changes  </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- jQuery Latest Version 1.x -->
     <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
 
@@ -432,15 +557,18 @@
     <!-- Custom Scripts -->
     <script type="text/javascript" src="../js/main.js"></script>
 
+
+
+
+    
     <script>
         let path = window.location.origin;
-        
         $(document).ready(function () {
             $(".searchform").submit(function (e) {
                 e.preventDefault();
             })
-            
-            const getdata = ()=>{
+
+            $(".searchbutton").click(function () {
                 $.ajax({
                     type: "POST",
                     url: path + "/user/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
@@ -449,129 +577,124 @@
                         let s = "";
                         for (let i = 0; i < result.length; i++) {
                             let rating = "<p><strong>Avg. Rating: </strong>";
-                                let favbut = "", p = 1, avg, fav, hold, favclas;
-                                if (result[i].fav == 1) {
-                                    fav = 1;
-                                    favbut = "Favourite <i class='fas fa-heart' style='color: red;'></i>";
-                                    favclas = "fav"
+                            let favbut = "", p = 1, avg, fav, hold, favclas;
+                            if (result[i].fav == 1) {
+                                fav = 1;
+                                favbut = "Favourite <i class='fas fa-heart' style='color: red;'></i>";
+                                favclas = "fav"
+                            } else {
+                                fav = 0;
+                                favbut = "Mark as favourite: <i class='far fa-heart'></i>";
+                                favclas = "notfav";
+                            }
+                            avg = result[i].avgRating;
+                            console.log(avg);
+                            if (result[i].avgRat == null) {
+                                avgRat = 0;
+                            }
+                            while (p <= avg) {
+                                rating += "<span><i class='fas fa-star'></i></span>";
+                                p++;
+                            }
+                            while (p <= 5) {
+                                rating += "<span><i class='far fa-star'></i></span>";
+                                p++;
+                            }
+                            let userrating = result[i].rating;
+                            if (userrating == null) {
+                                userrating = 1;
+                            }
+                            console.log(result[i].ISBN, userrating);
+                            p = 1;
+                            let opt = "";
+                            while (p <= 5) {
+                                if (p == userrating) {
+                                    opt += `<option selected value='${p}'>${p}</option>`;
                                 } else {
-                                    fav = 0;
-                                    favbut = "Mark as favourite: <i class='far fa-heart'></i>";
-                                    favclas = "notfav";
+                                    opt += `<option value='${p}'>${p}</option>`;
                                 }
-                                avg = result[i].avgRating;
-                                console.log(avg);
-                                if (result[i].avgRat == null) {
-                                    avgRat = 0;
-                                }
-                                while (p <= avg) {
-                                    rating += "<span><i class='fas fa-star'></i></span>";
-                                    p++;
-                                }
-                                while (p <= 5) {
-                                    rating += "<span><i class='far fa-star'></i></span>";
-                                    p++;
-                                }
-                                let userrating = result[i].rating;
-                                if (userrating == null) {
-                                    userrating = 1;
-                                }
-                                console.log(result[i].ISBN, userrating);
-                                p = 1;
-                                let opt = "";
-                                while (p <= 5) {
-                                    if (p == userrating) {
-                                        opt += `<option selected value='${p}'>${p}</option>`;
-                                    } else {
-                                        opt += `<option value='${p}'>${p}</option>`;
-                                    }
-                                    p++;
-                                }
-                                let holdbut = "";
-                                if (result[i].holdStatus == 0) {
-                                    holdbut = "disabled";
-                                }
-                                s += (`<tr><th><div class="booksmedia-detail-box">
+                                p++;
+                            }
+                            let holdbut = "";
+                            if (result[i].holdStatus == 0) {
+                                holdbut = "disabled";
+                            }
+                            s += (`<tr><th><div class="booksmedia-detail-box">
                                     <div class="detailed-box">
                                         <div class="col-xs-12 col-sm-5 col-md-3">
                                             <div class="post-thumbnail">
                                                 
                                                 <img src="${result[i].image}"
-                                                alt="Book Image">
+                                                    alt="Book Image">
+                                            </div>
+                                        </div>
+                                        <div  class="col-xs-12 col-sm-7 col-md-6">
+                                            <div style="width : 100%;" class="post-center-content">
+                                                <h2> ${result[i].title} </h2>
+                                                <p><strong>Author : </strong> ${result[i].authors} </p>
+                                                <p><strong>ISBN : </strong> ${result[i].ISBN} </p>
+                                                ${rating}
+                                                <p><strong>Year of Publication :</strong> ${result[i].yearOfPublication} </p>
+                                                <p><strong>Category : </strong>${result[i].category} </p>
+                                                <div class="form-group">
+                                                    <p><strong>Your rating: <select style="width: 50px; display: inline; height: 50px;" value=${result[i].rating}' name="userrating" class="${result[i].ISBN} userrating form-control">
+                                                            ${opt}
+                                                        </select>
                                                 </div>
+                                                <div class="actions">
+                                                    <ul>
+                                                        
+                                                        <li>
+                                                            <p data-toggle="blog-tags"
+                                                                data-placement="top" title=""
+                                                                data-original-title="Add to favorite">
+                                                                    <div style="cursor:pointer;" class='${result[i].ISBN} ${favclas}'>
+                                                                        ${favbut}
+                                                                        </div>
+                                                            </p>
+                                                        </li>
+                                                        
+                                                    </ul>
                                                 </div>
-                                                <div  class="col-xs-12 col-sm-7 col-md-6">
-                                                    <div style="width : 100%;" class="post-center-content">
-                                                        <h2> ${result[i].title} </h2>
-                                                        <p><strong>Author : </strong> ${result[i].authors} </p>
-                                                        <p><strong>ISBN : </strong> ${result[i].ISBN} </p>
-                                                        ${rating}
-                                                        <p><strong>Year of Publication :</strong> ${result[i].yearOfPublication} </p>
-                                                        <p><strong>Category : </strong>${result[i].category} </p>
-                                                        <div class="form-group">
-                                                            <p><strong>Your rating: <select style="width: 50px; display: inline; height: 50px;" value=${result[i].rating}' name="userrating" class="${result[i].ISBN} userrating form-control">
-                                                                ${opt}
-                                                                </select>
-                                                                </div>
-                                                                <div class="actions">
-                                                                    <ul>
-                                                                        
-                                                                        <li>
-                                                                            <p data-toggle="blog-tags"
-                                                                            data-placement="top" title=""
-                                                                            data-original-title="Add to favorite">
-                                                                            <div style="cursor:pointer;" class='${result[i].ISBN} ${favclas}'>
-                                                                                ${favbut}
-                                                                                </div>
-                                                                                </p>
-                                                                                </li>
-                                                                                
-                                                                                </ul>
-                                                                                </div>
-                                                                                </div>
-                                                                                </div>
-                                                                                <div class="col-xs-12 col-sm-12 col-md-3 ">
-                                                                                    <div class="post-right-content">
-                                                                                        <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
-                                                                                        <p><strong>Holds :</strong> ${result[i].numholds} </p>
-                                                                                        <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
-                                                                                        <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
-                                                                                        </div>
-                                                                                        </div>
-                                                                                        <div class="clearfix"></div>
-                                                                                        </div>
-                                                                                        <div class="clearfix"></div>
-                                                                                        </div></th></tr>`)
-                                                                                    }
-                                                                                    $(".searchbooks").html(s);
-                                                                                }
-                                                                            });
-                                                                        }
-                                                                        $(".searchbutton").click(function () {
-                                                                            getdata();
-                                                                        });
-                                                                        $(document).ready(()=>{
-                                                                            getdata();
-
-                                                                        })
-                                                                        
-                                                                        $(document).on('click', '.notfav', function (e) {
-                                                                            console.log('clicked');
-                                                                            let read = "null";
-                                                                            while (read != "yes" && read != "no") {
-                                                                                read = window.prompt('Have you read the book? (yes/no) (case-sensitive)');
-                                                                            }
-                                                                            console.log(read);
-                                                                            let isbn = $(this).attr('class').split(' ')[0];
-                                                                            $.ajax({
-                                                                                type: 'POST', url: path + '/user/markfav', data: { isbn, read }, success: (result) => {
-                                                                                    $(this).removeClass('notfav');
-                                                                                    $(this).addClass('fav');
-                                                                                    $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-3 ">
+                                            <div class="post-right-content">
+                                                <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
+                                                <p><strong>Holds :</strong> ${result[i].numholds} </p>
+                                                <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
+                                                <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
+                                                <button type="button" class="btn btn-dark-gray" data-toggle="modal" data-target="#exampleModalLong">
+                                                    Ratings and Reviews
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div></th></tr>`)
+                        }
+                        $(".searchbooks").html(s);
+                    }
+                });
+            });
+            $(document).on('click', '.notfav', function (e) {
+                console.log('clicked');
+                let read = "null";
+                while (read != "yes" && read != "no") {
+                    read = window.prompt('Have you read the book? (yes/no) (case-sensitive)');
+                }
+                console.log(read);
+                let isbn = $(this).attr('class').split(' ')[0];
+                $.ajax({
+                    type: 'POST', url: path + '/user/markfav', data: { isbn, read }, success: (result) => {
+                        $(this).removeClass('notfav');
+                        $(this).addClass('fav');
+                        $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
                     }
                 })
             })
-            
+
             $(document).on('click', '.fav', function (e) {
                 let isbn = $(this).attr('class').split(' ')[0];
                 $.ajax({

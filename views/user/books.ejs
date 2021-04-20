@@ -74,7 +74,7 @@
                                     <div class="col-sm-6">
                                         <div class="topbar-links">
                                             <a href="<%=path%>auth/logout"><i class="fa fa-lock"></i>Log Out</a>
-                                            <span>|</span>
+                                            <!-- <span>|</span>
                                             <div class="header-cart dropdown">
                                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                                     <i class="fa fa-shopping-cart"></i>
@@ -126,7 +126,7 @@
                                                         <a href="#" class="btn btn-dark-gray">Reading list</a>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -140,24 +140,11 @@
 
                                     </li>
                                     <li class="dropdown active">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Books</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/books">Books</a>
                                     </li>
                                     <li class="dropdown ">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/friends">Find Friends</a>
                                     </li>
-
-                                    <!-- <li class="dropdown">
-
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#"> Reading list </a></li>
-                                            <li><a href="#"> Favorite </a></li>
-                                            <li><a href="#"> Books on hold </a></li>
-                                            <li><a href="#"> Books to return </a></li>
-                                        </ul>
-
-                                    </li>  -->
-
                                     <li><a href="#">About Us</a></li>
                                     <li><a href="#">Contact Us</a></li>
 
@@ -175,26 +162,14 @@
                                 </li>
 
                                 <li>
-                                    <a href="#">Home</a>
+                                    <a href="<%=path%>user/home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="#">Books</a>
+                                    <a href="<%=path%>user/books">Books</a>
                                 </li>
                                 <li>
-                                    <a href="#">Find Friends</a>
+                                    <a href="<%=path%>user/friends">Find Friends</a>
                                 </li>
-
-                                <!-- <li>
-
-                                    <a href="#">Pages</a>
-                                    <ul>
-                                        <li><a href="#"> Reading list </a></li>
-                                        <li><a href="#"> Favorite </a></li>
-                                        <li><a href="#"> Books on hold </a></li>
-                                        <li><a href="#"> Books to return </a></li>
-                                    </ul>
-
-                                </li> -->
                                 <li><a href="#">About Us</a></li>
                                 <li><a href="#">Contact Us</a></li>
 
@@ -217,7 +192,7 @@
             </div>
             <div class="breadcrumb">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="<%=path%>user/home">Home</a></li>
                     <li>Books</li>
                 </ul>
             </div>
@@ -366,8 +341,9 @@
                             <div class="menu-quick-links-container">
                                 <ul id="menu-quick-links" class="menu">
 
-                                    <li><a href="<%=path%>">Home</a></li>
-                                    <li><a href="<%=path%>books">Books</a></li>
+                                    <li><a href="<%=path%>user/home">Home</a></li>
+                                    <li><a href="<%=path%>user/books">Books</a></li>
+                                    <li><a href="<%=path%>user/friends">Find Friends</a></li>
                                     <li><a href="#">About Us</a></li>
                                     <li><a href="#">Contact Us</a></li>
 

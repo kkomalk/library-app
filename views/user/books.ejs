@@ -238,7 +238,7 @@
                                             <div class="col-md-4 col-sm-6">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="keywords"> Search</label>
-                                                    <input class="form-control" placeholder="Search by Title"
+                                                    <input value="<%=search%>" class="form-control" placeholder="Search by Title"
                                                         id="keywords" name="keywords" type="text">
                                                 </div>
                                             </div>
@@ -434,12 +434,13 @@
 
     <script>
         let path = window.location.origin;
+        
         $(document).ready(function () {
             $(".searchform").submit(function (e) {
                 e.preventDefault();
             })
-
-            $(".searchbutton").click(function () {
+            
+            const getdata = ()=>{
                 $.ajax({
                     type: "POST",
                     url: path + "/user/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
@@ -448,121 +449,129 @@
                         let s = "";
                         for (let i = 0; i < result.length; i++) {
                             let rating = "<p><strong>Avg. Rating: </strong>";
-                            let favbut = "", p = 1, avg, fav, hold, favclas;
-                            if (result[i].fav == 1) {
-                                fav = 1;
-                                favbut = "Favourite <i class='fas fa-heart' style='color: red;'></i>";
-                                favclas = "fav"
-                            } else {
-                                fav = 0;
-                                favbut = "Mark as favourite: <i class='far fa-heart'></i>";
-                                favclas = "notfav";
-                            }
-                            avg = result[i].avgRating;
-                            console.log(avg);
-                            if (result[i].avgRat == null) {
-                                avgRat = 0;
-                            }
-                            while (p <= avg) {
-                                rating += "<span><i class='fas fa-star'></i></span>";
-                                p++;
-                            }
-                            while (p <= 5) {
-                                rating += "<span><i class='far fa-star'></i></span>";
-                                p++;
-                            }
-                            let userrating = result[i].rating;
-                            if (userrating == null) {
-                                userrating = 1;
-                            }
-                            console.log(result[i].ISBN, userrating);
-                            p = 1;
-                            let opt = "";
-                            while (p <= 5) {
-                                if (p == userrating) {
-                                    opt += `<option selected value='${p}'>${p}</option>`;
+                                let favbut = "", p = 1, avg, fav, hold, favclas;
+                                if (result[i].fav == 1) {
+                                    fav = 1;
+                                    favbut = "Favourite <i class='fas fa-heart' style='color: red;'></i>";
+                                    favclas = "fav"
                                 } else {
-                                    opt += `<option value='${p}'>${p}</option>`;
+                                    fav = 0;
+                                    favbut = "Mark as favourite: <i class='far fa-heart'></i>";
+                                    favclas = "notfav";
                                 }
-                                p++;
-                            }
-                            let holdbut = "";
-                            if (result[i].holdStatus == 0) {
-                                holdbut = "disabled";
-                            }
-                            s += (`<tr><th><div class="booksmedia-detail-box">
+                                avg = result[i].avgRating;
+                                console.log(avg);
+                                if (result[i].avgRat == null) {
+                                    avgRat = 0;
+                                }
+                                while (p <= avg) {
+                                    rating += "<span><i class='fas fa-star'></i></span>";
+                                    p++;
+                                }
+                                while (p <= 5) {
+                                    rating += "<span><i class='far fa-star'></i></span>";
+                                    p++;
+                                }
+                                let userrating = result[i].rating;
+                                if (userrating == null) {
+                                    userrating = 1;
+                                }
+                                console.log(result[i].ISBN, userrating);
+                                p = 1;
+                                let opt = "";
+                                while (p <= 5) {
+                                    if (p == userrating) {
+                                        opt += `<option selected value='${p}'>${p}</option>`;
+                                    } else {
+                                        opt += `<option value='${p}'>${p}</option>`;
+                                    }
+                                    p++;
+                                }
+                                let holdbut = "";
+                                if (result[i].holdStatus == 0) {
+                                    holdbut = "disabled";
+                                }
+                                s += (`<tr><th><div class="booksmedia-detail-box">
                                     <div class="detailed-box">
                                         <div class="col-xs-12 col-sm-5 col-md-3">
                                             <div class="post-thumbnail">
                                                 
                                                 <img src="${result[i].image}"
-                                                    alt="Book Image">
-                                            </div>
-                                        </div>
-                                        <div  class="col-xs-12 col-sm-7 col-md-6">
-                                            <div style="width : 100%;" class="post-center-content">
-                                                <h2> ${result[i].title} </h2>
-                                                <p><strong>Author : </strong> ${result[i].authors} </p>
-                                                <p><strong>ISBN : </strong> ${result[i].ISBN} </p>
-                                                ${rating}
-                                                <p><strong>Year of Publication :</strong> ${result[i].yearOfPublication} </p>
-                                                <p><strong>Category : </strong>${result[i].category} </p>
-                                                <div class="form-group">
-                                                    <p><strong>Your rating: <select style="width: 50px; display: inline; height: 50px;" value=${result[i].rating}' name="userrating" class="${result[i].ISBN} userrating form-control">
-                                                            ${opt}
-                                                        </select>
+                                                alt="Book Image">
                                                 </div>
-                                                <div class="actions">
-                                                    <ul>
-                                                        
-                                                        <li>
-                                                            <p data-toggle="blog-tags"
-                                                                data-placement="top" title=""
-                                                                data-original-title="Add to favorite">
-                                                                    <div style="cursor:pointer;" class='${result[i].ISBN} ${favclas}'>
-                                                                        ${favbut}
-                                                                        </div>
-                                                            </p>
-                                                        </li>
-                                                        
-                                                    </ul>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-3 ">
-                                            <div class="post-right-content">
-                                                <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
-                                                <p><strong>Holds :</strong> ${result[i].numholds} </p>
-                                                <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
-                                                <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div></th></tr>`)
-                        }
-                        $(".searchbooks").html(s);
-                    }
-                });
-            });
-            $(document).on('click', '.notfav', function (e) {
-                console.log('clicked');
-                let read = "null";
-                while (read != "yes" && read != "no") {
-                    read = window.prompt('Have you read the book? (yes/no) (case-sensitive)');
-                }
-                console.log(read);
-                let isbn = $(this).attr('class').split(' ')[0];
-                $.ajax({
-                    type: 'POST', url: path + '/user/markfav', data: { isbn, read }, success: (result) => {
-                        $(this).removeClass('notfav');
-                        $(this).addClass('fav');
-                        $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
+                                                <div  class="col-xs-12 col-sm-7 col-md-6">
+                                                    <div style="width : 100%;" class="post-center-content">
+                                                        <h2> ${result[i].title} </h2>
+                                                        <p><strong>Author : </strong> ${result[i].authors} </p>
+                                                        <p><strong>ISBN : </strong> ${result[i].ISBN} </p>
+                                                        ${rating}
+                                                        <p><strong>Year of Publication :</strong> ${result[i].yearOfPublication} </p>
+                                                        <p><strong>Category : </strong>${result[i].category} </p>
+                                                        <div class="form-group">
+                                                            <p><strong>Your rating: <select style="width: 50px; display: inline; height: 50px;" value=${result[i].rating}' name="userrating" class="${result[i].ISBN} userrating form-control">
+                                                                ${opt}
+                                                                </select>
+                                                                </div>
+                                                                <div class="actions">
+                                                                    <ul>
+                                                                        
+                                                                        <li>
+                                                                            <p data-toggle="blog-tags"
+                                                                            data-placement="top" title=""
+                                                                            data-original-title="Add to favorite">
+                                                                            <div style="cursor:pointer;" class='${result[i].ISBN} ${favclas}'>
+                                                                                ${favbut}
+                                                                                </div>
+                                                                                </p>
+                                                                                </li>
+                                                                                
+                                                                                </ul>
+                                                                                </div>
+                                                                                </div>
+                                                                                </div>
+                                                                                <div class="col-xs-12 col-sm-12 col-md-3 ">
+                                                                                    <div class="post-right-content">
+                                                                                        <p><strong>Total Copies :</strong> ${result[i].totalCopies} </p>
+                                                                                        <p><strong>Holds :</strong> ${result[i].numholds} </p>
+                                                                                        <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
+                                                                                        <button class="${result[i].ISBN} placehold" ${holdbut}>Place a Hold</button>
+                                                                                        </div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        </div>
+                                                                                        <div class="clearfix"></div>
+                                                                                        </div></th></tr>`)
+                                                                                    }
+                                                                                    $(".searchbooks").html(s);
+                                                                                }
+                                                                            });
+                                                                        }
+                                                                        $(".searchbutton").click(function () {
+                                                                            getdata();
+                                                                        });
+                                                                        $(document).ready(()=>{
+                                                                            getdata();
+
+                                                                        })
+                                                                        
+                                                                        $(document).on('click', '.notfav', function (e) {
+                                                                            console.log('clicked');
+                                                                            let read = "null";
+                                                                            while (read != "yes" && read != "no") {
+                                                                                read = window.prompt('Have you read the book? (yes/no) (case-sensitive)');
+                                                                            }
+                                                                            console.log(read);
+                                                                            let isbn = $(this).attr('class').split(' ')[0];
+                                                                            $.ajax({
+                                                                                type: 'POST', url: path + '/user/markfav', data: { isbn, read }, success: (result) => {
+                                                                                    $(this).removeClass('notfav');
+                                                                                    $(this).addClass('fav');
+                                                                                    $(this).html("Favourite <i class='fas fa-heart' style='color: red;'></i>");
                     }
                 })
             })
-
+            
             $(document).on('click', '.fav', function (e) {
                 let isbn = $(this).attr('class').split(' ')[0];
                 $.ajax({

@@ -11,6 +11,24 @@ const cquery = async  (sql,req,res)=>{
     )
 }
 
+schedule.scheduleJob('0 0 0 * * *', async ()=>{
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth()+1;
+    let date = new Date().getDate();
+    if(date <10){
+        date = '0'+date;
+    }
+    if(month<10){
+        month = '0'+month;
+    }
+    let cdate = `${year}-${month}-${date}`;
+    let emails = await cquery(`select email from user where userID in (select userID from bookCopiesUser where (ISBN,copyID) in (select ISBN,copyID from bookCopies where dueDate > '${cdate}'));`);
+    let len = emails.length;
+    console.log(emails);
+    for(let i=0;i<len;i++){
+    } 
+})
+
 schedule.scheduleJob('0 0 0 * * *',async ()=>{
     let users = await cquery(`select * user;`);
     let len = users.length;

@@ -5,7 +5,7 @@ create procedure approveHold(
     in userID int,
     in ISBN varchar(15),
     out copyID int,
-    out dueDate date,
+    out dueDate varchar(100),
     out status int
 )
 begin

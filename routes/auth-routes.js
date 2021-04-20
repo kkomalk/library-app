@@ -53,10 +53,6 @@ router.get('/signup',(req,res)=>{
     let name=req.query.name;
     let email = req.query.email;
     let error=req.flash('error');
-    // console.log(error);
-    // if(error.length){
-    //     error=error[0];
-    // }
     res.render(path+'signup',{name,email,path : href,error});
 })
 
@@ -73,10 +69,11 @@ router.post('/signup',async (req,res)=>{
         res.redirect(`/auth/signup/?name=${name}&email=${email}`);
     }else{ 
         let flag = await cquery(`select * from account where email = '${email}';`,req,res);
-        if(flag.length){
+        if(flag.length || (type!='Student'&&type!='Professor')){
             req.flash('error','email is already registered');
             res.redirect(`/auth/signup/?name=${name}&email=${email}`);
         }else{
+
             let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}',@did);`);
             req.flash('message','You are signed up now. Please login.');
             res.redirect('/auth/login');

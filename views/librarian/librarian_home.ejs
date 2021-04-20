@@ -80,8 +80,6 @@
                                             <li><a href="#sectionZ"> Add Books </a></li>
                                             <li><a href="#sectionZ"> Remove Books </a></li>
                                             <li><a href="#sectionZ"> Update Book Details </a></li>
-                                            <li><a href="#sectionZ"> Add Book Copy </a></li>
-                                            <li><a href="#sectionZ"> Remove Book Copy </a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -117,8 +115,6 @@
                                         <li><a href="#sectionZ"> Add Books </a></li>
                                         <li><a href="#sectionZ"> Remove Books </a></li>
                                         <li><a href="#sectionZ"> Update Book Details </a></li>
-                                        <li><a href="#sectionZ"> Add Book Copy </a></li>
-                                        <li><a href="#sectionZ"> Remove Book Copy </a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -283,6 +279,12 @@
                                                                                                     <input class="form-control" type="text" placeholder="Enter Category" name="category" id="category" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
+
+                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                                <div class="form-group">
+                                                                                                    <input class="form-control" type="text" placeholder="Enter URL of Book Cover Page" name="image" id="image" size="30" value="" aria-required="true" />
+                                                                                                </div>
+                                                                                            </div>
                                                                                             
 
                                                                                             <div class="col-sm-12">
@@ -292,7 +294,7 @@
                                                                                             </div>
 
                                                                                         </div>
-                                                                                        <% if(message != 'undefined'){%>
+                                                                                        <% if((message != 'undefined') && (form =='add')){%>
                                                                                             <div class="alert alert-primary" role="alert">
                                                                                                 <%= message %>
                                                                                             </div>
@@ -337,6 +339,11 @@
                                                                                             </div>
 
                                                                                         </div>
+                                                                                        <% if((message != 'undefined') && (form == 'delete')){%>
+                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                                <%= message %>
+                                                                                            </div>
+                                                                                        <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -381,17 +388,17 @@
                                                                                             </div>
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year-of-publication" id="year-of-publication" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter URL of book cover page" name="image" id="image" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="no-of-copies" id="no-of-copies" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year" id="year-of-publication" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies on Shelf" name="no-of-copies-shelf" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="copies" id="no-of-copies" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="col-md-6 col-sm-6">
@@ -405,7 +412,11 @@
                                                                                                     <input class="form-control" type="text" placeholder="Enter Category" name="category" id="category" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            
+                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                                <div class="form-group">
+                                                                                                    <input class="form-control" type="text" placeholder="Enter Shelf ID" name="shelf" id="shelf" size="30" value="" aria-required="true" />
+                                                                                                </div>
+                                                                                            </div>
                                                                                             <div class="col-sm-12">
                                                                                                 <div class="form-group form-submit">
                                                                                                     <button type="submit">Update Details</button>
@@ -413,6 +424,11 @@
                                                                                             </div>
 
                                                                                         </div>
+                                                                                        <% if((message != 'undefined') && (form == 'update')){%>
+                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                                <%= message %>
+                                                                                            </div>
+                                                                                        <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -427,152 +443,34 @@
 
 
                                                 <div id="sectionF" class="tab-pane fade in">
-                                                    <form method="post" action="">
-                                                        <table class="table table-bordered shop_table cart">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="product-name">&nbsp;</th>
-                                                                    <th class="product-name">Title</th>
-                                                                    <th class="product-name">CopyID</th>
-                                                                    <th class="product-name">UserID</th>
-                                                                    <th class="product-quantity">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr class="cart_item">
-                                                                    <td> 1. </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img src="../images/cart/cart-product-1.jpg" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong> Title </strong></a>
-                                                                            <span>
-                                                                                <strong>Author :</strong> Author
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>ISBN :</strong> ISBN
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>Rating :</strong> Ratings
-                                                                            </span>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    CopyID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    UserID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="action" class="product-action">
-                                                                        <div class="dropdown">
-                                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> ISSUE <b class="caret"></b></a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="#"> Issue </a></li>
-                                                                                <li><a href="#"> Not Issue </a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <tr class="cart_item">
-                                                                    <td> 2. </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img src="../images/cart/cart-product-2.jpg" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong> Title </strong></a>
-                                                                            <span>
-                                                                                <strong>Author :</strong> Author
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>ISBN :</strong> ISBN
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>Rating :</strong> Ratings
-                                                                            </span>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    CopyID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    UserID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="action" class="product-action">
-                                                                        <div class="dropdown">
-                                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> ISSUE <b class="caret"></b></a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="#"> Issue </a></li>
-                                                                                <li><a href="#"> Not Issue </a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr class="cart_item">
-                                                                    <td> 3. </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-thumbnail">
-                                                                            <a href="#"><img src="../images/cart/cart-product-3.jpg" alt="cart-product-1"></a>
-                                                                        </span>
-                                                                        <span class="product-detail">
-                                                                            <a href="#"><strong> Title </strong></a>
-                                                                            <span>
-                                                                                <strong>Author :</strong> Author
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>ISBN :</strong> ISBN
-                                                                            </span>
-                                                                            <span>
-                                                                                <strong>Rating :</strong> Ratings
-                                                                            </span>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    CopyID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    UserID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="action" class="product-action">
-                                                                        <div class="dropdown">
-                                                                            <a href="#" data-toggle="dropdown" class="dropdown-toggle"> ISSUE <b class="caret"></b></a>
-                                                                            <ul class="dropdown-menu">
-                                                                                <li><a href="#"> Issue </a></li>
-                                                                                <li><a href="#"> Not Issue </a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-
-
-                                                            </tbody>
-                                                        </table>
+                                                    <form method="POST" action="<%=path%>librarian/issuebook">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" placeholder="Enter Copy ID" name="copyid" id="copyid" size="30" value="" aria-required="true" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" placeholder="Enter User's Registered Email ID" name="email" id="email" size="30" value="" aria-required="true" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group form-submit">
+                                                                    <button type="submit">Issue Book</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% if((message != 'undefined') && (form == 'issue')){%>
+                                                            <div class="alert alert-primary" role="alert">
+                                                                <%= message %>
+                                                            </div>
+                                                        <% } %>
                                                     </form>
                                                 </div>
 
@@ -588,7 +486,7 @@
                                                                             <div class="contact-form bg-light margin-right">
                                                                                 <span class="underline left"></span>
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="" method="post">
+                                                                                    <form id="contact" name="contact" action="<%=path%>librarian/withdrawbook" method="POST">
                                                                                         <div class="row">
 
                                                                                             <div class="col-md-6 col-sm-6">
@@ -605,23 +503,21 @@
 
                                                                                             <div class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Shelf ID" name="shelfid" id="shelfid" size="30" value="" aria-required="true" />
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-md-6 col-sm-6">
-                                                                                                <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter User ID" name="userid" id="userid" size="30" value="" aria-required="true" />
+                                                                                                    <input class="form-control" type="text" placeholder="Enter User's Registered Email ID" name="email" id="email" size="30" value="" aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="col-sm-12">
                                                                                                 <div class="form-group form-submit">
-                                                                                                    <input class="btn btn-default" id="take_book" type="button" name="takebooks" value="Take" />
+                                                                                                    <button type="submit">Return Book</button>
                                                                                                 </div>
                                                                                             </div>
-
                                                                                         </div>
+                                                                                        <% if((message != 'undefined') && (form == 'withdraw')){%>
+                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                                <%= message %>
+                                                                                            </div>
+                                                                                        <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -636,91 +532,28 @@
 
 
                                                 <div id="sectionH" class="tab-pane fade in">
-                                                    <form method="post" action="">
-                                                        <table class="table table-bordered shop_table cart">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th class="product-name">&nbsp;</th>
-                                                                    <th class="product-name">Name</th>
-                                                                    <th class="product-name">UserID</th>
-                                                                    <th class="product-name">Fine Amount</th>
-                                                                    <th class="product-quantity">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr class="cart_item">
-                                                                    <td> 1. </td>
+                                                    <form method="POST" action="<%=path%>librarian/fine">
+                                                        <div class="row">
 
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    Name   </strong>
-                                                                        </span>
-                                                                    </td>
+                                                            <div class="col-md-6 col-sm-6">
+                                                                <div class="form-group">
+                                                                    <input class="form-control" type="text" placeholder="Enter User's Registered Email ID" name="email" id="email" size="30" value="" aria-required="true" />
+                                                                </div>
+                                                            </div>
 
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    UserID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    Fine Amount   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name" >
-                                                                        <div class="col-sm-12">
-                                                                            <div class="form-group form-submit">
-                                                                                <input class="btn btn-default" id="collect_fine" type="button" name="fine" value="Collect Fine" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-
-                                                                </tr>
-                                                                <tr class="cart_item">
-                                                                    <td> 2. </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    Name   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    UserID   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name">
-                                                                        <span class="product-detail">
-                                                                            <strong>    Fine Amount   </strong>
-                                                                        </span>
-                                                                    </td>
-
-                                                                    <td data-title="Product" class="product-name" >
-                                                                        <div class="col-sm-12">
-                                                                            <div class="form-group form-submit">
-                                                                                <input class="btn btn-default" id="collect_fine" type="button" name="fine" value="Collect Fine" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-
-                                                                </tr>
-                             
-
-                                                            </tbody>
-                                                        </table>
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group form-submit">
+                                                                    <button type="submit">Collect Fine</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <% if((message != 'undefined') && (form == 'fine')){%>
+                                                            <div class="alert alert-primary" role="alert">
+                                                                <%= message %>
+                                                            </div>
+                                                        <% } %>
                                                     </form>
                                                 </div>
-
-
-                                            
-
-
-
-                                            
                                             </div>
 
                                         </div>

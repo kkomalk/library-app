@@ -70,12 +70,12 @@ router.post('/signup',async (req,res)=>{
     console.log(req.body);
     if(pass!=repass){
         req.flash('error','passwords do not match');
-        res.redirect('/auth/signup/');
+        res.redirect(`/auth/signup/?name=${name}&email=${email}`);
     }else{ 
         let flag = await cquery(`select * from account where email = '${email}';`,req,res);
         if(flag.length){
             req.flash('error','email is already registered');
-            res.redirect('/auth/signup');
+            res.redirect(`/auth/signup/?name=${name}&email=${email}`);
         }else{
             let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}',@did);`);
             req.flash('message','You are signed up now. Please login.');

@@ -17,7 +17,9 @@ const ejs = require("ejs");
 const mysql = require('mysql');
 const cookieSession = require('cookie-session');
 const flash = require('connect-flash');
+const jobs = require('./scheduledJobs')
 var keys = require('./keys.js');
+const Mail = require("nodemailer/lib/mailer");
 require("dotenv").config();
 
 const app = express();
@@ -50,22 +52,22 @@ app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
 
-// var db_config = {
-//     multipleStatements: true,
-//     host: 'localhost',
-//     user: 'vaibhav',
-//     password: 'password',
-//     database: 'mydb',
-//     port: 3306
-// };
 var db_config = {
     multipleStatements: true,
-    host: keys.db_host,
-    user: keys.db_user,
-    password: keys.db_password,
-    database: keys.db_name,
+    host: 'localhost',
+    user: 'vaibhav',
+    password: 'password',
+    database: 'mydb',
     port: 3306
 };
+// var db_config = {
+//     multipleStatements: true,
+//     host: keys.db_host,
+//     user: keys.db_user,
+//     password: keys.db_password,
+//     database: keys.db_name,
+//     port: 3306
+// };
 
 function handleDisconnect() {
     console.log('1. connecting to db:');

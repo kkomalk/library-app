@@ -40,7 +40,7 @@ if(action = 'loan') then
     delete from holdRequest where holdRequest.userID = userID and holdRequest.ISBN = ISBN;
     set status = 1;
     set copyID = minCopyID;
-    set dueDate = date_add(current_date(), interval loanLimit day);
+    set dueDate = date_format(date_add(current_date(), interval loanLimit day);, '%D %M %Y');
 else
     select count(bookCopies.copyID) into bookCount from bookCopies
     where bookCopies.ISBN = ISBN and bookCopies.bookStatus = 'shelf';
@@ -57,7 +57,7 @@ else
         update book set book.noOfCopiesOnShelf = noOfCopiesOnShelf where book.ISBN = ISBN; 
         set status = 1;
         set copyID = minCopyID;
-        set dueDate = date_add(current_date(), interval holdLimit day);
+        set dueDate = date_format(date_add(current_date(), interval holdLimit day), '%D %M %Y');
     else
         set status = 0;
         set copyID = NULL;

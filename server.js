@@ -19,6 +19,7 @@ const cookieSession = require('cookie-session');
 const flash = require('connect-flash');
 const jobs = require('./scheduledJobs')
 var keys = require('./keys.js');
+const Mail = require("nodemailer/lib/mailer");
 require("dotenv").config();
 
 const app = express();

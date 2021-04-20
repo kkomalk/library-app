@@ -32,5 +32,8 @@
     "url": "https://github.com/ChakPC/library-app/issues"
   },
   "homepage": "https://github.com/ChakPC/library-app#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^7.24.0"
+  }
 }

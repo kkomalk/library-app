@@ -17,6 +17,7 @@ const ejs = require("ejs");
 const mysql = require('mysql');
 const cookieSession = require('cookie-session');
 const flash = require('connect-flash');
+const jobs = require('./scheduledJobs')
 var keys = require('./keys.js');
 require("dotenv").config();
 

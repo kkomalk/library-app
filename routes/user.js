@@ -31,19 +31,21 @@ router.get('/home',async (req,res)=>{
     let freq = await cquery(`select * from user where userID in (select requesterID from friendRequest where requestedID = ${userid});`);
     let freadlist = [];
     let friends = await cquery(`select friendID from friendUser where userID = ${req.user.accountID};`);
+    let len=0;
     for(let j =0;j<friends.length;j++){
         let favbooks = await cquery(`call listOfFavouriteBooks(${friends[j].friendID});`);
         let freadbooks = await cquery(`call listOfReadBooks(${friends[j].friendID});`);
         let pile = [...favbooks[0],...freadbooks[0]];
         let data = Array.from(new Set(pile.map(JSON.stringify))).map(JSON.parse);
         freadlist.push(data);
+        len+=data.length;
     }
     console.log(freadlist);
     console.log(freq);
     let name = temp[0].name;
     let address = temp[0].address;
     console.log(temp);
-    res.render(path+'user_home.ejs',{path : href,name,address,userid,loanbook,booksread,favourite,activeholds,freq,apprholds,freadlist});
+    res.render(path+'user_home.ejs',{path : href,name,address,userid,loanbook,booksread,favourite,activeholds,freq,apprholds,freadlist,len});
 });
 
 router.get('/temp',(req,res)=>{

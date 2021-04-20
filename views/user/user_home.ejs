@@ -240,7 +240,7 @@
                                                 <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF">Friend
                                                         requests (<%=freq.length%>) </a></li>
                                                 <li><b class="arrow-up"></b><a data-toggle="tab"
-                                                        href="#sectionG">Friends reading list (2) </a></li>
+                                                        href="#sectionG">Friends reading list (<%=len%>) </a></li>
                                                 <!-- <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH">Pay Fines</a></li> -->
                                             </ul>
 
@@ -560,8 +560,7 @@
                                                                                 <span><strong>UserID :</strong>
                                                                                     <%=book.userID%>
                                                                                 </span>
-                                                                                <span><strong>Address :</strong> Address
-                                                                                </span>
+                                                                                
                                                                             </span>
                                                                         </td>
                                                                         <td data-title="Product" class="product-name">
@@ -886,12 +885,13 @@
     </script>
     <script>
         function searchName() {
-            var mess = document.getElementById('search').value;
+            var mess = (document.getElementById('search').value);
+            mess=mess.toUpperCase();
             if (mess != '') {
                 var i = 0;
                 while (document.getElementsByClassName('friendbook')[i]) {
-                    console.log(document.getElementsByClassName('friendname')[i].innerHTML, document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
-                    if (document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess) != -1 || document.getElementsByClassName('bookname')[i].innerHTML.indexOf(mess) != -1) {
+                    // console.log(document.getElementsByClassName('friendname')[i].innerHTML, document.getElementsByClassName('friendname')[i].innerHTML.indexOf(mess));
+                    if (document.getElementsByClassName('friendname')[i].innerHTML.toUpperCase().indexOf(mess) != -1 || document.getElementsByClassName('bookname')[i].innerHTML.toUpperCase().indexOf(mess) != -1) {
                         document.getElementsByClassName('friendbook')[i].style.display = '';
 
                     }

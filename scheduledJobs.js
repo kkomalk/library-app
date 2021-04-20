@@ -1,8 +1,8 @@
 const nodemailer = require('nodemailer');
 const schedule = require('node-schedule');
 const keys = require('./keys');
-const cquery = async  (sql,req,res)=>{
-    return new Promise((resolve,reject)=>{
+const cquery = async  (sql,)=>{
+    return new Promise((resolve)=>{
         connection.query(sql,(err,result)=>{
             if(err) console.log(err);
             else resolve(result);

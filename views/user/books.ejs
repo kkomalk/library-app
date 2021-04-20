@@ -7,15 +7,15 @@
     <!-- Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
-    
+
     <!-- Title -->
 
     <title>Books</title>
-    
-    
+
+
     <!-- Favicon -->
     <link href="../images/favicon.ico" rel="icon" type="image/x-icon" />
-    
+
     <!-- Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i%7CLato:100,100i,300,300i,400,400i,700,700i,900,900i"
@@ -143,7 +143,8 @@
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Books</a>
                                     </li>
                                     <li class="dropdown ">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/friends">Find Friends</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled"
+                                            href="<%=path%>user/friends">Find Friends</a>
                                     </li>
 
                                     <!-- <li class="dropdown">
@@ -241,7 +242,7 @@
                                             <div class="col-md-4 col-sm-6">
                                                 <div class="form-group">
                                                     <label class="sr-only" for="keywords"> Search</label>
-                                                    <input class="form-control" placeholder="Search by Title"
+                                                    <input value="<%=search%>" class="form-control" placeholder="Search by Title"
                                                         id="keywords" name="keywords" type="text">
                                                 </div>
                                             </div>
@@ -385,122 +386,10 @@
     <!-- End: Footer -->
 
 
-    
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle"> Rating and Reviews </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
 
+    <div class="modaltop modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
-
-                    <div class="contact-us">
-                        <div class="row">
-                            <div class="contact-area" style="padding-top: 0px;">
-                                <div class="container">
-
-                                    <div class="contact-form bg-light margin-right"
-                                        style="width: 50%; margin-top: 0px;">
-                                        <span class="underline left"></span><br><br>
-                                        <div class="contact-fields">
-                                            <form id="contact" name="contact" action=""
-                                                method="post">
-                                                <div class="row">
-
-                                                    <div class="col-md-6 col-sm-6">
-                                                        <div class="form-group">
-                                                            <input class="form-control"
-                                                                type="text"
-                                                                placeholder="Give Rating"
-                                                                name="rating" id="rating"
-                                                                size="30" value=""
-                                                                aria-required="true" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group">
-                                                            <textarea class="form-control"
-                                                                placeholder="Give Review"
-                                                                id="review"
-                                                                aria-required=""></textarea>
-                                                            <div class="clearfix"></div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group form-submit">
-                                                            <input class="btn btn-default"
-                                                                id="submit-rate-review"
-                                                                type="button" name="post"
-                                                                value="POST" />
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <table class="table table-bordered">
-
-                        <thead style="background-color: black; color: white;">
-                            <tr>
-                                <th> &nbsp; </th>
-                                <th> Reviews </th>
-                                <!-- <th> Name </th>
-                                <th> UserID </th> -->
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <tr>
-                                <td> 1. </td>
-                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Voluptate, ipsum! </td>
-                                <!-- <th> Name </th>
-                                <th> UserID </th> -->
-                            </tr>
-                            <tr>
-                                <td> 2. </td>
-                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Voluptate, ipsum! </td>
-                                <!-- <th> Name </th>
-                                <th> UserID </th> -->
-                            </tr>
-                            <tr>
-                                <td> 3. </td>
-                                <td> Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Voluptate, ipsum! </td>
-                                <!-- <th> Name </th>
-                                <th> UserID </th> -->
-                            </tr>
-
-
-                        </tbody>
-
-                    </table>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">  Close  </button>
-                    <button type="button" class="btn btn-primary">  Save changes  </button>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -560,15 +449,14 @@
 
 
 
-    
+
     <script>
         let path = window.location.origin;
         $(document).ready(function () {
             $(".searchform").submit(function (e) {
                 e.preventDefault();
             })
-
-            $(".searchbutton").click(function () {
+            const getdata = () => {
                 $.ajax({
                     type: "POST",
                     url: path + "/user/getbooksdata", data: { sub: $("#keywords").val(), criteria: $("#searchcriteria").val() }, success: function (result) {
@@ -664,7 +552,7 @@
                                                 <p><strong>Holds :</strong> ${result[i].numholds} </p>
                                                 <p><strong>No. of copies in shelf :</strong> ${result[i].noOfCopiesOnShelf} </p>
                                                 <button class="${result[i].ISBN} placehold btn btn-dark-gray" ${holdbut}>Place a Hold</button>
-                                                <button type="button" class="btn btn-dark-gray" data-toggle="modal" data-target="#exampleModalLong">
+                                                <button type="button" class="${result[i].ISBN} reviews btn btn-dark-gray" data-toggle="modal" data-target="#exampleModalLong">
                                                     Ratings and Reviews
                                                 </button>
                                             </div>
@@ -677,7 +565,13 @@
                         $(".searchbooks").html(s);
                     }
                 });
+            }
+            $(".searchbutton").click(function () {
+                getdata();
             });
+            $(document).ready(() => {
+                getdata();
+            })
             $(document).on('click', '.notfav', function (e) {
                 console.log('clicked');
                 let read = "null";
@@ -710,7 +604,7 @@
             })
             $(document).on('click', '.placehold', (e) => {
                 let isbn = $(e.target).attr('class').split(' ')[0];
-                if(confirm('Are you sure you want to place hold on this book?')){
+                if (confirm('Are you sure you want to place hold on this book?')) {
                     $.ajax({
                         type: 'post',
                         url: path + "/user/requesthold",
@@ -720,22 +614,22 @@
                         success: (result) => {
                             console.log(result);
                             let status = result['@status'];
-                            let message="";
-                            if(status == 1){
+                            let message = "";
+                            if (status == 1) {
                                 message += 'Your hold request was placed.';
-                                $(e.target).attr('disabled','true');
-                            }else if(status == 2){
+                                $(e.target).attr('disabled', 'true');
+                            } else if (status == 2) {
                                 message += 'Hold Request is already placed by someone else.';
-                            }else if(status == 3){
+                            } else if (status == 3) {
                                 message += 'You have reached your hold limit.';
-                            }else{
+                            } else {
                                 message += 'Please pay your unpaid fines before placing hold.'
                             }
                             alert(message);
                         }
                     })
                 }
-                })
+            })
             $(document).on('change', '.userrating', (e) => {
                 let isbn = e.target.attributes['3'].nodeValue.split(' ')[0];
                 let userrate = e.target.value;
@@ -748,10 +642,126 @@
                         rating: userrate
                     },
                     success: (result) => {
-                        
+
                     }
                 })
             })
+
+            $(document).on('click', '.reviews', (e) => {
+                let isbn = $(e.target).attr('class').split(' ')[0];
+                console.log(isbn);
+                $.ajax({
+                    type: 'POST',
+                    url: path + '/user/getreviews',
+                    data: {
+                        isbn
+                    }, success: (reviews) => {
+                        let len = reviews.length;
+                        let prev = "";
+                        let userrev = "";
+                        for (let i = 0; i < len; i++) {
+                            prev += `<tr>
+                                        <td> ${i + 1}. </td>
+                                        <td> ${reviews[i].reviewText} - ${reviews[i].name} </td>
+                                    </tr>`;
+                        }
+                        let p = `<div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle"> Rating and Reviews </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+        
+        
+        
+                            <div class="contact-us">
+                                <div class="row">
+                                    <div class="contact-area" style="padding-top: 0px;">
+                                        <div class="container">
+        
+                                            <div class="contact-form bg-light margin-right"
+                                                style="width: 50%; margin-top: 0px;">
+                                                <span style="font-size: large; font-weight: bolder;">Please Enter a review for the book:</span>
+                                                <div class="contact-fields">
+                                                    <form class="reviewsub">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group">
+                                                                    <textarea class="reviewtext form-control"
+                                                                        placeholder="Give Review"
+                                                                        
+                                                                        aria-required=""></textarea>
+                                                                    <div class="clearfix"></div>
+                                                                </div>
+                                                            </div>
+        
+                                                            <div class="col-sm-12">
+                                                                
+                                                            </div>
+        
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+        
+                            <table class="table table-bordered">
+        
+                                <thead style="background-color: black; color: white;">
+                                    <tr>
+                                        <th> &nbsp; </th>
+                                        <th> Reviews </th>
+                                        <!-- <th> Name </th>
+                                        <th> UserID </th> -->
+                                    </tr>
+                                </thead>
+        
+                                <tbody>
+                                    ${prev}
+                                </tbody>
+        
+                            </table>
+        
+        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="${isbn} reviewbtn btn btn-secondary" data-dismiss="modal">  Save changes  </button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">  Close  </button>
+                        </div>
+                    </div>
+                </div>`;
+                        $('.modaltop').html(p);
+                        $(document).on('click', '.reviewbtn', () => {
+                            let review = $('.reviewtext').val();
+                            if (review.length) {
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: path + '/user/addreview',
+                                    data: {
+                                        isbn,
+                                        review
+                                    }, success: (result) => {
+                                        console.log(result.message);
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+            })
+            $(document).on('submit', '.reviewsub', e => {
+                e.preventDefault();
+            })
+
         });
     </script>
 </body>

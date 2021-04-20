@@ -186,4 +186,21 @@ router.post('/approvefriend', async (req,res)=>{
     })
 
 })
+
+router.post('/addreview', async (req,res)=>{
+    let isbn = req.body.isbn;
+    let review = req.body.review;
+    console.log(isbn,review);
+    await cquery(`call reviewBook(${req.user.accountID},'${isbn}','${review}');`);
+    res.send({
+        message: 'review added!'
+    })
+})
+
+router.post('/getreviews', async (req,res)=>{
+    let isbn = req.body.isbn;
+    let reviews = await cquery(`call reviewsOfBook(${isbn});`);
+    console.log(reviews);
+    res.send(reviews[0]);
+})
 module.exports = router;

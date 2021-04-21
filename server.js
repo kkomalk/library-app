@@ -52,23 +52,23 @@ app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
 // Local Host
-// var db_config = {
-//     multipleStatements: true,
-//     host: 'localhost',
-//     user: 'vaibhav',
-//     password: 'password',
-//     database: 'mydb',
-//     port: 3306
-// };
-// ClearDB
 var db_config = {
     multipleStatements: true,
-    host: keys.db_host,
-    user: keys.db_user,
-    password: keys.db_password,
-    database: keys.db_name,
+    host: 'localhost',
+    user: 'vaibhav',
+    password: 'password',
+    database: 'mydb',
     port: 3306
 };
+// ClearDB
+// var db_config = {
+//     multipleStatements: true,
+//     host: keys.db_host,
+//     user: keys.db_user,
+//     password: keys.db_password,
+//     database: keys.db_name,
+//     port: 3306
+// };
 // Another DB 
 // var db_config = {
 //     multipleStatements: true,

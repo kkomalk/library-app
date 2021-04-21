@@ -68,7 +68,7 @@ var db_config = {
     password: 'Titu*2802',
     database: 'iitilrc',
     port: 3306
-}
+};
 // ClearDB
 // var db_config = {
 //     multipleStatements: true,

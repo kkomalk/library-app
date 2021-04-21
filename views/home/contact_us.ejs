@@ -72,14 +72,14 @@
                                 </div>
                                 <div class="navbar-collapse hidden-sm hidden-xs">
                                     <ul class="nav navbar-nav">
-                                        <li class="dropdown active">
+                                        <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>">Home</a>
                                         </li>
                                         <li class="dropdown">
                                             <a data-toggle="dropdown" class="dropdown-toggle disabled"  href="<%=path%>books">Books</a>
                                         </li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        <li class="active"><a href="<%=path%>aboutus">About Us</a></li>
+                                        <li><a href="<%=path%>contactus">Contact Us</a></li>
 
                                     </ul>
                                 </div>
@@ -102,8 +102,8 @@
                                         <a href="<%=path%>books">Books</a>
                                     </li>
 
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="<%=path%>aboutus">About Us</a></li>
+                                    <li><a href="<%=path%>contactus">Contact Us</a></li>
 
                                 </ul>
                             </div>
@@ -232,24 +232,19 @@
                                             <div class="col-md-5 border-gray-right">
                                                 <div class="row">
                                                         <div class="contact-form bg-light margin-right" style="width: 200%;">
-                                                            <h2>Send us a message</h2>
+                                                            <h2>Send us your feedback</h2>
                                                             <span class="underline left"></span>
                                                             <div class="contact-fields">
-                                                                <form id="contact" name="contact" action="" method="post">
+                                                                <form id="feedback">
                                                                     <div class="row">
                                                                         <div class="col-md-6 col-sm-6">
                                                                             <div class="form-group">
-                                                                                <input class="form-control" type="text" placeholder="First Name" name="first-name" id="first-name" size="30" value="" aria-required="true" />
+                                                                                <input class="form-control" type="text" placeholder="First Name" name="name" id="first-name" size="30" value="" aria-required="true" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 col-sm-6">
                                                                             <div class="form-group">
-                                                                                <input class="form-control" type="text" placeholder="Last Name" name="last-name" id="last-name" size="30" value="" aria-required="true" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6 col-sm-6">
-                                                                            <div class="form-group">
-                                                                                <input class="form-control" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email" name="email" id="email" size="30" value="" aria-required="true" />
+                                                                                <input class="form-control" type="email"  placeholder="Email" name="email" id="email" size="30" value="" aria-required="true" />
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6 col-sm-6">
@@ -259,16 +254,17 @@
                                                                         </div>
                                                                         <div class="col-sm-12">
                                                                             <div class="form-group">
-                                                                                <textarea class="form-control" placeholder="Your message" id="message" aria-required="true"></textarea>
+                                                                                <textarea name="feedback" class="form-control" placeholder="Your message" id="message" aria-required="true"></textarea>
                                                                                 <div class="clearfix"></div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-sm-12">
                                                                             <div class="form-group form-submit">
-                                                                                <input class="btn btn-default" id="submit-contact-form" type="button" name="submit" value="Send Message"  />
+                                                                                <input class="btn btn-default" id="submit-contact-form" type="submit" name="submit" value="Send Message"  />
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="mess"></div>
                                                                 </form> 
                                                             </div>                                                                   
                                                         </div>
@@ -370,8 +366,8 @@
                                     <ul id="menu-quick-links" class="menu">
                                         <li><a href="<%=path%>">Home</a></li>
                                         <li><a href="<%=path%>books">Books</a></li>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="<%=path%>aboutus">About Us</a></li>
+                                        <li><a href="<%=path%>contactus">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -434,14 +430,35 @@
         <script type="text/javascript" src="../js/bxslider.min.js"></script>
         
         <!-- Google Map API -->
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT5k-RhvFSVIuCALkpHhKgQx6SJUd9gpI"></script>
+        <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAT5k-RhvFSVIuCALkpHhKgQx6SJUd9gpI"></script> -->
 
         <!-- Google Map (Custom Style) -->
-        <script type="text/javascript" src="../js/google.map.js"></script>
+        <!-- <script type="text/javascript" src="../js/google.map.js"></script> -->
 
         <!-- Custom Scripts -->
         <script type="text/javascript" src="../js/main.js"></script>
 
+        <script>
+            $(document).ready(()=>{
+                let path= window.location.origin;
+                $('#feedback').submit((e)=>{
+                    e.preventDefault();
+                    let feed = $('#feedback').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url : path+'/feedback',
+                        data : {
+                            data : feed
+                        },
+                        success : (resp)=>{
+                            $('.mess').toggleClass('alert');
+                            $('.mess').toggleClass('alert-success');
+                            $('.mess').html(`<p>${resp.message}</p>`)
+                        }
+                    })
+                })
+            })
+        </script>
     </body>
 
 

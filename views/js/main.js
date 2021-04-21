@@ -374,52 +374,6 @@ $(function () {
     var successObj = $('#success');
     var errorObj = $('#error');
 
-    contactFormObj.on('click', function () {
-        var emailaddress = emailFieldObj.val();
-        function validateEmail(emailaddress) {
-            var filter = /^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
-            if (filter.test(emailaddress)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        var data = {
-            firstname: firstNameFieldObj.val(),
-            lastname: lastNameFieldObj.val(),
-            email: emailFieldObj.val(),
-            phone: phoneFieldObj.val(),
-            message: messageFieldObj.val()
-        };
-        if (data.firstname === '' || data.lastname === '' || data.email === '' || data.phone === '' || data.message === '') {
-            alert("All fields are mandatory");
-        } else {
-            if (validateEmail(emailaddress)) {
-                if (emailerrorvalidation === 1) {
-                    alert('Nice! your Email is valid, you can proceed now.');
-                }
-                emailerrorvalidation = 0;
-                $.ajax({
-                    type: "POST",
-                    url: "contact.php",
-                    data: data,
-                    cache: false,
-                    success: function () {
-                        successObj.fadeIn(1000);
-                        formObj[0].reset();
-                    },
-                    error: function () {
-                        errorObj.fadeIn(1000);
-                    }
-                });
-            } else {
-                emailerrorvalidation = 1;
-                alert('Oops! Invalid Email Address');
-            }
-        }
-        return false;
-    });
 });
 
 $( window ).load(function() {

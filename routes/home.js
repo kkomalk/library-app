@@ -84,4 +84,14 @@ router.get('/aboutus',(req,res)=>{
 router.get('/contactus',(req,res)=>{
     res.render(path+'contact_us.ejs',{path : href});
 })
+
+router.post('/feedback',async (req,res)=>{
+    let data = req.body.data;
+    let obj = (Object.fromEntries([...new URLSearchParams(data)]));
+    console.log(obj);
+    await cquery(`insert into feedback(name,email,phone,feedback) values (${obj.name},${obj.email},${obj.phone},${obj.feedback});`);
+    res.send({
+        message : 'Thank you for your feedback!!'
+    })
+})
 module.exports = router;

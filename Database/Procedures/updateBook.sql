@@ -75,7 +75,7 @@ end //
 delimiter ;
 
 -- call procedure
-call updateBook('123', 'Algorithms', 2012, 'Cormen', 'CSE', 'www.facebook.com', 70, 12, @inv);
+call updateBook('1', 'Algorithms', 2012, 'Cormen', 'CSE', 'www.facebook.com', 70, 1, @inv);
 select @inv;   -- If noOfCOpies is faulty(1) or shelf capacity is less(2)
-
+select * from bookCopies;
 -- drop procedure updateBook;

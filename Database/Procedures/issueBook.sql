@@ -70,7 +70,7 @@ end //
 delimiter ;
 
 -- call procedure
-call issueBook(4, '123', 1, @success, @dueDate);
+call issueBook(24, '123', 1, @success, @dueDate);
 select @success;
 select @dueDate;
 -- success = 0 : Can't be issued due to limits or book unavailablity

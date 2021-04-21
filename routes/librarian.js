@@ -135,9 +135,17 @@ router.post('/fine', async (req, res) => {
     res.send({ message });
 })
 
-router.post('/delete', (req, res) => {
-
-    res.send({ message: 'done' });
+router.post('/viewfine', async (req, res) => {
+    let email = req.body.email;
+    let unpaidFines = await cquery(`select unpaidFines from user where email = '${email}';`);
+    console.log(unpaidFines);
+    let message = "",error="";
+    if(unpaidFines.length){
+        message = `The unpaid fines are ${unpaidFines[0].unpaidFines}`;
+    }else{
+        error = 'No user found.'
+    }
+    res.send({message,error});
 })
 
 

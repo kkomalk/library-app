@@ -45,8 +45,8 @@
                                 <div class="navbar-brand">
                                     <h1>
                                         <a href="iiti.ac.in">
-                                            <img style="width: 150px; height: 60px;"
-                                                src="https://admin.google.com/u/1/ac/images/logo.gif?uid=118001285387843873635&service=google_gsuite"
+                                            <img style="width: 70%; height: 70%;"
+                                                src="https://lh3.googleusercontent.com/proxy/NJ-cRlY4_-WuFEev_QEwptd3pgLXKn8kdHk5BzpVOI4dClZqW-CQWAjxmfuFa0z1Jt-ZCJC5aUfpfCIcfikYp323OdR6IjT5oEQ"
                                                 alt="LIBRARY" />
                                         </a>
                                     </h1>
@@ -246,13 +246,13 @@
                                                             <div class="contact-us">
                                                                 <div class="row">
                                                                     <div class="contact-area">
-                                                                        <div class="container" >
+                                                                        <div class="container">
 
                                                                             <div
                                                                                 class="contact-form bg-light margin-right">
-                                                                                
+
                                                                                 <div class="contact-fields">
-                                                                                    <form id="addbook" >
+                                                                                    <form id="addbook">
                                                                                         <div class="row">
 
                                                                                             <div
@@ -394,7 +394,7 @@
                                                                                             </div>
 
                                                                                         </div>
-                                                                                        <div class="addmess" ></div>
+                                                                                        <div class="addmess"></div>
                                                                                         <% if((message !='undefined' )
                                                                                             && (form=='add' )){%>
                                                                                             <div class="alert alert-primary"
@@ -425,10 +425,10 @@
 
                                                                             <div
                                                                                 class="contact-form bg-light margin-right">
-                                                                                
+
                                                                                 <div class="contact-fields">
-                                                                                    <form id="deletebook" name="contact"
-                                                                                    >
+                                                                                    <form id="deletebook"
+                                                                                        name="contact">
                                                                                         <div class="row">
 
                                                                                             <div
@@ -489,8 +489,8 @@
                                                                             <div
                                                                                 class="contact-form bg-light margin-right">
                                                                                 <div class="contact-fields">
-                                                                                    <form id="updatebook" name="contact"
-                                                                                        >
+                                                                                    <form id="updatebook"
+                                                                                        name="contact">
                                                                                         <div class="row">
 
                                                                                             <h4>Details Of Book To Be
@@ -708,10 +708,10 @@
 
                                                                             <div
                                                                                 class="contact-form bg-light margin-right">
-                                                                                
+
                                                                                 <div class="contact-fields">
-                                                                                    <form id="withdrawbook" name="contact"
-                                                                                        >
+                                                                                    <form id="withdrawbook"
+                                                                                        name="contact">
                                                                                         <div class="row">
 
                                                                                             <div
@@ -772,7 +772,7 @@
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="withdrawmess"></div>
-                                                                                        
+
                                                                                         <% if((message !='undefined' )
                                                                                             && (form=='withdraw' )){%>
                                                                                             <div class="alert alert-primary"
@@ -795,14 +795,14 @@
 
                                                 <div id="sectionH" class="tab-pane fade in">
                                                     <form id="collectfine">
-                                                        <div class="row">
+                                                            <div class="row">
 
                                                             <div class="col-md-6 col-sm-6">
                                                                 <div class="form-group">
                                                                     <input class="form-control" required="true"
                                                                         type="text"
                                                                         placeholder="Enter User's Registered Email ID"
-                                                                        name="email" id="email" size="30" value=""
+                                                                        name="email" id="fineemail" size="30" value=""
                                                                         aria-required="true" />
                                                                 </div>
                                                             </div>
@@ -813,14 +813,14 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="finemess"></div>
-                                                        
-                                                        <% if((message !='undefined' ) && (form=='fine' )){%>
-                                                            <div class="alert alert-primary" role="alert">
-                                                                <%= message %>
+                                                            <div class="finemess"></div>
+                                                        </form>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group form-submit">
+                                                                <button class="viewfine">View Fine</button>
                                                             </div>
-                                                            <% } %>
-                                                    </form>
+                                                        </div>
+
                                                 </div>
                                             </div>
 
@@ -859,7 +859,7 @@
                     </a>
                 </li>
                 <li style="width: 100px; margin: 10px 10px;">
-                    <a class="google" href="#" target="_blank"style=" height: 100px;">
+                    <a class="google" href="#" target="_blank" style=" height: 100px;">
                         <span>
                             <i class="fa fa-google-plus" style="font-size: 50px;"></i>
                         </span>
@@ -1019,122 +1019,131 @@
                     type: 'POST',
                     url: path + '/librarian/fine',
                     data: {
-                        data : $('#collectfine').serialize(),
+                        data: $('#collectfine').serialize(),
                     },
-                    success: (response) => {
-                        $('.finemess').html(`<p>${response.message}</p>`);
-                        console.log('done');
+                    success: (resp) => {
+                        if (resp.message.length) {
+                            
+                            $('.finemess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        } else {
+                            
+                            $('.finemess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
+                        }
                     }
                 })
             })
-            
-            $('#withdrawbook').submit(e=>{
+
+            $('#withdrawbook').submit(e => {
                 let fdata = $('#withdrawbook').serialize();
                 console.log(fdata);
                 e.preventDefault();
                 $.ajax({
                     type: 'POST',
-                    url : path + '/librarian/withdrawbook',
-                    data : {
-                        data : fdata
-                    },success : (resp)=>{
-                        $('.withdrawmess').toggleClass('alert');
-                        if(resp.message.length){
-                            $('.withdrawmess').toggleClass('alert-success');
-                            $('.withdrawmess').html(`<p>${resp.message}</p>`);
-                        }else{
-                            $('.withdrawmess').toggleClass('alert-danger');
-                            $('.withdrawmess').html(`<p>${resp.error}</p>`);
+                    url: path + '/librarian/withdrawbook',
+                    data: {
+                        data: fdata
+                    }, success: (resp) => {
+                        if (resp.message.length) {
+                            $('.withdrawmess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        } else {
+                            $('.withdrawmess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
                         }
                         console.log('withdrawn!');
                     }
                 })
             })
-            $('#issuebook').submit(e=>{
+            $('#issuebook').submit(e => {
                 let fdata = $('#issuebook').serialize();
                 console.log(fdata);
                 e.preventDefault();
                 $.ajax({
                     type: 'POST',
-                    url : path + '/librarian/issuebook',
-                    data : {
-                        data : fdata
-                    },success : (resp)=>{
-                        $('.issuemess').toggleClass('alert');
-                        if(resp.message.length){
-                            $('.issuemess').toggleClass('alert-success');
-                            $('.issuemess').html(`<p>${resp.message}</p>`);
-                        }else{
-                            $('.issuemess').toggleClass('alert-danger');
-                            $('.issuemess').html(`<p>${resp.error}</p>`);
+                    url: path + '/librarian/issuebook',
+                    data: {
+                        data: fdata
+                    }, success: (resp) => {
+                        if (resp.message.length) {
+                            $('.issuemess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        } else {
+                            $('.issuemess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
                         }
                         console.log('book issued!');
                     }
                 })
             })
-            $('#updatebook').submit(e=>{
+            $('#updatebook').submit(e => {
                 let fdata = $('#updatebook').serialize();
                 console.log(fdata);
                 e.preventDefault();
                 $.ajax({
                     type: 'POST',
-                    url : path + '/librarian/updatebook',
-                    data : {
-                        data : fdata
-                    },success : (resp)=>{
-                        $('.updatemess').toggleClass('alert');
-                        if(resp.message.length){
-                            $('.updatemess').toggleClass('alert-success');
-                            $('.updatemess').html(`<p>${resp.message}</p>`);
-                        }else{
-                            $('.updatemess').toggleClass('alert-danger');
-                            $('.updatemess').html(`<p>${resp.error}</p>`);
+                    url: path + '/librarian/updatebook',
+                    data: {
+                        data: fdata
+                    }, success: (resp) => {
+                        if (resp.message.length) {
+                            $('.updatemess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        } else {
+                            $('.updatemess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
                         }
                         console.log('book updated!');
                     }
                 })
             })
-            $('#deletebook').submit(e=>{
+            $('#deletebook').submit(e => {
                 let fdata = $('#deletebook').serialize();
                 console.log(fdata);
                 e.preventDefault();
                 $.ajax({
                     type: 'POST',
-                    url : path + '/librarian/deletebook',
-                    data : {
-                        data : fdata
-                    },success : (resp)=>{
-                        $('.deletemess').toggleClass('alert');
-                        if(resp.message.length){
-                            $('.deletemess').toggleClass('alert-success');
-                            $('.deletemess').html(`<p>${resp.message}</p>`);
-                        }else{
-                            $('.deletemess').toggleClass('alert-danger');
-                            $('.deletemess').html(`<p>${resp.error}</p>`);
+                    url: path + '/librarian/deletebook',
+                    data: {
+                        data: fdata
+                    }, success: (resp) => {
+                        if (resp.message.length) {
+                            $('.deletemess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        } else {
+                            $('.deletemess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
                         }
                         console.log('book deleted!');
                     }
                 })
             })
-            $('#addbook').submit(e=>{
+            $('#addbook').submit(e => {
                 let fdata = $('#addbook').serialize();
                 console.log(fdata);
                 e.preventDefault();
                 $.ajax({
                     type: 'POST',
-                    url : path + '/librarian/addbook',
-                    data : {
-                        data : fdata
-                    },success : (resp)=>{
-                        $('.addmess').toggleClass('alert');
-                        if(resp.message.length){
-                            $('.addmess').toggleClass('alert-success');
-                            $('.addmess').html(`<p>${resp.message}</p>`);
-                        }else{
-                            $('.addmess').toggleClass('alert-danger');
-                            $('.addmess').html(`<p>${resp.error}</p>`);
+                    url: path + '/librarian/addbook',
+                    data: {
+                        data: fdata
+                    }, success: (resp) => {
+                        if (resp.message.length) {
+                            $('.addmess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        } else {
+                            $('.addmess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
                         }
                         console.log('book added!');
+                    }
+                })
+            })
+            $('.viewfine').click(()=>{
+                let email = $('#fineemail').val();
+                $.ajax({
+                    type : 'POST',
+                    url : path+'/librarian/viewfine',
+                    data : {
+                        email
+                    },
+                    success : (resp)=>{
+                        $('.finemess').removeClass('alert alert-primary alert-danger');
+                        if(resp.message.length){
+                            $('.finemess').html(`<div class="alert alert-success"><p>${resp.message}</p></div>`);
+                        }else{
+                            $('.finemess').html(`<div class="alert alert-danger"><p>${resp.error}</p></div>`);
+                        }
+
                     }
                 })
             })

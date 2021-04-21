@@ -85,7 +85,7 @@
                             <div class="navbar-collapse hidden-sm hidden-xs">
                                 <ul class="nav navbar-nav">
                                     <li class="dropdown active">
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Home</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/home">Home</a>
                                     </li>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled"
@@ -114,10 +114,10 @@
                                     <a href="#" class="close"></a>
                                 </li>
                                 <li>
-                                    <a href="#">Home</a>
+                                    <a href="<%=path%>user/home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="<%=path%>user/temp">Books</a>
+                                    <a href="<%=path%>user/books">Books</a>
                                 </li>
                                 <li>
                                     <a href="<%=path%>user/friends">Find Friends</a>
@@ -268,7 +268,7 @@
                                                                                         alt="cart-product-1"></a>
                                                                             </span>
                                                                             <span class="product-detail">
-                                                                                <a href="#"><strong>
+                                                                                <a href="<%=path%>user/books?search=<%=book.title%>"><strong>
                                                                                         <%=book.title%>
                                                                                     </strong></a>
                                                                                 <span>
@@ -315,7 +315,7 @@
                                                                                         alt="cart-product-1"></a>
                                                                             </span>
                                                                             <span class="product-detail">
-                                                                                <a href="#"><strong>
+                                                                                <a href="<%=path%>user/books?search=<%=book.title%>"><strong>
                                                                                         <%=book.title%>
                                                                                     </strong></a>
                                                                                 <span>
@@ -358,7 +358,7 @@
                                                                                         alt="cart-product-1"></a>
                                                                             </span>
                                                                             <span class="product-detail">
-                                                                                <a href="#"><strong>
+                                                                                <a href="<%=path%>user/books?search=<%=book.title%>"><strong>
                                                                                         <%=book.title%>
                                                                                     </strong></a>
                                                                                 <span>
@@ -401,7 +401,7 @@
                                                                                         alt="cart-product-1"></a>
                                                                             </span>
                                                                             <span class="product-detail">
-                                                                                <a href="#"><strong>
+                                                                                <a href="<%=path%>user/books?search=<%=book.title%>"><strong>
                                                                                         <%=book.title%>
                                                                                     </strong></a>
                                                                                 <span>
@@ -430,7 +430,7 @@
                                                                 <tr>
                                                                     <th class="product-name">Sr. No.</th>
                                                                     <th class="product-name">Title</th>
-
+                                                                    
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -447,7 +447,7 @@
                                                                                         alt="cart-product-1"></a>
                                                                             </span>
                                                                             <span class="product-detail">
-                                                                                <a href="#"><strong>
+                                                                                <a href="<%=path%>user/books?search=<%=book.title%>"><strong>
                                                                                         <%=book.title%>
                                                                                     </strong></a>
                                                                                 <span>
@@ -459,6 +459,7 @@
                                                                                     <%=book.ISBN%>
                                                                                 </span>
                                                                         </td>
+                                                                        
                                                                     </tr>
                                                                     <%l++;})%>
                                                             </tbody>
@@ -693,44 +694,44 @@
 
     <!-- Start: Social Network -->
     <section class="social-network section-padding">
-        <div class="container">
+        <div class="container" style="margin: auto; ">
             <div class="center-content">
                 <h2 class="section-title">Follow Us</h2>
-                <span class="underline center"></span><br>
+                <span class="underline center"></span><br><br>
             </div>
-            <ul>
-                <li>
-                    <a class="facebook" href="#" target="_blank">
+            <ul style="margin: auto; padding-left: 250px;">
+                <li style="width: 100px; margin: 10px 10px;">
+                    <a class="facebook" href="#" target="_blank" style=" height: 100px;">
                         <span>
-                            <i class="fa fa-facebook-f"></i>
+                            <i class="fa fa-facebook-f" style="font-size: 50px;"></i>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a class="twitter" href="#" target="_blank">
+                <li style="width: 100px; margin: 10px 10px;">
+                    <a class="twitter" href="#" target="_blank" style=" height: 100px;">
                         <span>
-                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-twitter" style="font-size: 50px;"></i>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a class="google" href="#" target="_blank">
+                <li style="width: 100px; margin: 10px 10px;">
+                    <a class="google" href="#" target="_blank"style=" height: 100px;">
                         <span>
-                            <i class="fa fa-google-plus"></i>
+                            <i class="fa fa-google-plus" style="font-size: 50px;"></i>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a class="linkedin" href="#" target="_blank">
+                <li style="width: 100px; margin: 10px 10px;">
+                    <a class="linkedin" href="#" target="_blank" style=" height: 100px;">
                         <span>
-                            <i class="fa fa-linkedin"></i>
+                            <i class="fa fa-linkedin" style="font-size: 50px;"></i>
                         </span>
                     </a>
                 </li>
-                <li>
-                    <a class="youtube" href="#" target="_blank">
+                <li style="width: 100px; margin: 10px 10px;">
+                    <a class="youtube" href="#" target="_blank" style=" height: 100px;">
                         <span>
-                            <i class="fa fa-youtube"></i>
+                            <i class="fa fa-youtube" style="font-size: 50px;"></i>
                         </span>
                     </a>
                 </li>
@@ -779,7 +780,7 @@
                             <div class="menu-quick-links-container">
                                 <ul id="menu-quick-links" class="menu">
                                     <li>
-                                        <a href="#">Home</a>
+                                        <a href="<%=path%>user/home">Home</a>
                                     </li>
                                     <li>
                                         <a href="<%=path%>user/books">Books</a>
@@ -879,6 +880,7 @@
                 })
 
             })
+            
         })
 
     </script>

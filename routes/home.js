@@ -77,5 +77,11 @@ router.post('/rate',async(req,res)=>{
     await cquery(`call rateBookWithoutUser(${isbn},${rating})`);
 })
 
+router.get('/aboutus',(req,res)=>{
+    res.render(path+'about_us.ejs',{path : href});
+})
 
+router.get('/contactus',(req,res)=>{
+    res.render(path+'contact_us.ejs',{path : href});
+})
 module.exports = router;

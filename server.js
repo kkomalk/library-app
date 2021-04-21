@@ -51,13 +51,22 @@ app.set('view engine', 'ejs');
 app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
-// Local Host
+// Local Host Vaibhav
+// var db_config = {
+//     multipleStatements: true,
+//     host: 'localhost',
+//     user: 'vaibhav',
+//     password: 'password',
+//     database: 'mydb',
+//     port: 3306
+// };
+// Local Host PC
 var db_config = {
     multipleStatements: true,
     host: 'localhost',
-    user: 'vaibhav',
-    password: 'password',
-    database: 'mydb',
+    user: 'root',
+    password: 'Titu*2802',
+    database: 'iitilrc',
     port: 3306
 };
 // ClearDB

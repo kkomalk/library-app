@@ -1,6 +1,7 @@
 -- create database mydb;
 use heroku_cef71ea1a512a1b;
 -- use iitilrc;
+create database iitilrc;
 set sql_safe_updates = 0;
 
 /*
@@ -165,4 +166,13 @@ foreign key(userID) references user(userID) on delete cascade
 );
 -- drop table readingList
 
+create table feedback(
+feedbackID int auto_increment not null,
+email varchar(70),
+name varchar(50),
+phone varchar(13),
+feedback varchar(1000),
+primary key(feedbackID)
+);
+-- drop table feedback
 

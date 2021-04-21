@@ -44,6 +44,6 @@ delimiter ;
 call addBook('123', 'ALgorithms', 2010, 5, 'Cormen', 'CSE', 'www.google.com', 12, @did, @inv);
 select @did;
 select @inv;
-
+select * from bookCopies;
 -- drop procedure addBook;
 

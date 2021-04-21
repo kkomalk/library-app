@@ -34,6 +34,8 @@ const cquery = async (sql, req, res) => {
 }
 
 router.get('/login', async (req, res) => {
+    let temp = await hash('abc');
+    console.log(temp);
     if (req.user) {
         if (req.user.accountType == 'librarian') {
             res.redirect('/librarian/home');

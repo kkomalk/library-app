@@ -78,11 +78,11 @@ router.post('/rate',async(req,res)=>{
 })
 
 router.get('/aboutus',(req,res)=>{
-    res.render(path+'about_us.ejs',{path : href});
+    res.render(path+'about_us.ejs',{path : href,user: ""});
 })
 
 router.get('/contactus',(req,res)=>{
-    res.render(path+'contact_us.ejs',{path : href});
+    res.render(path+'contact_us.ejs',{path : href,user: ""});
 })
 
 router.post('/feedback',async (req,res)=>{

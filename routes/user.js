@@ -203,4 +203,13 @@ router.post('/getreviews', async (req,res)=>{
     console.log(reviews);
     res.send(reviews[0]);
 })
+
+router.get('/aboutus',(req,res)=>{
+    res.render(path+'about_us.ejs',{path : href,user : "user/"});
+})
+
+router.get('/contactus',(req,res)=>{
+    res.render(path+'contact_us.ejs',{path : href,user: "user/"});
+})
+
 module.exports = router;

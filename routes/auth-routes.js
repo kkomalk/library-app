@@ -2,6 +2,25 @@ const router = require('express').Router();
 const path = '../views/common/';
 const passport = require('passport');
 const href = 'http://localhost:5000/';
+const bcrypt = require('bcrypt');
+const keys = require('../keys');
+const saltRounds = keys.salt;
+
+const hash = async(pass) => {
+    return new Promise ((resolve,reject)=>{
+        bcrypt.hash(pass,saltRounds,(err,hash)=>{
+            resolve(hash);
+        })
+    })
+}
+
+const compare = async(pass,hash) => {
+    return new Promise((resolve,reject)=>{
+        bcrypt.compare(pass,hash,(err,result)=>{
+            resolve(result);
+        })
+    })
+}
 
 const cquery = async (sql, req, res) => {
     return new Promise((resolve, reject) => {
@@ -13,8 +32,7 @@ const cquery = async (sql, req, res) => {
     )
 }
 
-router.get('/login', (req, res) => {
-    console.log(req.user);
+router.get('/login', async (req, res) => {
     if (req.user) {
         if (req.user.accountType == 'librarian') {
             res.redirect('/librarian/home');
@@ -22,7 +40,6 @@ router.get('/login', (req, res) => {
             res.redirect('/user/home');
         }
     } else {
-        // console.log(req.flash('error')[0],'here');
         let error = req.flash('error');
         let message = req.flash('message');
         res.render(path + 'login', { path: href, error, message });
@@ -73,6 +90,7 @@ router.post('/signup', async (req, res) => {
             req.flash('error', 'email is already registered');
             res.redirect(`/auth/signup/?name=${name}&email=${email}`);
         } else {
+            pass = await hash(pass);
             let temp = await cquery(`call signUpUser('${email}','${pass}','${name}','${address}','${type}',@did);`);
             req.flash('message', 'You are signed up now. Please login.');
             res.redirect('/auth/login');

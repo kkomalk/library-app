@@ -73,13 +73,16 @@
                                 <div class="navbar-collapse hidden-sm hidden-xs">
                                     <ul class="nav navbar-nav">
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>">Home</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/home">Home</a>
                                         </li>
                                         <li class="dropdown">
-                                            <a data-toggle="dropdown" class="dropdown-toggle disabled"  href="<%=path%>books">Books</a>
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled"  href="<%=path%>user/books">Books</a>
                                         </li>
-                                        <li class="active"><a href="<%=path%><%=user%>aboutus">About Us</a></li>
-                                        <li><a href="<%=path%><%=user%>contactus">Contact Us</a></li>
+                                        <li class="dropdown">
+                                            <a data-toggle="dropdown" class="dropdown-toggle disabled" href="<%=path%>user/friends">Find Friends</a>
+                                        </li>
+                                        <li><a href="<%=path%>user/aboutus">About Us</a></li>
+                                        <li class="active"><a href="<%=path%>user/contactus">Contact Us</a></li>
 
                                     </ul>
                                 </div>

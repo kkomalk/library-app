@@ -8,7 +8,7 @@ create procedure cancelHold(
 begin
 declare dueDate date;
 declare bookStatus varchar(20);
-set status = 'Hello';
+set bookstatus = 'Hello';
 set status = 0;
 select bookCopies.dueDate into dueDate from bookCopies where bookCopies.ISBN = ISBN and bookCopies.copyID = copyID;
 select bookCopies.bookStatus into bookStatus from bookCopies where bookCopies.ISBN = ISBN and bookCopies.copyID = copyID;

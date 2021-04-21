@@ -175,7 +175,4 @@ feedback varchar(1000),
 primary key(feedbackID)
 );
 -- drop table feedback
-select * from account;
 
--- ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Titu*2802';
--- flush privileges;

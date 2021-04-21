@@ -45,7 +45,9 @@
                                 <div class="navbar-brand">
                                     <h1>
                                         <a href="iiti.ac.in">
-                                            <img style="width: 150px; height: 60px;" src="https://admin.google.com/u/1/ac/images/logo.gif?uid=118001285387843873635&service=google_gsuite" alt="LIBRARY" />
+                                            <img style="width: 150px; height: 60px;"
+                                                src="https://admin.google.com/u/1/ac/images/logo.gif?uid=118001285387843873635&service=google_gsuite"
+                                                alt="LIBRARY" />
                                         </a>
                                     </h1>
                                 </div>
@@ -58,7 +60,8 @@
                                         <div class="topbar-info">
                                             <a href="tel:0731-6603424"><i class="fa fa-phone"></i>0731-6603424</a>
                                             <span>/</span>
-                                            <a href="mailto:library@iiti.ac.in"><i class="fa fa-envelope"></i>library@iiti.ac.in</a>
+                                            <a href="mailto:library@iiti.ac.in"><i
+                                                    class="fa fa-envelope"></i>library@iiti.ac.in</a>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -68,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="navbar-collapse hidden-sm hidden-xs">
+                            <!-- <div class="navbar-collapse hidden-sm hidden-xs">
                                 <ul class="nav navbar-nav">
                                     <li class="dropdown active">
                                         <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#">Home</a>
@@ -91,13 +94,14 @@
                                             Returned Books</a>
                                     </li>
                                     <li>
-                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#sectionZ"> Collect Fines </a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle disabled" href="#sectionZ">
+                                            Collect Fines </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
-                    <div class="mobile-menu hidden-lg hidden-md">
+                    <!-- <div class="mobile-menu hidden-lg hidden-md">
                         <a href="#mobile-menu"><i class="fa fa-navicon"></i></a>
                         <div id="mobile-menu">
                             <ul>
@@ -128,7 +132,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </nav>
             </div>
         </div>
@@ -180,19 +184,25 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td> <%=name%> </td>
+                                <td>
+                                    <%=name%>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>LibrarianID</td>
-                                <td> <%=id%> </td>
+                                <td>
+                                    <%=id%>
+                                </td>
                             </tr>
                         </tbody>
                         <tbody>
                             <tr>
                                 <td>Address</td>
-                                <td> <%=address%> </td>
+                                <td>
+                                    <%=address%>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -214,15 +224,21 @@
                                     <div class="entry-content">
                                         <div class="woocommerce table-tabs" id="responsiveTabs">
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><b class="arrow-up"></b><a data-toggle="tab" href="#sectionZ"> Add Books </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB"> Remove Books </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC"> Update Book Details </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF"> Issue Book </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionG"> Withdraw Issued Books </a></li>
-                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH"> Collect Fine </a></li>
+                                                <li class="active"><b class="arrow-up"></b><a data-toggle="tab"
+                                                        href="#sectionZ"> Add Books </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionB">
+                                                        Remove Books </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionC">
+                                                        Update Book Details </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionF"> Issue
+                                                        Book </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionG">
+                                                        Withdraw Issued Books </a></li>
+                                                <li><b class="arrow-up"></b><a data-toggle="tab" href="#sectionH">
+                                                        Collect Fine </a></li>
                                             </ul>
 
-                                            
+
                                             <div class="tab-content">
                                                 <div id="sectionZ" class="tab-pane fade in active">
                                                     <main id="main" class="site-main">
@@ -232,73 +248,160 @@
                                                                     <div class="contact-area">
                                                                         <div class="container" >
 
-                                                                            <div class="contact-form bg-light margin-right">
-                                                                                <span class="underline left"></span>
+                                                                            <div
+                                                                                class="contact-form bg-light margin-right">
+                                                                                
                                                                                 <div class="contact-fields">
                                                                                     <form id="addbook" name="contact" action="<%=path%>librarian/addbook" method="POST" >
                                                                                         <div class="row">
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter ISBN"
+                                                                                                        name="isbn"
+                                                                                                        id="isbn"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Title" name="title" id="title" size="100" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Title"
+                                                                                                        name="title"
+                                                                                                        id="title"
+                                                                                                        size="100"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year" id="year-of-publication" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Year of Publication"
+                                                                                                        name="year"
+                                                                                                        id="year-of-publication"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="copies" id="no-of-copies" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Number of Copies"
+                                                                                                        name="copies"
+                                                                                                        id="no-of-copies"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter shelf-ID" name="shelfid" id="no-of-copies-shelf" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter shelf-ID"
+                                                                                                        name="shelfid"
+                                                                                                        id="no-of-copies-shelf"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Author" name="authors" id="author" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Author"
+                                                                                                        name="authors"
+                                                                                                        id="author"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Category" name="category" id="category" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Category"
+                                                                                                        name="category"
+                                                                                                        id="category"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter URL of Book Cover Page" name="image" id="image" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter URL of Book Cover Page"
+                                                                                                        name="image"
+                                                                                                        id="image"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            
+
 
                                                                                             <div class="col-sm-12">
-                                                                                                <div class="form-group form-submit">
-                                                                                                    <button type="submit">Add Book</button>
+                                                                                                <div
+                                                                                                    class="form-group form-submit">
+                                                                                                    <button
+                                                                                                        type="submit">Add
+                                                                                                        Book</button>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                         </div>
-                                                                                        <% if((message != 'undefined') && (form =='add')){%>
-                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                        <div class="addmess" ></div>
+                                                                                        <% if((message !='undefined' )
+                                                                                            && (form=='add' )){%>
+                                                                                            <div class="alert alert-primary"
+                                                                                                role="alert">
                                                                                                 <%= message %>
                                                                                             </div>
-                                                                                        <% } %>
+                                                                                            <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -311,7 +414,7 @@
                                                     </main>
                                                 </div>
 
-                                            
+
                                                 <div id="sectionB" class="tab-pane fade in">
                                                     <main id="main" class="site-main">
                                                         <div class="contact-main">
@@ -320,30 +423,48 @@
                                                                     <div class="contact-area">
                                                                         <div class="container">
 
-                                                                            <div class="contact-form bg-light margin-right">
-                                                                                <span class="underline left"></span>
+                                                                            <div
+                                                                                class="contact-form bg-light margin-right">
+                                                                                
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="<%=path%>librarian/deletebook" method="POST">
+                                                                                    <form id="deletebook" name="contact"
+                                                                                    >
                                                                                         <div class="row">
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter ISBN"
+                                                                                                        name="isbn"
+                                                                                                        id="isbn"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="col-sm-12">
-                                                                                                <div class="form-group form-submit">
-                                                                                                    <button type="submit">Delete Book</button>
+                                                                                                <div
+                                                                                                    class="form-group form-submit">
+                                                                                                    <button
+                                                                                                        type="submit">Delete
+                                                                                                        Book</button>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                         </div>
-                                                                                        <% if((message != 'undefined') && (form == 'delete')){%>
-                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                        <div class="deletemess"></div>
+                                                                                        <% if((message !='undefined' )
+                                                                                            && (form=='delete' )){%>
+                                                                                            <div class="alert alert-primary"
+                                                                                                role="alert">
                                                                                                 <%= message %>
                                                                                             </div>
-                                                                                        <% } %>
+                                                                                            <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -365,70 +486,161 @@
                                                                     <div class="contact-area">
                                                                         <div class="container">
 
-                                                                            <div class="contact-form bg-light margin-right">
+                                                                            <div
+                                                                                class="contact-form bg-light margin-right">
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="<%=path%>librarian/updatebook" method="post">
+                                                                                    <form id="updatebook" name="contact"
+                                                                                        >
                                                                                         <div class="row">
 
-                                                                                            <h4>Details Of Book To Be Updated </h4><hr>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <h4>Details Of Book To Be
+                                                                                                Updated </h4>
+                                                                                            <hr>
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter ISBN"
+                                                                                                        name="isbn"
+                                                                                                        id="isbn"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
 
                                                                                         <div class="row">
 
-                                                                                            <h4>Updated Details</h4><hr>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <h4>Updated Details</h4>
+                                                                                            <hr>
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Title" name="title" id="title" size="100" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Title"
+                                                                                                        name="title"
+                                                                                                        id="title"
+                                                                                                        size="100"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter URL of book cover page" name="image" id="image" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter URL of book cover page"
+                                                                                                        name="image"
+                                                                                                        id="image"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Year of Publication" name="year" id="year-of-publication" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Year of Publication"
+                                                                                                        name="year"
+                                                                                                        id="year-of-publication"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Number of Copies" name="copies" id="no-of-copies" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Number of Copies"
+                                                                                                        name="copies"
+                                                                                                        id="no-of-copies"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Author" name="author" id="author" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Author"
+                                                                                                        name="author"
+                                                                                                        id="author"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Category" name="category" id="category" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Category"
+                                                                                                        name="category"
+                                                                                                        id="category"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Shelf ID" name="shelf" id="shelf" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Shelf ID"
+                                                                                                        name="shelf"
+                                                                                                        id="shelf"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="col-sm-12">
-                                                                                                <div class="form-group form-submit">
-                                                                                                    <button type="submit">Update Details</button>
+                                                                                                <div
+                                                                                                    class="form-group form-submit">
+                                                                                                    <button
+                                                                                                        type="submit">Update
+                                                                                                        Details</button>
                                                                                                 </div>
                                                                                             </div>
 
                                                                                         </div>
-                                                                                        <% if((message != 'undefined') && (form == 'update')){%>
-                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                        <div class="updatemess"></div>
+                                                                                        <% if((message !='undefined' )
+                                                                                            && (form=='update' )){%>
+                                                                                            <div class="alert alert-primary"
+                                                                                                role="alert">
                                                                                                 <%= message %>
                                                                                             </div>
-                                                                                        <% } %>
+                                                                                            <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -443,21 +655,31 @@
 
 
                                                 <div id="sectionF" class="tab-pane fade in">
-                                                    <form method="POST" action="<%=path%>librarian/issuebook">
+                                                    <form id="issuebook">
                                                         <div class="row">
                                                             <div class="col-md-6 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
+                                                                    <input class="form-control" required="true"
+                                                                        type="text" placeholder="Enter ISBN" name="isbn"
+                                                                        id="isbn" size="30" value=""
+                                                                        aria-required="true" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" type="text" placeholder="Enter Copy ID" name="copyid" id="copyid" size="30" value="" aria-required="true" />
+                                                                    <input class="form-control" required="true"
+                                                                        type="text" placeholder="Enter Copy ID"
+                                                                        name="copyid" id="copyid" size="30" value=""
+                                                                        aria-required="true" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" type="text" placeholder="Enter User's Registered Email ID" name="email" id="email" size="30" value="" aria-required="true" />
+                                                                    <input class="form-control" required="true"
+                                                                        type="text"
+                                                                        placeholder="Enter User's Registered Email ID"
+                                                                        name="email" id="email" size="30" value=""
+                                                                        aria-required="true" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-12">
@@ -466,11 +688,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <% if((message != 'undefined') && (form == 'issue')){%>
+                                                        <div class="issuemess"></div>
+                                                        <% if((message !='undefined' ) && (form=='issue' )){%>
                                                             <div class="alert alert-primary" role="alert">
                                                                 <%= message %>
                                                             </div>
-                                                        <% } %>
+                                                            <% } %>
                                                     </form>
                                                 </div>
 
@@ -483,41 +706,80 @@
                                                                     <div class="contact-area">
                                                                         <div class="container">
 
-                                                                            <div class="contact-form bg-light margin-right">
-                                                                                <span class="underline left"></span>
+                                                                            <div
+                                                                                class="contact-form bg-light margin-right">
+                                                                                
                                                                                 <div class="contact-fields">
-                                                                                    <form id="contact" name="contact" action="<%=path%>librarian/withdrawbook" method="POST">
+                                                                                    <form id="withdrawbook" name="contact"
+                                                                                        >
                                                                                         <div class="row">
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter ISBN" name="isbn" id="isbn" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter ISBN"
+                                                                                                        name="isbn"
+                                                                                                        id="isbn"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter Copy ID" name="copyid" id="copyid" size="100" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter Copy ID"
+                                                                                                        name="copyid"
+                                                                                                        id="copyid"
+                                                                                                        size="100"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
-                                                                                            <div class="col-md-6 col-sm-6">
+                                                                                            <div
+                                                                                                class="col-md-6 col-sm-6">
                                                                                                 <div class="form-group">
-                                                                                                    <input class="form-control" type="text" placeholder="Enter User's Registered Email ID" name="email" id="email" size="30" value="" aria-required="true" />
+                                                                                                    <input
+                                                                                                        class="form-control"
+                                                                                                        required="true"
+                                                                                                        type="text"
+                                                                                                        placeholder="Enter User's Registered Email ID"
+                                                                                                        name="email"
+                                                                                                        id="email"
+                                                                                                        size="30"
+                                                                                                        value=""
+                                                                                                        aria-required="true" />
                                                                                                 </div>
                                                                                             </div>
 
                                                                                             <div class="col-sm-12">
-                                                                                                <div class="form-group form-submit">
-                                                                                                    <button type="submit">Return Book</button>
+                                                                                                <div
+                                                                                                    class="form-group form-submit">
+                                                                                                    <button
+                                                                                                        type="submit">Return
+                                                                                                        Book</button>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <% if((message != 'undefined') && (form == 'withdraw')){%>
-                                                                                            <div class="alert alert-primary" role="alert">
+                                                                                        <div class="withdrawmess"></div>
+                                                                                        
+                                                                                        <% if((message !='undefined' )
+                                                                                            && (form=='withdraw' )){%>
+                                                                                            <div class="alert alert-primary"
+                                                                                                role="alert">
                                                                                                 <%= message %>
                                                                                             </div>
-                                                                                        <% } %>
+                                                                                            <% } %>
                                                                                     </form>
                                                                                 </div>
                                                                             </div>
@@ -532,12 +794,16 @@
 
 
                                                 <div id="sectionH" class="tab-pane fade in">
-                                                    <form method="POST" action="<%=path%>librarian/fine">
+                                                    <form id="collectfine">
                                                         <div class="row">
 
                                                             <div class="col-md-6 col-sm-6">
                                                                 <div class="form-group">
-                                                                    <input class="form-control" type="text" placeholder="Enter User's Registered Email ID" name="email" id="email" size="30" value="" aria-required="true" />
+                                                                    <input class="form-control" required="true"
+                                                                        type="text"
+                                                                        placeholder="Enter User's Registered Email ID"
+                                                                        name="email" id="email" size="30" value=""
+                                                                        aria-required="true" />
                                                                 </div>
                                                             </div>
 
@@ -547,11 +813,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <% if((message != 'undefined') && (form == 'fine')){%>
+                                                        <div class="finemess"></div>
+                                                        
+                                                        <% if((message !='undefined' ) && (form=='fine' )){%>
                                                             <div class="alert alert-primary" role="alert">
                                                                 <%= message %>
                                                             </div>
-                                                        <% } %>
+                                                            <% } %>
                                                     </form>
                                                 </div>
                                             </div>
@@ -658,13 +926,13 @@
                                     <li>
                                         <a href="#">Home</a>
                                     </li>
-                                    
+
                                     <li><a href="#sectionZ"> Add Books </a></li>
                                     <li><a href="#sectionZ"> Remove Books </a></li>
                                     <li><a href="#sectionZ"> Update Book Details </a></li>
                                     <li><a href="#sectionZ"> Add Book Copy </a></li>
                                     <li><a href="#sectionZ"> Remove Book Copy </a></li>
-                                        
+
                                     <li>
                                         <a href="#sectionZ">Issue Books</a>
                                     </li>
@@ -738,6 +1006,140 @@
     <!-- Custom Scripts -->
     <script type="text/javascript" src="../js/main.js"></script>
 
+    <script>
+        let path = window.location.origin;
+        $('form').submit(e => {
+            e.preventDefault();
+        })
+        $(document).ready(() => {
+            $('#collectfine').submit(e => {
+                console.log($('#collectfine').serialize());
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: path + '/librarian/fine',
+                    data: {
+                        data : $('#collectfine').serialize(),
+                    },
+                    success: (response) => {
+                        $('.finemess').html(`<p>${response.message}</p>`);
+                        console.log('done');
+                    }
+                })
+            })
+            
+            $('#withdrawbook').submit(e=>{
+                let fdata = $('#withdrawbook').serialize();
+                console.log(fdata);
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url : path + '/librarian/withdrawbook',
+                    data : {
+                        data : fdata
+                    },success : (resp)=>{
+                        $('.withdrawmess').toggleClass('alert');
+                        if(resp.message.length){
+                            $('.withdrawmess').toggleClass('alert-success');
+                            $('.withdrawmess').html(`<p>${resp.message}</p>`);
+                        }else{
+                            $('.withdrawmess').toggleClass('alert-danger');
+                            $('.withdrawmess').html(`<p>${resp.error}</p>`);
+                        }
+                        console.log('withdrawn!');
+                    }
+                })
+            })
+            $('#issuebook').submit(e=>{
+                let fdata = $('#issuebook').serialize();
+                console.log(fdata);
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url : path + '/librarian/issuebook',
+                    data : {
+                        data : fdata
+                    },success : (resp)=>{
+                        $('.issuemess').toggleClass('alert');
+                        if(resp.message.length){
+                            $('.issuemess').toggleClass('alert-success');
+                            $('.issuemess').html(`<p>${resp.message}</p>`);
+                        }else{
+                            $('.issuemess').toggleClass('alert-danger');
+                            $('.issuemess').html(`<p>${resp.error}</p>`);
+                        }
+                        console.log('book issued!');
+                    }
+                })
+            })
+            $('#updatebook').submit(e=>{
+                let fdata = $('#updatebook').serialize();
+                console.log(fdata);
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url : path + '/librarian/updatebook',
+                    data : {
+                        data : fdata
+                    },success : (resp)=>{
+                        $('.updatemess').toggleClass('alert');
+                        if(resp.message.length){
+                            $('.updatemess').toggleClass('alert-success');
+                            $('.updatemess').html(`<p>${resp.message}</p>`);
+                        }else{
+                            $('.updatemess').toggleClass('alert-danger');
+                            $('.updatemess').html(`<p>${resp.error}</p>`);
+                        }
+                        console.log('book updated!');
+                    }
+                })
+            })
+            $('#deletebook').submit(e=>{
+                let fdata = $('#deletebook').serialize();
+                console.log(fdata);
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url : path + '/librarian/deletebook',
+                    data : {
+                        data : fdata
+                    },success : (resp)=>{
+                        $('.deletemess').toggleClass('alert');
+                        if(resp.message.length){
+                            $('.deletemess').toggleClass('alert-success');
+                            $('.deletemess').html(`<p>${resp.message}</p>`);
+                        }else{
+                            $('.deletemess').toggleClass('alert-danger');
+                            $('.deletemess').html(`<p>${resp.error}</p>`);
+                        }
+                        console.log('book deleted!');
+                    }
+                })
+            })
+            $('#addbook').submit(e=>{
+                let fdata = $('#addbook').serialize();
+                console.log(fdata);
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url : path + '/librarian/addbook',
+                    data : {
+                        data : fdata
+                    },success : (resp)=>{
+                        $('.addmess').toggleClass('alert');
+                        if(resp.message.length){
+                            $('.addmess').toggleClass('alert-success');
+                            $('.addmess').html(`<p>${resp.message}</p>`);
+                        }else{
+                            $('.addmess').toggleClass('alert-danger');
+                            $('.addmess').html(`<p>${resp.error}</p>`);
+                        }
+                        console.log('book added!');
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 

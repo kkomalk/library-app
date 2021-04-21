@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const path = '../views/user/';
-const href = 'http://localhost:5000/';
+const domain = require('./domain')
+const href = domain.href;
 
 
 const cquery = async  (sql,req,res)=>{

@@ -51,7 +51,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('views'));
 app.set('views', __dirname + '/views');
 
-// Local Host Vaibhav
+// Local Host
 // var db_config = {
 //     multipleStatements: true,
 //     host: 'localhost',
@@ -60,24 +60,15 @@ app.set('views', __dirname + '/views');
 //     database: 'mydb',
 //     port: 3306
 // };
-// Local Host PC
+// ClearDB
 var db_config = {
     multipleStatements: true,
-    host: 'localhost',
-    user: 'root',
-    password: 'Titu*2802',
-    database: 'iitilrc',
+    host: keys.db_host,
+    user: keys.db_user,
+    password: keys.db_password,
+    database: keys.db_name,
     port: 3306
 };
-// ClearDB
-// var db_config = {
-//     multipleStatements: true,
-//     host: keys.db_host,
-//     user: keys.db_user,
-//     password: keys.db_password,
-//     database: keys.db_name,
-//     port: 3306
-// };
 // Another DB 
 // var db_config = {
 //     multipleStatements: true,

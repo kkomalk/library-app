@@ -3,7 +3,6 @@ use heroku_cef71ea1a512a1b;
 -- use iitilrc;
 create database iitilrc;
 set sql_safe_updates = 0;
-
 /*
 Entities
 1. Account

@@ -65,7 +65,7 @@ var db_config = {
     multipleStatements: true,
     host: 'localhost',
     user: 'root',
-    password: 'Titu*2802',
+    password: 'password',
     database: 'iitilrc',
     port: 3306
 };
